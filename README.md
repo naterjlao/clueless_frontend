@@ -1,5 +1,5 @@
 # Clueless Front-End Component
-Contains front end component of Clueless.
+Contains the Front-End component for the Clueless project.
 
 ## Architecture
 Angular
