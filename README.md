@@ -1,2 +1,5 @@
-# clueless_frontend
-Clueless Front-End Component
+# Clueless Front-End Component
+Contains front end component of Clueless.
+
+## Architecture
+Angular
