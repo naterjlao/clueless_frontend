@@ -24,7 +24,7 @@
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": [
-              "src/favicon.ico",
+              "src/favicon.png",
               "src/assets"
             ],
             "styles": [
@@ -32,7 +32,11 @@
               "./node_modules/bootstrap/dist/css/bootstrap.css",
               "src/styles.less"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.js",
+              "node_modules/pixi.js/dist/pixi.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -90,7 +94,7 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": [
-              "src/favicon.ico",
+              "src/favicon.png",
               "src/assets"
             ],
             "styles": [
@@ -100,7 +104,8 @@
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.js",
-              "./node_modules/bootstrap/dist/js/bootstrap.js"
+              "./node_modules/bootstrap/dist/js/bootstrap.js",
+              "node_modules/pixi.js/dist/pixi.min.js"
             ]
           }
         },

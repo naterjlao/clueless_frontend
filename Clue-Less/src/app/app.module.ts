@@ -10,13 +10,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { GameboardComponent } from './gameboard/gameboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StartMenuComponent,
     GameMenuComponent,
-    PlayerSelectMenuComponent
+    PlayerSelectMenuComponent,
+    GameboardComponent
   ],
   imports: [
     BrowserModule,
