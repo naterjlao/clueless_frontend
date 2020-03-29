@@ -17,7 +17,7 @@ export class GameboardComponent implements OnInit {
   constructor(private renderer: Renderer2, private el: ElementRef) { }
 
   ngOnInit(): void {
-    this.socket = io('http://localhost:3000', { forceNew: false });
+    this.socket = io('http://brian.natelao.com:3000', { forceNew: false }); // TODO this is temporary
     this.socket.id = 'gameboard';
 
     //TODO: code for future use of pixi.js instead of canvas
