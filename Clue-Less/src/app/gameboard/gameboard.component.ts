@@ -9,16 +9,10 @@ import { element } from 'protractor';
   styleUrls: ['./gameboard.component.less']
 })
 export class GameboardComponent implements OnInit {
-  @ViewChild('game', {static: false}) private gameCanvas: ElementRef;
-
-  private context: any;
-  private socket: any;
 
   constructor(private renderer: Renderer2, private el: ElementRef) { }
 
   ngOnInit(): void {
-    this.socket = io('http://localhost:3000', { forceNew: false });
-    this.socket.id = 'gameboard';
 
     //TODO: code for future use of pixi.js instead of canvas
     // let gameboardElement = document.getElementById('gameboard');
@@ -27,13 +21,6 @@ export class GameboardComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.context = this.gameCanvas.nativeElement.getContext('2d');
-
-    this.socket.on('position', position => {
-      this.context.clearRect(0,0,this.gameCanvas.nativeElement.width,this.gameCanvas.nativeElement.height);
-      this.context.fillRect(position.x,position.y,10,10);
-    });
-
   }
 
 }

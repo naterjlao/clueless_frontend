@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Renderer2, ElementRef } from '@angular/core';
 import io from 'socket.io-client';
 
 @Component({
@@ -7,6 +7,8 @@ import io from 'socket.io-client';
   styleUrls: ['./game-menu.component.less']
 })
 export class GameMenuComponent implements OnInit {
+
+  @ViewChild('game', {static: false}) private gameCanvas: ElementRef;
 
   private context: any;
   private socket: any;
@@ -22,6 +24,13 @@ export class GameMenuComponent implements OnInit {
     }
 
     ngAfterViewInit() {
+      this.context = this.gameCanvas.nativeElement.getContext('2d');
+
+      this.socket.on('position', position => {
+        this.context.clearRect(0,0,this.gameCanvas.nativeElement.width,this.gameCanvas.nativeElement.height);
+        this.context.fillRect(position.x,position.y,10,10);
+      });
+
       this.socket.on('turnChange', turn => {
         this.whosTurn = turn;
       });
