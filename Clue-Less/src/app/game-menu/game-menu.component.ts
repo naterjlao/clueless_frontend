@@ -18,7 +18,7 @@ export class GameMenuComponent implements OnInit {
   constructor() { }
 
     ngOnInit() {
-      this.socket = io('http://localhost:3000');
+      this.socket = io('http://brian.natelao.com:3000'); //TODO - this is temporary, IP and port needs to be placed into a configuration file
     }
 
     ngAfterViewInit() {
