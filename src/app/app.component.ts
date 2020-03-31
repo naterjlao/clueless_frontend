@@ -14,7 +14,7 @@ private context: any;
 private socket: any;
 
   ngOnInit() {
-    this.socket = io('http://freddie.natelao.com:3000');
+    this.socket = io('http://john.natelao.com:3000');
   }
 
   ngAfterViewInit() {
