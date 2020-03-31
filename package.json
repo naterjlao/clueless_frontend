@@ -6,7 +6,7 @@
     "start": "npm run build && concurrently --kill-others \"npm run socketio-server\" \"npm run serve\"",
     "build": "ng build",
     "serve": "ng serve --proxy-config proxy.conf.json --port 8080 --host=0.0.0.0 --disableHostCheck",
-    "socketio-server": "node /opt/clueless/src/serverside",
+    "socketio-server": "node /opt/clueless/src/serverside/app.js",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
