@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild, Renderer2, ElementRef } from '@angular/core';
-import io from 'socket.io-client';
 import * as PIXI from 'pixi.js';
 import { element } from 'protractor';
 
