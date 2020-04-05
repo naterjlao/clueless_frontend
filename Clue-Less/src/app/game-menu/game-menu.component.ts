@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, Renderer2, ElementRef } from '@angular/core';
 import io from 'socket.io-client';
-import { network } from '../environments/environment'; 
+import { network } from '../../environments/environment'; // TODO probably want absolute reference
 
 @Component({
   selector: 'game-menu',
@@ -21,12 +21,12 @@ export class GameMenuComponent implements OnInit {
   // TESTING getting server IP and Port from environment configuration
   serverIP: string = network.serverIP;
   serverPort: string = network.serverPort;
-  server = serverIP.concat(serverPort);
+  server = this.serverIP.concat(this.serverPort);
 
   constructor() { }
 
     ngOnInit() {
-    this.socket = io(server, { forceNew: true }); //TODO - this is temporary, IP and port needs to be placed into a configuration file
+    this.socket = io(this.server, { forceNew: true }); //TODO - this is temporary, IP and port needs to be placed into a configuration file
     }
 
     ngAfterViewInit() {
