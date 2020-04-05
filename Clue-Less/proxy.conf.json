@@ -1,8 +1,8 @@
 {
     "/api": {
-        "target": "http://brian.natelao.com:3000",
+        "target": "http://john.natelao.com:3000",
         "secure": false,
-	"changeOrigin": true,
-	"pathRewrite": {"^/api" : ""}
+        "changeOrigin": true,
+        "pathRewrite": {"^/api" : ""}
     }
 }
