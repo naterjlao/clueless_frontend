@@ -21,7 +21,7 @@ export class GameMenuComponent implements OnInit {
   // TESTING getting server IP and Port from environment configuration
   serverIP: string = network.serverIP;
   serverPort: string = network.serverPort;
-  server = this.serverIP.concat(this.serverPort);
+  server = this.serverIP + ':' + this.serverPort;
 
   constructor() { }
 
