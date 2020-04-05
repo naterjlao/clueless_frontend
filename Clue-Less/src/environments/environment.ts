@@ -14,3 +14,12 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+
+// TODO this is to be blown away and modified through custom installation
+// TODO ng build would have to be removed from preinst and postinst
+export const network = {
+  httpPort: "8080",
+  serverIP: "http://john.natelao.com",
+  serverPort: "3000"
+};
+
