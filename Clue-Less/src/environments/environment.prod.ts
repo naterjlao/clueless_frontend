@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  hostServer: 'http://brian.natelao.com',
+  serverPort: 3000
 };

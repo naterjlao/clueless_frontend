@@ -1,6 +1,8 @@
 const Express = require('express')();
 const Http = require('http').Server(Express);
 const Socketio = require('socket.io')(Http);
+import { environment } from '../src/environments/environment';
+const env = environment;
 
 var position = {
     x: 100,
@@ -10,15 +12,15 @@ var position = {
 let players = [];
 let current_turn = 0;
 
-Http.listen(3000, () => {
-    console.log('Listening at :3000...');
+Http.listen(env.serverPort, () => {
+    console.log('Listening at :' + env.serverPort + '...');
 });
 
 Socketio.on('connection', socket => {
     socket.join('player' + players.length);
 	// a player has connected
     console.log('player conncted');
-    console.log("current_turn is:" + current_turn);    
+    console.log("current_turn is:" + current_turn);
     players.forEach(socket => console.log(socket.rooms));
     console.log("==============================================");
     console.log(socket.rooms);

@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, Renderer2, ElementRef } from '@angular/core';
 import io from 'socket.io-client';
+import { environment } from '../../environments/environment';
+const env = environment;
 
 @Component({
   selector: 'game-menu',
@@ -20,7 +22,7 @@ export class GameMenuComponent implements OnInit {
   constructor() { }
 
     ngOnInit() {
-    this.socket = io('http://brian.natelao.com:3000', { forceNew: true }); //TODO - this is temporary, IP and port needs to be placed into a configuration file
+      this.socket = io(env.hostServer + ':' + env.serverPort, { forceNew: true }); //TODO - this is temporary, IP and port needs to be placed into a configuration file
     }
 
     ngAfterViewInit() {
