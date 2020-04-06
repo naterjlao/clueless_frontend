@@ -18,15 +18,10 @@ export class GameMenuComponent implements OnInit {
   allPlayers = [];
   whosTurn = 0;
   
-  // TESTING getting server IP and Port from environment configuration
-  serverIP: string = network.serverIP;
-  serverPort: string = network.serverPort;
-  server = this.serverIP + ':' + this.serverPort;
-
   constructor() { }
 
     ngOnInit() {
-    this.socket = io(this.server, { forceNew: true }); //TODO - this is temporary, IP and port needs to be placed into a configuration file
+    this.socket = io(network.SERVER_IP+':'+network.SERVER_PORT, { forceNew: true }); //TODO - this is temporary, IP and port needs to be placed into a configuration file
     }
 
     ngAfterViewInit() {
