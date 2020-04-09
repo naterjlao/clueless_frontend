@@ -22,11 +22,15 @@ export class GameMenuComponent implements OnInit {
   constructor() { }
 
     ngOnInit() {
-      this.socket = io(env.hostServer + ':' + env.serverPort, { forceNew: true }); //TODO - this is temporary, IP and port needs to be placed into a configuration file
+      this.socket = io(env.hostServer + ':' + env.serverPort, { forceNew: true });
     }
 
     ngAfterViewInit() {
       this.context = this.gameCanvas.nativeElement.getContext('2d');
+
+      this.socket.on('startInfo', data => {
+        this.playerId = data.player;
+      });
 
       this.socket.on('position', position => {
         this.context.clearRect(0,0,this.gameCanvas.nativeElement.width,this.gameCanvas.nativeElement.height);

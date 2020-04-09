@@ -27,6 +27,7 @@ Socketio.on('connection', socket => {
     players.forEach(socket => console.log(socket.rooms));
     console.log("==============================================");
     console.log(socket.rooms);
+    socket.emit('startInfo', {player: 'player' + players.length}); // emit to all clients
 
     // action upon player joining game
     players.push(socket);
