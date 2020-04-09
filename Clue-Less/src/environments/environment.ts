@@ -3,6 +3,6 @@
 
 export const environment = {
   "production": false,
-  "hostServer": "http://localhost",
+  "hostServer": "http://brian.natelao.com",
   "serverPort": 3000
 };
