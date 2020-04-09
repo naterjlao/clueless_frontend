@@ -1,8 +1,11 @@
 const Express = require('express')();
 const Http = require('http').Server(Express);
 const Socketio = require('socket.io')(Http);
-import { environment } from '../src/environments/environment';
-const env = environment;
+const fs = require('fs');
+
+const jsonRegex = /({([\S\s]*)})/;
+const envFile = fs.readFileSync('./src/environments/environment.ts');
+const env = JSON.parse(envFile.toString().match(jsonRegex)[1].toString());
 
 var position = {
     x: 100,
