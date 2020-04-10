@@ -19,6 +19,8 @@ export class GameMenuComponent implements OnInit {
   allPlayers = [];
   whosTurn = 0;
 
+  showGameBoard = false; //temp variable for dev use
+
   constructor() { }
 
     ngOnInit() {
