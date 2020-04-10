@@ -1,3 +1,5 @@
+@borderSize: 5px;
+
 :host {
     display:block;
     height: 100%;
@@ -9,16 +11,24 @@
     border-spacing: 15px 15px;
 }
 
-#board tr td {
-    border: 1px solid #000;
+.room {
+    border: @borderSize solid #000;
     text-align: center;
+    width: 100px;
+    height: 100px;
+    background-color: gray;
 }
-
-#board td {
-    padding: 5px
+.vhallway{
+    border-left: @borderSize solid #000;
+    border-right: @borderSize solid #000;
+    width: 100px;
+    height: 100px;
+    background-color: gray;
 }
-
-.square{
-    width:100px;
-    height:100px;
+.hhallway{
+    border-top: @borderSize solid #000;
+    border-bottom: @borderSize solid #000;
+    width: 100px;
+    height: 100px;
+    background-color: gray;
 }
