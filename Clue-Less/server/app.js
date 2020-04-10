@@ -23,11 +23,9 @@ Socketio.on('connection', socket => {
     socket.join('player' + players.length);
 	// a player has connected
     console.log('player conncted');
-    console.log("current_turn is:" + current_turn);
-    players.forEach(socket => console.log(socket.rooms));
-    console.log("==============================================");
-    console.log(socket.rooms);
-    socket.emit('startInfo', {player: 'player' + players.length}); // emit to all clients
+
+    // update client with playerID
+    socket.emit('startInfo', {player: 'player' + players.length});
 
     // action upon player joining game
     players.push(socket);
@@ -44,8 +42,6 @@ Socketio.on('connection', socket => {
     // for temporary block moving game play
     socket.emit('position', position);
     socket.on('move', data => {
-	    console.log(socket.rooms);
-	    console.log(('player' + current_turn) in socket.rooms);
         if(socket.rooms['player' + current_turn]) {
             switch(data) {
                 case 'left':
