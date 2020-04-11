@@ -25,7 +25,8 @@ Socketio.on('connection', socket => {
     console.log('player conncted');
 
     // update client with playerID
-    socket.emit('startInfo', {player: 'player' + players.length});
+    socket.emit('startInfo', {player: 'player' + players.length}); // emit to this client
+    Socketio.emit('turnChange', current_turn); // emit to all clients the starting turn number
 
     // action upon player joining game
     players.push(socket);

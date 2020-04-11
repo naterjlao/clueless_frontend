@@ -1,7 +1,5 @@
 import { Component, OnInit, ViewChild, Renderer2, ElementRef } from '@angular/core';
-import io from 'socket.io-client';
-import { environment } from '../../environments/environment';
-const env = environment;
+import { ServerService } from '../server-service/server.service';
 
 @Component({
   selector: 'game-menu',
@@ -15,41 +13,41 @@ export class GameMenuComponent implements OnInit {
   private context: any;
   private socket: any;
 
-  playerId;
-  allPlayers = [];
-  whosTurn = 0;
+  playerId; playerId_subscription;
+  whosTurn; whosTurn_subscription
 
   showGameBoard = false; //temp variable for dev use
 
-  constructor() { }
+  constructor(private serverSvc: ServerService) {
+      this.playerId_subscription = this.serverSvc.playerId.subscribe({
+        next: (playerId) => this.playerId = playerId
+      });
+      this.whosTurn_subscription = this.serverSvc.whosTurn.subscribe({
+        next: (turn) => this.whosTurn = turn
+      });
+    }
 
     ngOnInit() {
-      this.socket = io(env.hostServer + ':' + env.serverPort, { forceNew: true });
     }
 
     ngAfterViewInit() {
       this.context = this.gameCanvas.nativeElement.getContext('2d');
-
-      this.socket.on('startInfo', data => {
-        this.playerId = data.player;
-      });
-
-      this.socket.on('position', position => {
-        this.context.clearRect(0,0,this.gameCanvas.nativeElement.width,this.gameCanvas.nativeElement.height);
-        this.context.fillRect(position.x,position.y,10,10);
-      });
-
-      this.socket.on('turnChange', turn => {
-        this.whosTurn = turn;
-      });
+      this.socket = this.serverSvc.getInitialSocket(this.gameCanvas, this.context);
     }
 
     move(direction: string) {
-      this.socket.emit('move', direction);
+      this.serverSvc.move(this.socket, direction);
     }
 
     endTurn() {
-      this.socket.emit('pass_turn');
+      this.serverSvc.endTurn(this.socket);
     }
+
+    ngOnDestroy() { //prevent memory leak when component destroyed
+      this.playerId_subscription.unsubscribe();
+      this.whosTurn_subscription.unsubscribe();
+
+      this.serverSvc.removeSocket(this.socket);
+  }
 
 }
