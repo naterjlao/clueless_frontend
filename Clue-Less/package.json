@@ -29,7 +29,6 @@
     "jquery": "^3.4.1",
     "pixi-projection": "^0.3.11",
     "pixi.js": "^5.2.1",
-    "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },
@@ -50,6 +49,7 @@
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
     "protractor": "~5.4.3",
+    "rxjs": "^6.5.5",
     "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0",
     "ts-node": "~8.3.0",
