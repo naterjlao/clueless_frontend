@@ -11,7 +11,6 @@ export class GameMenuComponent implements OnInit {
   @ViewChild('game', {static: false}) private gameCanvas: ElementRef;
 
   private context: any;
-  private socket: any;
 
   playerId; playerId_subscription;
   whosTurn; whosTurn_subscription
@@ -32,22 +31,22 @@ export class GameMenuComponent implements OnInit {
 
     ngAfterViewInit() {
       this.context = this.gameCanvas.nativeElement.getContext('2d');
-      this.socket = this.serverSvc.getInitialSocket(this.gameCanvas, this.context);
+      this.serverSvc.createSocket(this.gameCanvas, this.context);
     }
 
     move(direction: string) {
-      this.serverSvc.move(this.socket, direction);
+      this.serverSvc.move(direction);
     }
 
     endTurn() {
-      this.serverSvc.endTurn(this.socket);
+      this.serverSvc.endTurn();
     }
 
     ngOnDestroy() { //prevent memory leak when component destroyed
       this.playerId_subscription.unsubscribe();
       this.whosTurn_subscription.unsubscribe();
 
-      this.serverSvc.removeSocket(this.socket);
+      this.serverSvc.removeSocket();
   }
 
 }
