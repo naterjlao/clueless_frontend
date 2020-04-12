@@ -13,7 +13,8 @@ export class GameMenuComponent implements OnInit {
   private context: any;
 
   playerId; playerId_subscription;
-  whosTurn; whosTurn_subscription
+  whosTurn; whosTurn_subscription;
+  position; position_subscription;
 
   showGameBoard = false; //temp variable for dev use
 
@@ -24,6 +25,9 @@ export class GameMenuComponent implements OnInit {
       this.whosTurn_subscription = this.serverSvc.whosTurn.subscribe({
         next: (turn) => this.whosTurn = turn
       });
+      this.position_subscription = this.serverSvc.positionChange.subscribe({
+        next: (position) => {this.position = position; this.positionChange(this.position);}
+      });
     }
 
     ngOnInit() {
@@ -31,7 +35,14 @@ export class GameMenuComponent implements OnInit {
 
     ngAfterViewInit() {
       this.context = this.gameCanvas.nativeElement.getContext('2d');
-      this.serverSvc.createSocket(this.gameCanvas, this.context);
+      this.serverSvc.enteredGame(); // notify server of client entering game-menu to trigger initialization communications
+    }
+
+    positionChange(position) {
+      if(position === {} || !this.gameCanvas || !this.context) return;
+
+      this.context.clearRect(0,0,this.gameCanvas.nativeElement.width,this.gameCanvas.nativeElement.height);
+      this.context.fillRect(position.x,position.y,position.w,position.h);
     }
 
     move(direction: string) {
@@ -45,6 +56,7 @@ export class GameMenuComponent implements OnInit {
     ngOnDestroy() { //prevent memory leak when component destroyed
       this.playerId_subscription.unsubscribe();
       this.whosTurn_subscription.unsubscribe();
+      this.position_subscription.unsubscribe();
 
       this.serverSvc.removeSocket();
   }

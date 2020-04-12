@@ -22,14 +22,19 @@ Http.listen(env.serverPort, () => {
 Socketio.on('connection', socket => {
     // a player has connected
     console.log('player conncted');
-    socket.join('player' + players.length);
-
-    // update client with playerID
-    socket.emit('startInfo', {player: 'player' + players.length}); // emit to this client
-    Socketio.emit('turnChange', current_turn); // emit to all clients the starting turn number
+    let playerId = 'player' + players.length;
+    socket.join(playerId);
+    socket.playerId = playerId; // set client's playerId
 
     // action upon player joining game
     players.push(socket);
+
+    socket.on('enteredGame', function() {
+        // update client with playerID
+        socket.emit('startInfo', {player: socket.playerId}); // emit to this client
+        Socketio.emit('turnChange', current_turn); // emit to all clients the starting turn number
+        socket.emit('position', position); // for temporary block moving game play
+    });
 
     // action for changing which player's turn it is
     socket.on('pass_turn',function(){
@@ -37,7 +42,6 @@ Socketio.on('connection', socket => {
     })
 
     // for temporary block moving game play
-    socket.emit('position', position);
     socket.on('move', data => {
         if(socket.rooms['player' + current_turn]) {
             switch(data) {
@@ -64,7 +68,7 @@ Socketio.on('connection', socket => {
     // action for when a player disconnects from the game
     socket.on('disconnect', function() {
         console.log('A player disconnected');
-        
+
         // increment turn
         current_turn = (current_turn + 1) % players.length;
         players[current_turn].emit('your_turn');

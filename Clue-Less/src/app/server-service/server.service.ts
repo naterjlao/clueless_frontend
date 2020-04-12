@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject  } from 'rxjs';
 import io from 'socket.io-client';
 import { environment } from '../../environments/environment';
 const env = environment;
@@ -12,16 +12,17 @@ export class ServerService {
   private socket;
   playerId: Subject<string> = new Subject<string>();
   whosTurn: Subject<number> = new Subject<number>();
+  positionChange: Subject<object> = new Subject<object>();
 
   constructor() { }
 
-  createSocket(gameCanvas, context) {
+  createSocket() {
     this.socket = io(env.hostServer + ':' + env.serverPort, { forceNew: true });
 
     // add methods which trigger when a signal is emitted from the server
     this.getStartInfo();
-    this.updatePosition(gameCanvas, context);
     this.getWhosTurn();
+    this.updatePosition();
   }
 
   getSocket() {
@@ -40,10 +41,9 @@ export class ServerService {
     });
   }
 
-  updatePosition(gameCanvas, context) {
-    this.socket.on('position', position => {
-      context.clearRect(0,0,gameCanvas.nativeElement.width,gameCanvas.nativeElement.height);
-      context.fillRect(position.x,position.y,10,10);
+  updatePosition() {
+    this.socket.on('position', pos => {
+      this.positionChange.next({x: pos.x, y: pos.y, w: 10, h: 10});
     });
   }
 
@@ -54,6 +54,11 @@ export class ServerService {
   }
 
   /* Methods that send a signal to the server */
+
+  enteredGame() {
+    this.socket.emit('enteredGame');
+  }
+
   move(direction: string) {
     this.socket.emit('move', direction);
   }

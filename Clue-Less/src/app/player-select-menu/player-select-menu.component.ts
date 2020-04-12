@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServerService } from '../server-service/server.service';
 
 @Component({
   selector: 'player-select-menu',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlayerSelectMenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private serverSvc: ServerService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    this.serverSvc.createSocket();
   }
 
 }
