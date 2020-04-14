@@ -29,11 +29,6 @@ export class ServerService {
     return this.socket;
   }
 
-  removeSocket() {
-    this.socket.emit('disconnect');
-    this.socket = null;
-  }
-
   /* Methods that receive a signal from the server */
   getStartInfo() {
     this.socket.on('startInfo', data => {
@@ -65,6 +60,11 @@ export class ServerService {
 
   endTurn() {
     this.socket.emit('pass_turn');
+  }
+  
+  removeSocket() {
+    this.socket.emit('disconnect');
+    this.socket = null;
   }
 
 }
