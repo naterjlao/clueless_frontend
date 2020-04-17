@@ -19,7 +19,8 @@ export class GameMenuComponent implements OnInit {
   showGameBoard = false; //temp variable for dev use
 
   constructor(private serverSvc: ServerService) {
-      this.playerId_subscription = this.serverSvc.playerId.subscribe({
+      /* subscriptions to Subjects from the serverService */
+      this.playerId_subscription = this.serverSvc.playerIdChange.subscribe({
         next: (playerId) => this.playerId = playerId
       });
       this.whosTurn_subscription = this.serverSvc.whosTurn.subscribe({
