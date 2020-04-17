@@ -38,12 +38,6 @@ export class ServerService {
     return this.socket;
   }
 
-  // removes this client's socket from the server
-  removeSocket() {
-    this.socket.emit('disconnect');
-    this.socket = null;
-  }
-
 
   /**********************************************
     Methods that RECEIVE a signal from the server
@@ -202,6 +196,11 @@ export class ServerService {
       playerId: this.playerId,
       suspect: suspect
     });
+  }
+
+  removeSocket() {
+    this.socket.emit('disconnect');
+    this.socket = null;
   }
 
 }
