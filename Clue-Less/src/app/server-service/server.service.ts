@@ -198,6 +198,7 @@ export class ServerService {
     });
   }
 
+  // removes this client's socket from the server
   removeSocket() {
     this.socket.emit('disconnect');
     this.socket = null;
