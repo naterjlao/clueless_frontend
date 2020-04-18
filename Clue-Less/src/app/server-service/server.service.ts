@@ -81,7 +81,7 @@ export class ServerService {
 
   // updates the UI Game Board based on the gameState info from the server
   updateGameState() {
-    this.socket.on('gamestate', data => {
+    this.socket.on('update_gameState', data => {
       /*
         data emitted from server is defined in the Backend
       */
