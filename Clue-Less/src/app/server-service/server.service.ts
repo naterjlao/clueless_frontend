@@ -32,7 +32,7 @@ export class ServerService {
     this.getStartInfo();
     this.getWhosTurn();
     this.updatePosition();
-    this.updateGameboard();
+    this.updateGameState();
   }
 
   // returns this client's socket connected to the server
