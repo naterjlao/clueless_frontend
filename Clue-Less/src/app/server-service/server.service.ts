@@ -97,13 +97,18 @@ export class ServerService {
   // used when player clicks the enterGame buttin that is in the player-select menu
   // intended to send signal to server to initiate transmission of data needed for game-menu screen
   enteredGame() {
-    // note: playeId does not yet exist at this point
+    // note: playerId does not yet exist at this point
     this.socket.emit('entered_game');
   }
 
   // tells server to start the game, and tell the backend to initialize gameState json
   startGame() {
     this.socket.emit('start_game', {
+		/* data format:
+		  {
+			playerId: string
+		  }
+		*/
       playerId: this.playerId
     });
   }
@@ -112,7 +117,7 @@ export class ServerService {
   move(direction: string) {
     /* data format:
       {
-        playerid: string,
+        playerId: string,
         direction: string
       }
     */
@@ -124,14 +129,14 @@ export class ServerService {
 
   // tells the server the suggestion the player is making
   makeSuggestion(suspect: string, weapon: string, room: string) {
-    /* data format:
+      /* data format:
           {
-            playerid: string,
+            playerId: string,
             suspect: string,
             weapon: string,
             room: string
           }
-        */
+      */
       this.socket.emit('make_suggestion', {
         playerId: this.playerId,
         suspect: suspect,
@@ -144,7 +149,7 @@ export class ServerService {
   makeAccusation(suspect: string, weapon: string, room: string) {
     /* data format:
           {
-            playerid: string,
+            playerId: string,
             suspect: string,
             weapon: string,
             room: string
@@ -158,19 +163,24 @@ export class ServerService {
       });
   }
 
-    // ends the current players turn and tells the server to increment the turn
-    endTurn() {
-      this.socket.emit('pass_turn', {
-        playerId: this.playerId
-      });
-    }
+  // ends the current players turn and tells the server to increment the turn
+  endTurn() {
+    /* data format:
+      {
+        playerId: string
+      }
+    */
+    this.socket.emit('pass_turn', {
+  	playerId: this.playerId
+    });
+  }
 
   // this function may not be used in the minimal increment
   // TODO: get clarity on purpose of makeMove and when it will be used
   makeMove(suspect: string, room: string) {
     /* data format:
       {
-        playerid: string,
+        playerId: string,
         suspect: string,
         room: string
       }
@@ -188,7 +198,7 @@ export class ServerService {
   selectSuspect(suspect: string) {
     /* data format:
       {
-        playerid: string,
+        playerId: string,
         suspect: string
       }
     */
