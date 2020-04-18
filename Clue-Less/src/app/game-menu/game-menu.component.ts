@@ -15,6 +15,7 @@ export class GameMenuComponent implements OnInit {
   playerId; playerId_subscription;
   whosTurn; whosTurn_subscription;
   position; position_subscription;
+  gameState; gameState_subscription;
 
   showGameBoard = false; //temp variable for dev use
 
@@ -27,7 +28,10 @@ export class GameMenuComponent implements OnInit {
         next: (turn) => this.whosTurn = turn
       });
       this.position_subscription = this.serverSvc.positionChange.subscribe({
-        next: (position) => {this.position = position; this.positionChange(this.position);}
+        next: (position) => { this.position = position; this.positionChange(this.position); }
+      });
+      this.gameState_subscription = this.serverSvc.gameState.subscribe({
+        next: (gameState) => { this.gameState = gameState; }
       });
     }
 
@@ -58,6 +62,7 @@ export class GameMenuComponent implements OnInit {
       this.playerId_subscription.unsubscribe();
       this.whosTurn_subscription.unsubscribe();
       this.position_subscription.unsubscribe();
+      this.gameState_subscription.unsubscribe();
 
       this.serverSvc.removeSocket();
   }

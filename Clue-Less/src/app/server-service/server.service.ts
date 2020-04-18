@@ -18,6 +18,7 @@ export class ServerService {
   playerIdChange: Subject<string> = new Subject<string>();
   whosTurn: Subject<number> = new Subject<number>();
   positionChange: Subject<object> = new Subject<object>();
+  gameState: Subject<object> = new Subject<object>();
 
   constructor() { }
 
@@ -78,14 +79,14 @@ export class ServerService {
     });
   }
 
-  // updates the UI Game Board based on the gamestate info from the server
-  updateGameboard() {
+  // updates the UI Game Board based on the gameState info from the server
+  updateGameState() {
     this.socket.on('gamestate', data => {
       /*
         data emitted from server is defined in the Backend
       */
       console.log(data);
-      /* TODO: >> NOT IMPLEMENTED << */
+      this.gameState.next(data);
     });
   }
 
