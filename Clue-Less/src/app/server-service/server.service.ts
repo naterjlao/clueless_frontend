@@ -31,6 +31,7 @@ export class ServerService {
     this.getStartInfo();
     this.getWhosTurn();
     this.updatePosition();
+	this.updateGameboard();
   }
 
   // returns this client's socket connected to the server
@@ -53,6 +54,7 @@ export class ServerService {
         player: socket.playerId
       }
       */
+      console.log(data);
       this.playerId = data.player; // store in serverService
       this.playerIdChange.next(data.player); // update frontend with playerId
     });
@@ -70,8 +72,20 @@ export class ServerService {
         }
       }
       */
+      console.log(data);
       let pos = data.position;
       this.positionChange.next({x: pos.x, y: pos.y, w: 10, h: 10});
+    });
+  }
+
+  // updates the UI Game Board based on the gamestate info from the server.
+  updateGameboard() {
+    this.socket.on('gamestate', data => {
+      /*
+      data emitted from server is defined in the Backend
+      */
+      console.log(data);
+      /* TODO >> NOT IMPLEMENTED << */
     });
   }
 
@@ -84,6 +98,7 @@ export class ServerService {
       }
       */
     this.socket.on('turnChange', data => {
+      console.log(data);		
       this.whosTurn.next(data.turn);
     });
   }
