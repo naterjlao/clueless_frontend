@@ -31,7 +31,7 @@ export class ServerService {
     this.getStartInfo();
     this.getWhosTurn();
     this.updatePosition();
-	this.updateGameboard();
+    this.updateGameboard();
   }
 
   // returns this client's socket connected to the server
@@ -78,14 +78,14 @@ export class ServerService {
     });
   }
 
-  // updates the UI Game Board based on the gamestate info from the server.
+  // updates the UI Game Board based on the gamestate info from the server
   updateGameboard() {
     this.socket.on('gamestate', data => {
       /*
-      data emitted from server is defined in the Backend
+        data emitted from server is defined in the Backend
       */
       console.log(data);
-      /* TODO >> NOT IMPLEMENTED << */
+      /* TODO: >> NOT IMPLEMENTED << */
     });
   }
 
@@ -98,7 +98,7 @@ export class ServerService {
       }
       */
     this.socket.on('turnChange', data => {
-      console.log(data);		
+      console.log(data);
       this.whosTurn.next(data.turn);
     });
   }
@@ -120,9 +120,9 @@ export class ServerService {
   startGame() {
     this.socket.emit('start_game', {
 		/* data format:
-		  {
+      {
 			playerId: string
-		  }
+      }
 		*/
       playerId: this.playerId
     });
@@ -170,12 +170,12 @@ export class ServerService {
             room: string
           }
         */
-      this.socket.emit('make_accusation', {
-        playerId: this.playerId,
-        suspect: suspect,
-        weapon: weapon,
-        room: room
-      });
+    this.socket.emit('make_accusation', {
+      playerId: this.playerId,
+      suspect: suspect,
+      weapon: weapon,
+      room: room
+    });
   }
 
   // ends the current players turn and tells the server to increment the turn
@@ -186,7 +186,7 @@ export class ServerService {
       }
     */
     this.socket.emit('pass_turn', {
-  	playerId: this.playerId
+      playerId: this.playerId
     });
   }
 
@@ -210,16 +210,16 @@ export class ServerService {
   // this function may not be used in the minimal increment
   // tells the server which suspect the user has selected?
   // TODO: get clarity on when this would be called. It seems makeSuggestion and makeAccisation would already include a suspect
-  selectSuspect(suspect: string) {
+  selectCharacter(character: string) {
     /* data format:
       {
         playerId: string,
         suspect: string
       }
     */
-    this.socket.emit('select_suspect', {
+    this.socket.emit('select_character', {
       playerId: this.playerId,
-      suspect: suspect
+      character: character
     });
   }
 
