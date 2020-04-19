@@ -14,6 +14,7 @@ export class GameMenuComponent implements OnInit {
    socket: any;
    testGameState; // ONLY USED FOR TESTING - TODO: remove later
 
+   gameIsReady = false; gameIsReady_subscription;
    playerId; playerId_subscription;
    whosTurn; whosTurn_subscription;
    position; position_subscription;
@@ -25,6 +26,9 @@ export class GameMenuComponent implements OnInit {
       this.socket = this.serverSvc.getSocket();
 
       /* subscriptions to Subjects from the serverService */
+      this.gameIsReady_subscription = this.serverSvc.gameIsReady.subscribe({
+         next: (gameIsReady) => this.gameIsReady = gameIsReady
+      });
       this.playerId_subscription = this.serverSvc.playerIdChange.subscribe({
          next: (playerId) => this.playerId = playerId
       });
@@ -69,6 +73,7 @@ export class GameMenuComponent implements OnInit {
    }
 
    ngOnDestroy() { //prevent memory leak when component destroyed
+      this.gameIsReady_subscription.unsubscribe();
       this.playerId_subscription.unsubscribe();
       this.whosTurn_subscription.unsubscribe();
       this.position_subscription.unsubscribe();

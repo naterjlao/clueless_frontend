@@ -1,8 +1,8 @@
 <ng-container *ngIf="socket">
     <div id="ClueLess">
         <button><a routerLink="/start" routerLinkActive="active">Back to Start Menu</a></button>
-        <button [disabled]="testGameState.players.length < 2"
-            [ngClass]="{'isDisabled': testGameState.players.length < 2}" 
+        <button [disabled]="!gameIsReady"
+            [ngClass]="{'isDisabled': !gameIsReady}"
             (click)="beginGame()">
             Begin Game
         </button>

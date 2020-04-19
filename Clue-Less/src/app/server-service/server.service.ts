@@ -15,6 +15,7 @@ export class ServerService {
   /**************************************************************************************************
     variables that recieve updates from the server and send updates to subscribed frontend components
   **************************************************************************************************/
+  gameIsReady: Subject<boolean> = new Subject<boolean>();
   playerIdChange: Subject<string> = new Subject<string>();
   whosTurn: Subject<number> = new Subject<number>();
   positionChange: Subject<object> = new Subject<object>();
@@ -29,6 +30,7 @@ export class ServerService {
     this.socket = io(env.hostServer + ':' + env.serverPort, { forceNew: true });
 
     // add methods which trigger when a signal is emitted from the server
+    this.isGameReady();
     this.getStartInfo();
     this.getWhosTurn();
     this.updatePosition();
@@ -45,6 +47,14 @@ export class ServerService {
     Methods that RECEIVE a signal from the server
   **********************************************/
 
+
+  // receives signal that game has >= 2 players and game can now begin
+  isGameReady() {
+    this.socket.on('game_is_ready', data => {
+      // data will be empty, this signal just notifies the frontend that we can begin the game
+      this.gameIsReady.next(true); // update frontend that game can begin
+    });
+  }
 
   // receives player start info from server (currently just the player id)
   getStartInfo() {
