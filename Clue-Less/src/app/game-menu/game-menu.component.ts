@@ -11,6 +11,7 @@ export class GameMenuComponent implements OnInit {
    @ViewChild('game', { static: false }) private gameCanvas: ElementRef;
 
    private context: any;
+   socket: any;
    testGameState; // ONLY USED FOR TESTING - TODO: remove later
 
    playerId; playerId_subscription;
@@ -21,6 +22,8 @@ export class GameMenuComponent implements OnInit {
    showGameBoard = false; //temp variable for dev use
 
    constructor(private serverSvc: ServerService) {
+      this.socket = this.serverSvc.getSocket();
+
       /* subscriptions to Subjects from the serverService */
       this.playerId_subscription = this.serverSvc.playerIdChange.subscribe({
          next: (playerId) => this.playerId = playerId
@@ -44,6 +47,10 @@ export class GameMenuComponent implements OnInit {
    ngAfterViewInit() {
       this.context = this.gameCanvas.nativeElement.getContext('2d');
       this.serverSvc.enteredGame(); // notify server of client entering game-menu to trigger initialization communications
+   }
+
+   beginGame() {
+      this.serverSvc.startGame();
    }
 
    positionChange(position) {

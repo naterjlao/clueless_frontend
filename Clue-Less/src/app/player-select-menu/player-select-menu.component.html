@@ -6,30 +6,34 @@
 
 <div class="row">
     <div class="col">
-        <button mat-raised-button class="mustard">Colonel Mustard</button>
+        <button mat-raised-button id="ColonelMustard" class="ColonelMustard" (click)="clickCharacter('ColonelMustard')">Colonel Mustard</button>
     </div>
     <div class="col">
-        <button mat-raised-button class="scarlet">Miss Scarlet</button>
+        <button mat-raised-button id="MissScarlet" class="MissScarlet" (click)="clickCharacter('MissScarlet')">Miss Scarlet</button>
     </div>
     <div class="col">
-        <button mat-raised-button class="plum">Professor Plum</button>
+        <button mat-raised-button id="ProfessorPlum" class="ProfessorPlum" (click)="clickCharacter('ProfessorPlum')">Professor Plum</button>
     </div>
 </div>
 <div class="row">
     <div class="col">
-        <button mat-raised-button class="green">Mr. Green</button>
+        <button mat-raised-button id="MrGreen" class="MrGreen" (click)="clickCharacter('MrGreen')">Mr. Green</button>
     </div>
     <div class="col">
-        <button mat-raised-button class="white">Mrs. White</button>
+        <button mat-raised-button id="MrsWhite" class="MrsWhite" (click)="clickCharacter('MrsWhite')">Mrs. White</button>
     </div>
     <div class="col">
-        <button mat-raised-button class="peacock">Mrs. Peacock</button>
+        <button mat-raised-button id="MrsPeacock" class="MrsPeacock" (click)="clickCharacter('MrsPeacock')">Mrs. Peacock</button>
     </div>
 </div>
 
-<nav>
-    <button [disabled]="testGameState.players.length < 2">
-        <a [ngClass]="{'isDisabled': testGameState.players.length < 2}" [routerLink]="testGameState.players.length < 2 ? [] : ['/game']" routerLinkActive="active">
+<button *ngIf="!characterSelected" (click)="selectCharacter(currentCharacterSelected)" [disabled]="!currentCharacterSelected">
+    Finalize Character Selection
+</button>
+
+<nav *ngIf="characterSelected">
+    <button>
+        <a [routerLink]="'/game'" routerLinkActive="active">
             Enter Game
         </a>
     </button>

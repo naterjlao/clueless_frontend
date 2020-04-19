@@ -5,23 +5,53 @@
 @color-white: #FFFFFF;
 @color-peacock: #004C99;
 
-.mustard {
+.ColonelMustard {
     background-color: @color-mustard;
+    border: 1px solid black;
 }
-.scarlet {
+.ColonelMustard_onClick {
+    color: rgba(255, 255, 255, 1);
+    box-shadow: 0 5px 15px @color-mustard;
+}
+.MissScarlet {
     background-color: @color-scarlet;
+    border: 1px solid black;
 }
-.plum {
+.MissScarlet_onClick {
+    color: rgba(255, 255, 255, 1);
+    box-shadow: 0 5px 15px @color-scarlet;
+}
+.ProfessorPlum {
     background-color: @color-plum;
+    border: 1px solid black;
 }
-.green {
+.ProfessorPlum_onClick {
+    color: rgba(255, 255, 255, 1);
+    box-shadow: 0 5px 15px @color-plum;
+}
+.MrGreen {
     background-color: @color-green;
+    border: 1px solid black;
 }
-.white {
+.MrGreen_onClick {
+    color: rgba(255, 255, 255, 1);
+    box-shadow: 0 5px 15px @color-green;
+}
+.MrsWhite {
     background-color: @color-white;
+    border: 1px solid black;
 }
-.peacock {
+.MrsWhite_onClick {
+    color: rgba(0, 0, 0, 1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 1);
+}
+.MrsPeacock {
     background-color: @color-peacock;
+    border: 1px solid black;
+}
+.MrsPeacock_onClick {
+    color: rgba(255, 255, 255, 1);
+    box-shadow: 0 5px 15px @color-peacock;
 }
 
 nav {
@@ -38,4 +68,10 @@ button {
     cursor: not-allowed;
     opacity: 0.5;
     text-decoration: none;
+}
+
+.removeButton {
+    cursor: default;
+    opacity: 0;
+    -webkit-transition: opacity 2s;
 }

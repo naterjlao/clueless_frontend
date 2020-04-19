@@ -1,46 +1,58 @@
-<div id="ClueLess">
-    <button><a routerLink="/start" routerLinkActive="active">Back to Start Menu</a></button>
-    <div id="top" class="row no-gutters">
-        <div class="col">
-        <div id="playersPanel">
-            <h1>Players</h1>
-            <b>You are {{playerId}}</b>
-            <p><i>It's {{whosTurn}}'s turn!</i></p>
+<ng-container *ngIf="socket">
+    <div id="ClueLess">
+        <button><a routerLink="/start" routerLinkActive="active">Back to Start Menu</a></button>
+        <button [disabled]="testGameState.players.length < 2"
+            [ngClass]="{'isDisabled': testGameState.players.length < 2}" 
+            (click)="beginGame()">
+            Begin Game
+        </button>
+        <div id="top" class="row no-gutters">
+            <div class="col">
+            <div id="playersPanel">
+                <h1>Players</h1>
+                <p class="playerInfo" id="whosTurn"><b>It's {{whosTurn}}'s turn!</b></p>
+                <p class="playerInfo" id="playerNumber"><i>You are {{playerId}}</i></p>
+            </div>
+            </div>
         </div>
+
+        <div id="middle" class="row no-gutters">
+            <div class="col-9">
+            <div id="gameBoard">
+                <canvas [hidden]="showGameBoard" id="game" #game></canvas>
+                <gameboard [hidden]="!showGameBoard" id="gameboard"></gameboard>
+            </div>
+            </div>
+
+            <div class="col">
+            <div id="checklistPanel">
+                <h1>Checklist</h1>
+            </div>
+            </div>
+        </div>
+
+        <div id="bottom" class="row no-gutters">
+            <div class="col">
+            <div id="cardPanel">
+                <h1>Card Menu</h1>
+
+                <button type="button" class="mat-button" id="switchGameBoard" name="button" (click)="showGameBoard=!showGameBoard">
+                    Toggle GameBoard/BlockGame
+                </button>
+
+                <button (click)="move('left')">Left</button>
+                <button (click)="move('right')">Right</button>
+                <button (click)="move('up')">Up</button>
+                <button (click)="move('down')">Down</button>
+
+                <button type="button" id="endTurn" name="button" (click)="endTurn()">End Turn</button>
+            </div>
+            </div>
         </div>
     </div>
+</ng-container>
 
-    <div id="middle" class="row no-gutters">
-        <div class="col-9">
-        <div id="gameBoard">
-            <canvas [hidden]="showGameBoard" id="game" #game></canvas>
-            <gameboard [hidden]="!showGameBoard" id="gameboard"></gameboard>
-        </div>
-        </div>
-
-        <div class="col">
-        <div id="checklistPanel">
-            <h1>Checklist</h1>
-        </div>
-        </div>
-    </div>
-
-    <div id="bottom" class="row no-gutters">
-        <div class="col">
-        <div id="cardPanel">
-            <h1>Card Menu</h1>
-
-            <button type="button" class="mat-button" id="switchGameBoard" name="button" (click)="showGameBoard=!showGameBoard">
-                Toggle GameBoard/BlockGame
-            </button>
-
-            <button (click)="move('left')">Left</button>
-            <button (click)="move('right')">Right</button>
-            <button (click)="move('up')">Up</button>
-            <button (click)="move('down')">Down</button>
-
-            <button type="button" id="endTurn" name="button" (click)="endTurn()">End Turn</button>
-        </div>
-        </div>
-    </div>
-</div>
+<ng-container *ngIf="!socket">
+    <h1>Sorry! You are no longer connected to the game :(</h1>
+    <h2>Re-enter the game hosting URL to restart.</h2>
+</ng-container>
