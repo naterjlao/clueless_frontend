@@ -28,5 +28,9 @@
 </div>
 
 <nav>
-    <button><a routerLink="/game" routerLinkActive="active">Enter Game</a></button>
+    <button [disabled]="testGameState.players.length < 2">
+        <a [ngClass]="{'isDisabled': testGameState.players.length < 2}" [routerLink]="testGameState.players.length < 2 ? [] : ['/game']" routerLinkActive="active">
+            Enter Game
+        </a>
+    </button>
 </nav>
