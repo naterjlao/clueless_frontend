@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 import io from 'socket.io-client';
 import { environment } from '../../environments/environment';
 const env = environment;
@@ -15,7 +15,7 @@ export class ServerService {
   /**************************************************************************************************
     variables that recieve updates from the server and send updates to subscribed frontend components
   **************************************************************************************************/
-  gameIsReady: Subject<boolean> = new Subject<boolean>();
+  gameIsReady: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   playerIdChange: Subject<string> = new Subject<string>();
   availableCharacters: Subject<object> = new Subject<object>();
   whosTurn: Subject<number> = new Subject<number>();
