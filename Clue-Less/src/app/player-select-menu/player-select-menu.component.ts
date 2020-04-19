@@ -52,9 +52,7 @@ export class PlayerSelectMenuComponent implements OnInit {
 
     // mark final selection and remove other options from screen
     this.characterSelected = character;
-    console.log(character);
     this.characterIds.forEach(id => {
-      console.log(id);
       if (id !== character) {
         $('#'+id).addClass('removeButton');
       }

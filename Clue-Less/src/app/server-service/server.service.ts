@@ -215,7 +215,7 @@ export class ServerService {
     /* data format:
       {
         playerId: string,
-        suspect: string
+        character: string
       }
     */
     this.socket.emit('select_character', {
@@ -346,7 +346,7 @@ export class ServerService {
                    }
                 ],
                 "suggestion_response": null,
-                "players": [
+                "players": [ {},
                    {
                       "card_seen:": [
 
