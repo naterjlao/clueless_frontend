@@ -27,7 +27,7 @@ export class GameMenuComponent implements OnInit {
 
       /* subscriptions to Subjects from the serverService */
       this.gameIsReady_subscription = this.serverSvc.gameIsReady.subscribe({
-         next: (gameIsReady) => { this.gameIsReady = gameIsReady; console.log(gameIsReady); }
+         next: (gameIsReady) => { this.gameIsReady = gameIsReady; }
       });
       this.playerId_subscription = this.serverSvc.playerIdChange.subscribe({
          next: (playerId) => this.playerId = playerId
