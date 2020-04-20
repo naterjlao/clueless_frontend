@@ -35,6 +35,7 @@ export class PlayerSelectMenuComponent implements OnInit {
 
   ngAfterViewInit() {
     this.serverSvc.createSocket();
+    this.serverSvc.enteredPlayerSelect(); // notify server of client entering player-select menu
   }
 
   // adds/removes stylings to show selected character
