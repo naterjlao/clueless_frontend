@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 import io from 'socket.io-client';
 import { environment } from '../../environments/environment';
 const env = environment;
@@ -15,8 +15,9 @@ export class ServerService {
   /**************************************************************************************************
     variables that recieve updates from the server and send updates to subscribed frontend components
   **************************************************************************************************/
-  gameIsReady: Subject<boolean> = new Subject<boolean>();
+  gameIsReady: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   playerIdChange: Subject<string> = new Subject<string>();
+  availableCharacters: BehaviorSubject<object> = new BehaviorSubject<object>(["Colonel Mustard", "Miss Scarlet", "Professor Plum", "Mr Green", "Mrs White", "Mrs Peacock"]);
   whosTurn: Subject<number> = new Subject<number>();
   positionChange: Subject<object> = new Subject<object>();
   gameState: Subject<object> = new Subject<object>();
@@ -32,6 +33,7 @@ export class ServerService {
     // add methods which trigger when a signal is emitted from the server
     this.isGameReady();
     this.getStartInfo();
+    this.getAvailableCharacters();
     this.getWhosTurn();
     this.updatePosition();
     this.updateGameState();
@@ -55,6 +57,7 @@ export class ServerService {
   isGameReady() {
     this.socket.on('game_is_ready', data => {
       // data will be empty, this signal just notifies the frontend that we can begin the game
+      console.log("game is ready");
       this.gameIsReady.next(true); // update frontend that game can begin
     });
   }
@@ -71,6 +74,19 @@ export class ServerService {
       console.log(data);
       this.playerId = data.player; // store in serverService
       this.playerIdChange.next(data.player); // update frontend with playerId
+    });
+  }
+
+  getAvailableCharacters() {
+    this.socket.on('available_characters', data => {
+      /*
+      data emitted from server is in the following form:
+      {
+        available_characters: <list of available character strings>
+      }
+      */
+      console.log(data);
+      this.availableCharacters.next(data.available_characters);
     });
   }
 

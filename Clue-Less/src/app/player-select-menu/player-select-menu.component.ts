@@ -12,6 +12,8 @@ export class PlayerSelectMenuComponent implements OnInit {
   testGameState; // ONLY USED FOR TESTING - TODO: remove later
 
   gameState; gameState_subscription;
+  availableCharacters; availableCharacters_subscription;
+
   characterIds = ['ColonelMustard', 'MissScarlet', 'ProfessorPlum',
     'MrGreen', 'MrsWhite', 'MrsPeacock'];
   currentCharacterSelected;
@@ -20,6 +22,9 @@ export class PlayerSelectMenuComponent implements OnInit {
   constructor(private serverSvc: ServerService) {
     this.gameState_subscription = this.serverSvc.gameState.subscribe({
       next: (gameState) => { this.gameState = gameState; }
+    });
+    this.availableCharacters_subscription = this.serverSvc.availableCharacters.subscribe({
+      next: (availChars) => { console.log(availChars); this.availableCharacters = availChars; }
     });
   }
 
@@ -57,6 +62,10 @@ export class PlayerSelectMenuComponent implements OnInit {
         $('#'+id).addClass('removeButton');
       }
     });
+  }
+
+  characterIsAvailable(character: string) {
+    return this.availableCharacters.includes(character);
   }
 
   ngOnDestroy() { //prevent memory leak when component destroyed
