@@ -49,6 +49,9 @@ export class ServerService {
     Methods that RECEIVE a signal from the server
   **********************************************/
 
+  // TODO: add a handler for 'move_options'
+  // TODO: the payload of this signal is {"move_options":<list of rooms>}
+  // TODO: this occurs AFTER a signal call to the server to make_move
 
   // receives signal that game has >= 2 players and game can now begin
   isGameReady() {
