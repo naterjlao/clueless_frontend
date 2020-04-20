@@ -65,7 +65,7 @@ export class PlayerSelectMenuComponent implements OnInit {
   }
 
   characterIsAvailable(character: string) {
-    return this.availableCharacters.contains(character);
+    return this.availableCharacters.includes(character);
   }
 
   ngOnDestroy() { //prevent memory leak when component destroyed
