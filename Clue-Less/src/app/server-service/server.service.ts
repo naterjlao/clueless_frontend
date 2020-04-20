@@ -17,7 +17,7 @@ export class ServerService {
   **************************************************************************************************/
   gameIsReady: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   playerIdChange: Subject<string> = new Subject<string>();
-  availableCharacters: Subject<object> = new Subject<object>();
+  availableCharacters: BehaviorSubject<object> = new BehaviorSubject<object>(["Colonel Mustard", "Miss Scarlet", "Professor Plum", "Mr Green", "Mrs White", "Mrs Peacock"]);
   whosTurn: Subject<number> = new Subject<number>();
   positionChange: Subject<object> = new Subject<object>();
   gameState: Subject<object> = new Subject<object>();

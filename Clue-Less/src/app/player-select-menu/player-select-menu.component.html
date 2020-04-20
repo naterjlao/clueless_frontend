@@ -6,24 +6,42 @@
 
 <div class="row">
     <div class="col">
-        <button mat-raised-button id="ColonelMustard" class="ColonelMustard" (click)="clickCharacter('ColonelMustard')">Colonel Mustard</button>
+        <button mat-raised-button [ngClass]="{'isDisabled': !characterIsAvailable('Colonel Mustard')}"
+            id="ColonelMustard" class="ColonelMustard" (click)="clickCharacter('ColonelMustard')">
+            Colonel Mustard
+        </button>
     </div>
     <div class="col">
-        <button mat-raised-button id="MissScarlet" class="MissScarlet" (click)="clickCharacter('MissScarlet')">Miss Scarlet</button>
+        <button mat-raised-button [ngClass]="{'isDisabled': !characterIsAvailable('Miss Scarlet')}"
+            id="MissScarlet" class="MissScarlet" (click)="clickCharacter('MissScarlet')">
+            Miss Scarlet
+        </button>
     </div>
     <div class="col">
-        <button mat-raised-button id="ProfessorPlum" class="ProfessorPlum" (click)="clickCharacter('ProfessorPlum')">Professor Plum</button>
+        <button mat-raised-button [ngClass]="{'isDisabled': !characterIsAvailable('Professor Plum')}"
+            id="ProfessorPlum" class="ProfessorPlum" (click)="clickCharacter('ProfessorPlum')">
+            Professor Plum
+        </button>
     </div>
 </div>
 <div class="row">
     <div class="col">
-        <button mat-raised-button id="MrGreen" class="MrGreen" (click)="clickCharacter('MrGreen')">Mr. Green</button>
+        <button mat-raised-button [ngClass]="{'isDisabled': !characterIsAvailable('Mr Green')}"
+        id="MrGreen" class="MrGreen" (click)="clickCharacter('MrGreen')">
+            Mr. Green
+        </button>
     </div>
     <div class="col">
-        <button mat-raised-button id="MrsWhite" class="MrsWhite" (click)="clickCharacter('MrsWhite')">Mrs. White</button>
+        <button mat-raised-button [ngClass]="{'isDisabled': !characterIsAvailable('Mrs White')}"
+        id="MrsWhite" class="MrsWhite" (click)="clickCharacter('MrsWhite')">
+            Mrs. White
+        </button>
     </div>
     <div class="col">
-        <button mat-raised-button id="MrsPeacock" class="MrsPeacock" (click)="clickCharacter('MrsPeacock')">Mrs. Peacock</button>
+        <button mat-raised-button [ngClass]="{'isDisabled': !characterIsAvailable('Mrs Peacock')}"
+        id="MrsPeacock" class="MrsPeacock" (click)="clickCharacter('MrsPeacock')">
+            Mrs. Peacock
+        </button>
     </div>
 </div>
 
