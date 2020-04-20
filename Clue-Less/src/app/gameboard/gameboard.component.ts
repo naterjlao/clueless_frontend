@@ -23,6 +23,12 @@ export class GameboardComponent implements OnInit {
   ngAfterViewInit() {
   }
 
+  initTokens(){
+    var players = this.gameState.players.suspect;
+    console.log(players);
+    
+  }
+
   ngOnDestroy() { //prevent memory leak when component destroyed
     this.gameState_subscription.unsubscribe();
   }
