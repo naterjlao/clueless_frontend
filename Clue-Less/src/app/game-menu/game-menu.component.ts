@@ -69,6 +69,10 @@ export class GameMenuComponent implements OnInit {
       this.serverSvc.endTurn();
    }
 
+   disconnect() {
+      this.serverSvc.removeSocket();
+   }
+
    ngOnDestroy() { //prevent memory leak when component destroyed
       this.gameIsReady_subscription.unsubscribe();
       this.playerId_subscription.unsubscribe();
