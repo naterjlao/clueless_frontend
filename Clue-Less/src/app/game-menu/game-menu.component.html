@@ -40,6 +40,13 @@
                     Toggle GameBoard/BlockGame
                 </button>
 
+                <div id="moveOptions">
+                    <!--Placeholder Variable Explanation-->
+                    <!--"bOptions" is the array name with the "connected" locations denoting possible moves.-->
+                    <!--"move" would be the text on the button and the value sent back to backend.-->
+                    <button ng-repeat="move in bOptions" id="button{{move}}" value="{{move}}">{{move}}</button>
+                </div>
+                
                 <button (click)="move('left')">Left</button>
                 <button (click)="move('right')">Right</button>
                 <button (click)="move('up')">Up</button>
