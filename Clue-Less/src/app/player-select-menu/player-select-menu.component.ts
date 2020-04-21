@@ -9,8 +9,6 @@ import $ from 'jquery';
 })
 export class PlayerSelectMenuComponent implements OnInit {
 
-  testGameState; // ONLY USED FOR TESTING - TODO: remove later
-
   gameState; gameState_subscription;
   availableCharacters; availableCharacters_subscription;
 
@@ -29,8 +27,6 @@ export class PlayerSelectMenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.testGameState = this.serverSvc.getTestGameState(); // ONLY USED FOR TESTING - TODO: remove later
-    console.log(this.testGameState);
   }
 
   ngAfterViewInit() {

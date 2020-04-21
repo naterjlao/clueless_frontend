@@ -12,7 +12,6 @@ export class GameMenuComponent implements OnInit {
 
    private context: any;
    socket: any;
-   testGameState; // ONLY USED FOR TESTING - TODO: remove later
 
    gameIsReady; gameIsReady_subscription;
    playerId; playerId_subscription;
@@ -44,8 +43,6 @@ export class GameMenuComponent implements OnInit {
    }
 
    ngOnInit() {
-      this.testGameState = this.serverSvc.getTestGameState(); // ONLY USED FOR TESTING - TODO: remove later
-      console.log(this.testGameState);
    }
 
    ngAfterViewInit() {
