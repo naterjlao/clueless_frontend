@@ -5,6 +5,25 @@
 @color-white: #FFFFFF;
 @color-peacock: #004C99;
 
+.ColonelMustard {
+    color: @color-mustard;
+}
+.MissScarlet {
+    color: @color-scarlet;
+}
+.ProfessorPlum {
+    color: @color-plum;
+}
+.MrGreen {
+    color: @color-green;
+}
+.MrsWhite {
+    color: @color-white;
+}
+.MrsPeacock {
+    color: @color-peacock;
+}
+
 #ClueLess {
     padding: 5vh 5vw;
 }
@@ -55,32 +74,43 @@
     padding-right: 5px;
 }
 
+div, h1, h2, p {
+	font-family: "Lucida Console", Verdana, Geneva, sans-serif;
+}
+
 #exitButton {
 	color: black;
 	background-color: white;
 	border: solid black;
 	height: 40px;
-	width: 200px;
+	width: 75px;
 	font-family: "Lucida Console", Verdana, Geneva, sans-serif;
 	border-radius: 13px;
 	font-size: 16px;
 }
 
-.ColonelMustard {
-    color: @color-mustard;
+#beginButton {
+    color: black;
+	background-color: white;
+	border: solid black;
+	height: 40px;
+	width: 125px;
+	font-family: "Lucida Console", Verdana, Geneva, sans-serif;
+	border-radius: 13px;
+	font-size: 16px;
 }
-.MissScarlet {
-    color: @color-scarlet;
+
+#exitButton:hover, #beginButton:hover {
+	background-color: black;
+	color: white;
 }
-.ProfessorPlum {
-    color: @color-plum;
+
+.navButtonLink{
+    color: black;
+    text-decoration: none;
 }
-.MrGreen {
-    color: @color-green;
-}
-.MrsWhite {
-    color: @color-white;
-}
-.MrsPeacock {
-    color: @color-peacock;
+
+.navButtonLink:hover{
+    color: white;
+    text-decoration: none;
 }

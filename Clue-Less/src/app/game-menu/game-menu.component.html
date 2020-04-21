@@ -1,9 +1,9 @@
 <ng-container *ngIf="socket">
     <div id="ClueLess">
-        <button id="exitButton" (click)="disconnect()"><a routerLink="/start" routerLinkActive="active">Exit</a></button>
+        <button id="exitButton" (click)="disconnect()"><a routerLink="/start" routerLinkActive="active" class="navButtonLink">Exit</a></button>
         <button [disabled]="!gameIsReady"
             [ngClass]="{'isDisabled': !gameIsReady}"
-            (click)="beginGame()">
+            (click)="beginGame()" id="beginButton">
             Begin Game
         </button>
         <div id="top" class="row no-gutters">
