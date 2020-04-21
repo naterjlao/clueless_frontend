@@ -17,9 +17,13 @@ export class GameMenuComponent implements OnInit {
    playerId; playerId_subscription;
    whosTurn; whosTurn_subscription;
    position; position_subscription;
+   availableCharacters; availableCharacters_subscription;
    gameState; gameState_subscription;
 
    showGameBoard = false; //temp variable for dev use
+   characterNames = ['Colonel Mustard', 'Miss Scarlet', 'Professor Plum',
+   'Mr Green', 'Mrs White', 'Mrs Peacock']; // all possible character names
+   charactersInGame = []; // holds all characters in the game that players have chosen
 
    constructor(private serverSvc: ServerService) {
       this.socket = this.serverSvc.getSocket();
@@ -36,6 +40,9 @@ export class GameMenuComponent implements OnInit {
       });
       this.position_subscription = this.serverSvc.positionChange.subscribe({
          next: (position) => { this.position = position; this.positionChange(this.position); }
+      });
+      this.availableCharacters_subscription = this.serverSvc.availableCharacters.subscribe({
+         next: (availChars) => { this.availableCharacters = availChars; this.charactersInGame = this.getCharactersInGame(availChars) }
       });
       this.gameState_subscription = this.serverSvc.gameState.subscribe({
          next: (gameState) => { this.gameState = gameState; }
@@ -67,6 +74,10 @@ export class GameMenuComponent implements OnInit {
 
    endTurn() {
       this.serverSvc.endTurn();
+   }
+
+   getCharactersInGame(availChars) {
+      return this.characterNames.filter( (x) => !availChars.includes(x) );
    }
 
    disconnect() {

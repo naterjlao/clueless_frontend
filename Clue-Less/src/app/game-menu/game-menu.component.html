@@ -9,7 +9,20 @@
         <div id="top" class="row no-gutters">
             <div class="col">
             <div id="playersPanel">
-                <h1>Players</h1>
+                <div class="row">  
+                    <h1 class="col">Players</h1>
+                    <h3 class="col" *ngFor='let c of charactersInGame'
+                        [ngClass]="{
+                            'ColonelMustard': c === 'Colonel Mustard',
+                            'MissScarlet': c === 'Miss Scarlet',
+                            'ProfessorPlum': c === 'Professor Plum',
+                            'MrGreen': c === 'Mr Green',
+                            'MrsWhite': c === 'Mrs White',
+                            'MrsPeacock': c === 'Mrs Peacock'
+                        }">
+                        {{c}}
+                    </h3>
+                </div>
                 <p class="playerInfo" id="whosTurn"><b>It's {{whosTurn}}'s turn!</b></p>
                 <p class="playerInfo" id="playerNumber"><i>You are {{playerId}}</i></p>
             </div>
