@@ -51,6 +51,7 @@ export class PlayerSelectMenuComponent implements OnInit {
     this.currentCharacterSelected = character;
   }
 
+  // finalizes character selection and sends to server
   selectCharacter(character: string) {
     // add space into name to put in format that backend accepts
     let characterNameFormatted = character.replace(/([A-Z])/g, ' $1').trim()
@@ -65,6 +66,7 @@ export class PlayerSelectMenuComponent implements OnInit {
     });
   }
 
+  // returns if the character is stil available
   characterIsAvailable(character: string) {
     return this.availableCharacters.includes(character);
   }

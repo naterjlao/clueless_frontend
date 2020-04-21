@@ -6,19 +6,25 @@
 
 <div class="row">
     <div class="col">
-        <button mat-raised-button [ngClass]="{'isDisabled': !characterIsAvailable('Colonel Mustard')}"
+        <button mat-raised-button
+            [ngClass]="{'isDisabled': !characterIsAvailable('Colonel Mustard') && characterSelected != 'ColonelMustard'}"
+            [disabled]="!characterIsAvailable('Colonel Mustard') && characterSelected != 'ColonelMustard'"
             id="ColonelMustard" class="ColonelMustard" (click)="clickCharacter('ColonelMustard')">
             Colonel Mustard
         </button>
     </div>
     <div class="col">
-        <button mat-raised-button [ngClass]="{'isDisabled': !characterIsAvailable('Miss Scarlet')}"
+        <button mat-raised-button
+            [ngClass]="{'isDisabled': !characterIsAvailable('Miss Scarlet') && characterSelected != 'MissScarlet'}"
+            [disabled]="!characterIsAvailable('Miss Scarlet') && characterSelected != 'MissScarlet'"
             id="MissScarlet" class="MissScarlet" (click)="clickCharacter('MissScarlet')">
             Miss Scarlet
         </button>
     </div>
     <div class="col">
-        <button mat-raised-button [ngClass]="{'isDisabled': !characterIsAvailable('Professor Plum')}"
+        <button mat-raised-button
+            [ngClass]="{'isDisabled': !characterIsAvailable('Professor Plum') && characterSelected != 'ProfessorPlum'}"
+            [disabled]="!characterIsAvailable('Professor Plum') && characterSelected != 'ProfessorPlum'"
             id="ProfessorPlum" class="ProfessorPlum" (click)="clickCharacter('ProfessorPlum')">
             Professor Plum
         </button>
@@ -26,19 +32,25 @@
 </div>
 <div class="row">
     <div class="col">
-        <button mat-raised-button [ngClass]="{'isDisabled': !characterIsAvailable('Mr Green')}"
+        <button mat-raised-button
+            [ngClass]="{'isDisabled': !characterIsAvailable('Mr Green') && characterSelected != 'MrGreen'}"
+            [disabled]="!characterIsAvailable('Mr Green') && characterSelected != 'MrGreen'"
         id="MrGreen" class="MrGreen" (click)="clickCharacter('MrGreen')">
             Mr. Green
         </button>
     </div>
     <div class="col">
-        <button mat-raised-button [ngClass]="{'isDisabled': !characterIsAvailable('Mrs White')}"
+        <button mat-raised-button
+            [ngClass]="{'isDisabled': !characterIsAvailable('Mrs White') && characterSelected != 'MrsWhite'}"
+            [disabled]="!characterIsAvailable('Mrs White') && characterSelected != 'MrsWhite'"
         id="MrsWhite" class="MrsWhite" (click)="clickCharacter('MrsWhite')">
             Mrs. White
         </button>
     </div>
     <div class="col">
-        <button mat-raised-button [ngClass]="{'isDisabled': !characterIsAvailable('Mrs Peacock')}"
+        <button mat-raised-button
+        [ngClass]="{'isDisabled': !characterIsAvailable('Mrs Peacock') && characterSelected != 'MrsPeacock'}"
+        [disabled]="!characterIsAvailable('Mrs Peacock') && characterSelected != 'MrsPeacock'"
         id="MrsPeacock" class="MrsPeacock" (click)="clickCharacter('MrsPeacock')">
             Mrs. Peacock
         </button>
