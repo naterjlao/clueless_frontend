@@ -1,5 +1,5 @@
 <nav>
-    <button id="backButton"><a routerLink="/start" routerLinkActive="active">Back to Start Menu</a></button>
+    <button id="backButton"><a routerLink="/start" routerLinkActive="active" class="navButtonLink">Back to Start Menu</a></button>
 </nav>
 
 <h1 class="pgTitle">Select a character:</h1>
@@ -63,7 +63,7 @@
 
 <nav *ngIf="characterSelected">
     <button id="enterButton">
-        <a [routerLink]="'/game'" routerLinkActive="active">
+        <a [routerLink]="'/game'" routerLinkActive="active" class="navButtonLink">
             Enter Game
         </a>
     </button>
