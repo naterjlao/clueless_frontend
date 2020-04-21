@@ -1,6 +1,6 @@
 <ng-container *ngIf="socket">
     <div id="ClueLess">
-        <button><a routerLink="/start" routerLinkActive="active">Back to Start Menu</a></button>
+        <button id="exitButton" (click)="disconnect()"><a routerLink="/start" routerLinkActive="active">Exit</a></button>
         <button [disabled]="!gameIsReady"
             [ngClass]="{'isDisabled': !gameIsReady}"
             (click)="beginGame()">
@@ -46,7 +46,7 @@
                     <!--"move" would be the text on the button and the value sent back to backend.-->
                     <!-- <button ng-repeat="move in bOptions" id="button{{move}}" value="{{move}}">{{move}}</!--> -->
                 <!-- </div> -->
-                
+
                 <button (click)="move('left')">Left</button>
                 <button (click)="move('right')">Right</button>
                 <button (click)="move('up')">Up</button>

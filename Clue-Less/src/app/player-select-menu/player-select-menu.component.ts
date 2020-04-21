@@ -67,6 +67,10 @@ export class PlayerSelectMenuComponent implements OnInit {
     return this.availableCharacters.includes(character);
   }
 
+  disconnect() {
+    this.serverSvc.removeSocket();
+  }
+
   ngOnDestroy() { //prevent memory leak when component destroyed
     this.gameState_subscription.unsubscribe();
   }
