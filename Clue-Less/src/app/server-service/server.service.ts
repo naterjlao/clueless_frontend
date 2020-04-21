@@ -146,6 +146,20 @@ export class ServerService {
       this.socket.emit('entered_player_select');
    }
    
+   // tells the server which suspect the user has selected
+   selectCharacter(character: string) {
+      /* data format:
+         {
+            playerId: string,
+            character: string
+         }
+      */
+      this.socket.emit('select_character', {
+         playerId: this.playerId,
+         character: character
+      });
+   }
+   
    // used when player clicks the Enter Game button that is in the player-select menu
    // intended to send signal to server to initiate transmission of data needed for game-menu screen
    enteredGame() {
@@ -165,17 +179,19 @@ export class ServerService {
       });
    }
 
-   // possibly temporary/maybe reusable: emits the direction the block is moving
-   move(direction: string) {
+   // used when a player moves on the board
+   makeMove(suspect: string, room: string) {
       /* data format:
         {
           playerId: string,
-          direction: string
+          suspect: string,
+          room: string
         }
       */
-      this.socket.emit('move', {
+      this.socket.emit('make_move', {
          playerId: this.playerId,
-         direction: direction
+         suspect: suspect,
+         room: room
       });
    }
 
@@ -227,36 +243,17 @@ export class ServerService {
       });
    }
 
-   // this function may not be used in the minimal increment
-   // TODO: get clarity on purpose of makeMove and when it will be used
-   makeMove(suspect: string, room: string) {
+   // possibly temporary/maybe reusable: emits the direction the block is moving
+   move(direction: string) {
       /* data format:
-        {
-          playerId: string,
-          suspect: string,
-          room: string
-        }
+         {
+            playerId: string,
+            direction: string
+         }
       */
-      this.socket.emit('make_move', {
+      this.socket.emit('move', {
          playerId: this.playerId,
-         suspect: suspect,
-         room: room
-      });
-   }
-
-   // this function may not be used in the minimal increment
-   // tells the server which suspect the user has selected?
-   // TODO: get clarity on when this would be called. It seems makeSuggestion and makeAccisation would already include a suspect
-   selectCharacter(character: string) {
-      /* data format:
-        {
-          playerId: string,
-          character: string
-        }
-      */
-      this.socket.emit('select_character', {
-         playerId: this.playerId,
-         character: character
+         direction: direction
       });
    }
 
