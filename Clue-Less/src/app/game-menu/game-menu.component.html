@@ -1,11 +1,11 @@
 <ng-container *ngIf="socket">
     <div id="ClueLess">
 
-        <h2 *ngIf="availableCharacters.length < 5">First Player only can start the game! Being whenever you're ready.</h2>
+        <h2 *ngIf="availableCharacters.length < 5 && !gameHasBegun">First Player only can start the game! Begin whenever you're ready.</h2>
         <h2 *ngIf="!(availableCharacters.length < 5)">Waiting for at least 1 more player to join...</h2>
 
         <button id="exitButton" (click)="disconnect()"><a routerLink="/start" routerLinkActive="active" class="navButtonLink">Exit</a></button>
-        <button *ngIf="playerId === 'player0'"
+        <button *ngIf="playerId === 'player0' && !gameHasBegun"
             [disabled]="!gameIsReady"
             [ngClass]="{'isDisabled': !gameIsReady}"
             (click)="beginGame()" id="beginButton">
