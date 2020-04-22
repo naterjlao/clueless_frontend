@@ -76,6 +76,24 @@ export class GameMenuComponent implements OnInit {
       this.serverSvc.endTurn();
    }
 
+   getPlayerNum(playerId) {
+      if(playerId === 'player0') {
+         return 'Player 1'
+      } else if(playerId === 'player1') {
+         return 'Player 2'
+      } else if(playerId === 'player2') {
+         return 'Player 3'
+      } else if(playerId === 'player3') {
+         return 'Player 4'
+      } else if(playerId === 'player4') {
+         return 'Player 5'
+      } else if(playerId === 'player5') {
+         return 'Player 6'
+      } else {
+         return 'You don\'t belong here'
+      }
+   }
+
    getCharactersInGame(availChars) {
       return this.characterNames.filter( (x) => !availChars.includes(x) );
    }
