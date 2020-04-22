@@ -1,7 +1,12 @@
 <ng-container *ngIf="socket">
     <div id="ClueLess">
+
+        <h2 *ngIf="gameIsReady">First Player only can start the game! Being whenever you're ready.</h2>
+        <h2 *ngIf="!gameIsReady">Waiting for at least 1 more player to join...</h2>
+
         <button id="exitButton" (click)="disconnect()"><a routerLink="/start" routerLinkActive="active" class="navButtonLink">Exit</a></button>
-        <button [disabled]="!gameIsReady"
+        <button *ngIf="playerId === 'player0'"
+            [disabled]="!gameIsReady"
             [ngClass]="{'isDisabled': !gameIsReady}"
             (click)="beginGame()" id="beginButton">
             Begin Game
@@ -9,7 +14,7 @@
         <div id="top" class="row no-gutters">
             <div class="col">
             <div id="playersPanel">
-                <div class="row">  
+                <div class="row">
                     <h1 class="col">Players</h1>
                     <h3 class="col" *ngFor='let c of charactersInGame'
                         [ngClass]="{
@@ -23,8 +28,8 @@
                         {{c}}
                     </h3>
                 </div>
-                <p class="playerInfo" id="whosTurn"><b>It's {{whosTurn}}'s turn!</b></p>
-                <p class="playerInfo" id="playerNumber"><i>You are {{playerId}}</i></p>
+                <p class="playerInfo" id="whosTurn"><b>It's {{getPlayerNum(whosTurn)}}'s turn!</b></p>
+                <p class="playerInfo" id="playerNumber"><i>You are {{getPlayerNum(playerId)}}</i></p>
             </div>
             </div>
         </div>
