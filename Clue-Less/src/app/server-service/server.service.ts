@@ -21,6 +21,7 @@ export class ServerService {
    whosTurn: Subject<number> = new Subject<number>();
    positionChange: Subject<object> = new Subject<object>();
    gameState: Subject<object> = new Subject<object>();
+   turnData: Subject<object> = new Subject<object>();
 
    constructor() { }
 
@@ -35,8 +36,10 @@ export class ServerService {
       this.getStartInfo();
       this.getAvailableCharacters();
       this.getWhosTurn();
-      this.updatePosition();
       this.updateGameState();
+      this.updateTurn();
+
+      this.updatePosition();
    }
 
    // returns this client's socket connected to the server
@@ -89,6 +92,48 @@ export class ServerService {
          this.availableCharacters.next(data.available_characters);
       });
    }
+   
+
+   // updates frontend with the updated turn value from the server
+   getWhosTurn() {
+      /*
+        data emitted from server is in the following form:
+        {
+          turn: number
+        }
+        */
+      this.socket.on('turnChange', data => {
+         console.log(data);
+         this.whosTurn.next(data.turn);
+      });
+   }
+
+   // updates the UI Game Board based on the gameState info from the server
+   updateGameState() {
+      this.socket.on('update_gameState', data => {
+         /*
+           data emitted from server is defined in the Backend
+         */
+         console.log(data);
+         this.gameState.next(data);
+      });
+   }
+
+   // receives updates from server about turn data
+   updateTurn() {
+      this.socket.on('turnUpdate ', data => {
+         /*
+           data emitted from server is in the following form:
+         {
+            playerId: string, // of who's turn it is
+            turn_status: string,
+            move_options: []
+         }
+         */
+         console.log(data);
+         this.turnData.next(data);
+      });
+   }
 
    // temporary: updates frontend canvas with block position
    updatePosition() {
@@ -105,31 +150,6 @@ export class ServerService {
          console.log(data);
          let pos = data.position;
          this.positionChange.next({ x: pos.x, y: pos.y, w: 10, h: 10 });
-      });
-   }
-
-   // updates the UI Game Board based on the gameState info from the server
-   updateGameState() {
-      this.socket.on('update_gameState', data => {
-         /*
-           data emitted from server is defined in the Backend
-         */
-         console.log(data);
-         this.gameState.next(data);
-      });
-   }
-
-   // updates frontend with the updated turn value from the server
-   getWhosTurn() {
-      /*
-        data emitted from server is in the following form:
-        {
-          turn: number
-        }
-        */
-      this.socket.on('turnChange', data => {
-         console.log(data);
-         this.whosTurn.next(data.turn);
       });
    }
 

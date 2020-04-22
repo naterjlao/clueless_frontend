@@ -19,6 +19,7 @@ export class GameMenuComponent implements OnInit {
    position; position_subscription;
    availableCharacters; availableCharacters_subscription;
    gameState; gameState_subscription;
+   turnData; turnData_subscription;
 
    showGameBoard = false; //temp variable for dev use
    characterNames = ['Colonel Mustard', 'Miss Scarlet', 'Professor Plum',
@@ -46,6 +47,9 @@ export class GameMenuComponent implements OnInit {
       });
       this.gameState_subscription = this.serverSvc.gameState.subscribe({
          next: (gameState) => { this.gameState = gameState; }
+      });
+      this.turnData_subscription = this.serverSvc.turnData.subscribe({
+         next: (turnData) => { this.turnData = turnData; console.log(turnData); }
       });
    }
 
@@ -108,6 +112,7 @@ export class GameMenuComponent implements OnInit {
       this.whosTurn_subscription.unsubscribe();
       this.position_subscription.unsubscribe();
       this.gameState_subscription.unsubscribe();
+      this.turnData_subscription.unsubscribe();
 
       this.serverSvc.removeSocket();
    }
