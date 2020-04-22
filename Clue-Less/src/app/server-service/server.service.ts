@@ -11,6 +11,7 @@ export class ServerService {
 
    private socket; // client socket connected to the server
    playerId; // initialized once emitted from the server
+   character; // game character selected in select-player menu
 
    /**************************************************************************************************
      variables that recieve updates from the server and send updates to subscribed frontend components
@@ -92,7 +93,7 @@ export class ServerService {
          this.availableCharacters.next(data.available_characters);
       });
    }
-   
+
 
    // updates frontend with the updated turn value from the server
    getWhosTurn() {
@@ -165,9 +166,11 @@ export class ServerService {
       // note: playerId does not yet exist at this point
       this.socket.emit('entered_player_select');
    }
-   
+
    // tells the server which suspect the user has selected
    selectCharacter(character: string) {
+      this.character = character;
+
       /* data format:
          {
             playerId: string,
@@ -179,7 +182,7 @@ export class ServerService {
          character: character
       });
    }
-   
+
    // used when player clicks the Enter Game button that is in the player-select menu
    // intended to send signal to server to initiate transmission of data needed for game-menu screen
    enteredGame() {
@@ -200,7 +203,7 @@ export class ServerService {
    }
 
    // used when a player moves on the board
-   makeMove(suspect: string, room: string) {
+   makeMove(room: string) {
       /* data format:
         {
           playerId: string,
@@ -210,7 +213,7 @@ export class ServerService {
       */
       this.socket.emit('make_move', {
          playerId: this.playerId,
-         suspect: suspect,
+         suspect: this.character,
          room: room
       });
    }

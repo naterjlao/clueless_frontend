@@ -67,15 +67,8 @@ export class GameMenuComponent implements OnInit {
       this.gameHasBegun = true;
    }
 
-   positionChange(position) {
-      if (position === {} || !this.gameCanvas || !this.context) return;
-
-      this.context.clearRect(0, 0, this.gameCanvas.nativeElement.width, this.gameCanvas.nativeElement.height);
-      this.context.fillRect(position.x, position.y, position.w, position.h);
-   }
-
-   move(direction: string) {
-      this.serverSvc.move(direction);
+   makeMove(room: string) {
+      this.serverSvc.makeMove(room);
    }
 
    endTurn() {
@@ -84,19 +77,20 @@ export class GameMenuComponent implements OnInit {
 
    getPlayerNum(playerId) {
       if(playerId === 'player0') {
-         return 'Player 1'
+         return 'Player 1';
       } else if(playerId === 'player1') {
-         return 'Player 2'
+         return 'Player 2';
       } else if(playerId === 'player2') {
-         return 'Player 3'
+         return 'Player 3';
       } else if(playerId === 'player3') {
-         return 'Player 4'
+         return 'Player 4';
       } else if(playerId === 'player4') {
-         return 'Player 5'
+         return 'Player 5';
       } else if(playerId === 'player5') {
-         return 'Player 6'
+         return 'Player 6';
       } else {
-         return 'You don\'t belong here'
+         // should never be more than 6 players, but this is reached if playerId is undefined
+         return 'TIAAT';
       }
    }
 
@@ -117,6 +111,19 @@ export class GameMenuComponent implements OnInit {
       this.turnData_subscription.unsubscribe();
 
       this.serverSvc.removeSocket();
+   }
+
+   /* Block game functions below */
+
+   positionChange(position) {
+      if (position === {} || !this.gameCanvas || !this.context) return;
+
+      this.context.clearRect(0, 0, this.gameCanvas.nativeElement.width, this.gameCanvas.nativeElement.height);
+      this.context.fillRect(position.x, position.y, position.w, position.h);
+   }
+
+   move(direction: string) {
+      this.serverSvc.move(direction);
    }
 
 }

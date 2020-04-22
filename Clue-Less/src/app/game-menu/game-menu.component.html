@@ -58,14 +58,14 @@
                     Toggle GameBoard/BlockGame
                 </button>
 
-                <!-- <div id="moveOptions"> -->
+                <div id="moveOptions" *ngIf="gameHasBegun && turnData && turnData.playerId === 'playerId'">
+                    <p>Choose a room to move to:</p>
                     <!--Placeholder Variable Explanation-->
-                    <!--"bOptions" is the array name with the "connected" locations denoting possible moves.-->
                     <!--"move" would be the text on the button and the value sent back to backend.-->
-                    <!-- <button *ngFor="let move of turnData.move_options" id="button{{move}}" value="{{move}}">
+                    <button *ngFor="let move of turnData.move_options" id="button{{move}}" value="{{move}}" (click)="makeMove(move)">
                         {{move}}
-                        </button>-->
-                <!-- </div> -->
+                    </button>
+                </div>
 
                 <button (click)="move('left')">Left</button>
                 <button (click)="move('right')">Right</button>
