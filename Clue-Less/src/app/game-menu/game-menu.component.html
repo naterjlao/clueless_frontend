@@ -1,8 +1,8 @@
 <ng-container *ngIf="socket">
     <div id="ClueLess">
 
-        <h2 *ngIf="gameIsReady">First Player only can start the game! Being whenever you're ready.</h2>
-        <h2 *ngIf="!gameIsReady">Waiting for at least 1 more player to join...</h2>
+        <h2 *ngIf="availableCharacters.length < 5">First Player only can start the game! Being whenever you're ready.</h2>
+        <h2 *ngIf="!(availableCharacters.length < 5)">Waiting for at least 1 more player to join...</h2>
 
         <button id="exitButton" (click)="disconnect()"><a routerLink="/start" routerLinkActive="active" class="navButtonLink">Exit</a></button>
         <button *ngIf="playerId === 'player0'"
@@ -28,7 +28,7 @@
                         {{c}}
                     </h3>
                 </div>
-                <p class="playerInfo" id="whosTurn"><b>It's {{getPlayerNum(whosTurn)}}'s turn!</b></p>
+                <p *ngIf="gameHasBegun" class="playerInfo" id="whosTurn"><b>It's {{getPlayerNum(whosTurn)}}'s turn!</b></p>
                 <p class="playerInfo" id="playerNumber"><i>You are {{getPlayerNum(playerId)}}</i></p>
             </div>
             </div>
@@ -62,7 +62,7 @@
                     <!--Placeholder Variable Explanation-->
                     <!--"bOptions" is the array name with the "connected" locations denoting possible moves.-->
                     <!--"move" would be the text on the button and the value sent back to backend.-->
-                    <!-- <button *ngFor="move in bOptions" id="button{{move}}" value="{{move}}">
+                    <!-- <button *ngFor="let move of turnData.move_options" id="button{{move}}" value="{{move}}">
                         {{move}}
                         </button>-->
                 <!-- </div> -->

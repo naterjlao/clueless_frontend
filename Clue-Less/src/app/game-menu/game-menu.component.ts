@@ -22,6 +22,7 @@ export class GameMenuComponent implements OnInit {
    turnData; turnData_subscription;
 
    showGameBoard = false; //temp variable for dev use
+   gameHasBegun = false;
    characterNames = ['Colonel Mustard', 'Miss Scarlet', 'Professor Plum',
    'Mr Green', 'Mrs White', 'Mrs Peacock']; // all possible character names
    charactersInGame = []; // holds all characters in the game that players have chosen
@@ -63,6 +64,7 @@ export class GameMenuComponent implements OnInit {
 
    beginGame() {
       this.serverSvc.startGame();
+      this.gameHasBegun = true;
    }
 
    positionChange(position) {
