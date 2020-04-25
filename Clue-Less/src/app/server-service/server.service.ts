@@ -156,15 +156,17 @@ export class ServerService {
 
 
    /**********************************************
-     Methods that SEND a signal to the server
+     METHODS THAT SEND A SIGNAL TO THE SERVER
    **********************************************/
 
-
+   /**********************************************
+     PREGAME SIGNALS
+   **********************************************/
    // used when player clicks the Start Game button that is in the start-menu
    // intended to send signal to server to initiate transmission of data needed for player-select screen
    enteredPlayerSelect() {
       // note: playerId does not yet exist at this point
-      this.socket.emit('entered_player_select');
+      this.socket.emit('entered_player_select',{});
    }
 
    // tells the server which suspect the user has selected
@@ -178,7 +180,6 @@ export class ServerService {
          }
       */
       this.socket.emit('select_character', {
-         playerId: this.playerId,
          character: character
       });
    }
@@ -187,34 +188,21 @@ export class ServerService {
    // intended to send signal to server to initiate transmission of data needed for game-menu screen
    enteredGame() {
       // note: playerId does not yet exist at this point
-      this.socket.emit('entered_game');
+      this.socket.emit('entered_game',{});
    }
 
    // tells server to start the game, and tell the backend to initialize gameState json
    startGame() {
-      this.socket.emit('start_game', {
-         /* data format:
-         {
-            playerId: string
-         }
-         */
-         playerId: this.playerId
-      });
+      this.socket.emit('start_game',{});
    }
 
+   /**********************************************
+     GAME IN-PROGRESS SIGNALS
+   **********************************************/
    // used when a player moves on the board
    makeMove(room: string) {
-      /* data format:
-        {
-          playerId: string,
-          suspect: string,
-          room: string
-        }
-      */
-      this.socket.emit('make_move', {
-         playerId: this.playerId,
-         suspect: this.character,
-         room: room
+      this.socket.emit('move_choice', {
+         choice: room
       });
    }
 
@@ -229,7 +217,6 @@ export class ServerService {
           }
       */
       this.socket.emit('make_suggestion', {
-         playerId: this.playerId,
          suspect: suspect,
          weapon: weapon,
          room: room
@@ -247,42 +234,47 @@ export class ServerService {
             }
           */
       this.socket.emit('make_accusation', {
-         playerId: this.playerId,
          suspect: suspect,
          weapon: weapon,
          room: room
       });
    }
-
-   // ends the current players turn and tells the server to increment the turn
-   endTurn() {
-      /* data format:
-        {
-          playerId: string
-        }
-      */
-      this.socket.emit('pass_turn', {
-         playerId: this.playerId
-      });
+   
+   // TODO >>> THIS IS NEW <<<<
+   // When a card is clicked on the UI, the Client sends this
+   // signal to the Server. This happens regardless of the state of the game.
+   // The Server may choose to ignore it, or take action.
+   selectCard(choice: string) {
+	   this.socket.emit('card_choice', {
+		   choice: choice
+	   });
    }
 
+
+   /* // DEPRECATE - THIS IS CAPTURED IN move_choice
+   // ends the current players turn and tells the server to increment the turn
+   endTurn() {
+      this.socket.emit('pass_turn',{});
+   }
+   */
+
+	/* // DEPRECATE
    // possibly temporary/maybe reusable: emits the direction the block is moving
    move(direction: string) {
-      /* data format:
-         {
-            playerId: string,
-            direction: string
-         }
-      */
+
       this.socket.emit('move', {
-         playerId: this.playerId,
          direction: direction
       });
    }
+   */
 
+   /**********************************************
+     POST GAME SIGNALS
+   **********************************************/
+   // THIS IS A SPECIAL CASE SIGNAL
    // removes this client's socket from the server
    removeSocket() {
-      this.socket.emit('disconnect');
+      this.socket.emit('disconnect',{});
       this.socket = null;
    }
 
