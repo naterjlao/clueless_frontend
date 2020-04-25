@@ -57,6 +57,7 @@ export class ServerService {
    // TODO: the payload of this signal is {"move_options":<list of rooms>}
    // TODO: this occurs AFTER a signal call to the server to make_move
 
+   // THIS IS A SPECIAL CASE SIGNAL
    // receives signal that game has >= 2 players and game can now begin
    isGameReady() {
       this.socket.on('game_is_ready', data => {
@@ -155,9 +156,9 @@ export class ServerService {
    }
 
 
-   /**********************************************
+   /*******************************************************************************************************************
      METHODS THAT SEND A SIGNAL TO THE SERVER
-   **********************************************/
+   ********************************************************************************************************************/
 
    /**********************************************
      PREGAME SIGNALS
