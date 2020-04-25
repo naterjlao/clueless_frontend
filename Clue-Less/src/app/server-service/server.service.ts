@@ -37,8 +37,17 @@ export class ServerService {
       this.getStartInfo();
       this.getAvailableCharacters();
       this.getWhosTurn();
-      this.updateGameState();
+      this.updateGameStateJSON();
       this.updateTurn();
+
+      // methods for new serverside infra which receive a signal
+      this.updatePlayerState();
+      this.updateGamestate();
+      this.updateGameboard();
+      this.updateChecklist();
+      this.updateMoveOptions();
+      this.updateCardList();
+      this.updateMessagePanel();
 
       this.updatePosition();
    }
@@ -49,9 +58,9 @@ export class ServerService {
    }
 
 
-   /**********************************************
-     Methods that RECEIVE a signal from the server
-   **********************************************/
+   /*******************************************************************************************************************
+     METHODS THAT RECEIVE A SIGNAL FROM THE SERVER
+   ********************************************************************************************************************/
 
    // TODO: add a handler for 'move_options'
    // TODO: the payload of this signal is {"move_options":<list of rooms>}
@@ -62,7 +71,7 @@ export class ServerService {
    isGameReady() {
       this.socket.on('game_is_ready', data => {
          // data will be empty, this signal just notifies the frontend that we can begin the game
-         console.log("game is ready");
+         console.log("game is ready"); console.log(data);
          this.gameIsReady.next(true); // update frontend that game can begin
       });
    }
@@ -111,7 +120,7 @@ export class ServerService {
    }
 
    // updates the UI Game Board based on the gameState info from the server
-   updateGameState() {
+   updateGameStateJSON() {
       this.socket.on('update_gameState', data => {
          /*
            data emitted from server is defined in the Backend
@@ -123,7 +132,7 @@ export class ServerService {
 
    // receives updates from server about turn data
    updateTurn() {
-      this.socket.on('turnUpdate ', data => {
+      this.socket.on('turnUpdate', data => {
          /*
            data emitted from server is in the following form:
          {
@@ -153,6 +162,157 @@ export class ServerService {
          let pos = data.position;
          this.positionChange.next({ x: pos.x, y: pos.y, w: 10, h: 10 });
       });
+   }
+
+
+   /*******************************************************************************************************************
+     METHODS FOR NEW SERVERSIDE INFRASTRUCTURE THAT RECEIVE A SIGNAL FROM THE SERVER
+   ********************************************************************************************************************/
+
+
+   // Contains PLAYER SPECIFIC meta-information
+   updatePlayerState() {
+      this.socket.on('playerstate', data => {
+         /*
+           data emitted from server is in the following form:
+         {
+            playerId:<playerId of the player that has the current turn>
+            suspect: <the suspect character that the player has chosen>
+         }
+         */
+         console.log(data);
+         // TODO: implement use of data
+      });
+   }
+
+   // Contains GAME WIDE meta-information
+   updateGamestate() {
+      this.socket.on('gamestate', data => {
+         /*
+           data emitted from server is in the following form:
+         {
+            currentPlayerId:<playerId of the player that has the current turn>
+            players: <list of players in the game>
+         }
+         */
+         console.log(data);
+         // TODO: implement use of data
+      });
+   }
+
+   // Contains a top-down view of the Clueless board. All players can be seen on the board.
+   updateGameboard() {
+      this.socket.on('gameboard', data => {
+         /*
+           data emitted from server is in the following form:
+         {
+            location:<string of the room the player is currently located>
+         }
+         */
+         console.log(data);
+         // TODO: implement use of data
+      });
+   }
+
+   /*
+      Contains a UI window that contains the suspects, weapons and rooms
+      that the Player has already seen through suggestions and the cards
+      they were dealt at the beginning of the game. The point of this is
+      to help the player to keep track of who didn’t commit the crime.
+   */
+   updateChecklist() {
+      this.socket.on('checklist', data => {
+         /*
+           data emitted from server is in the following form:
+         {
+            suspects:<a list of suspects (strings) that are checked off in the list>
+            weapons:<a list of weapons (strings) that are checked off in the list>
+            rooms:<a list of rooms (strings) that are checked off in the list>
+         }
+         */
+         console.log(data);
+         // TODO: implement use of data
+      });
+   }
+
+   // Buttons for the Player to move to on the Board. Displays only the valid spaces
+   updateMoveOptions() {
+      this.socket.on('move_options', data => {
+         /*
+           data emitted from server is in the following form:
+         {
+            choices: <a list of rooms (strings) that the player can move to.
+                     IF THERE IS NO VALID MOVE, a singleton list containing “SKIP TURN” will be returned>
+         }
+         */
+         console.log(data);
+         // TODO: implement use of data
+      });
+   }
+
+   // Contain the UI for all the cards the player might have.
+   updateCardList() {
+      this.socket.on('card_list', data => {
+         /*
+           data emitted from server is in the following form:
+         {
+            cardList: <list of cards (string) the player has>
+         }
+         */
+         console.log(data);
+         // TODO: implement use of data
+      });
+   }
+
+   // Contains a window that displays whatever string the Backend sends to the player
+   updateMessagePanel() {
+      this.socket.on('message', data => {
+         /*
+           data emitted from server is in the following form:
+         {
+             message: <string>,
+             color: <ie. “red”, “blue”, etc.>
+         }
+         */
+         console.log(data);
+         // TODO: implement use of data
+      });
+   }
+
+
+   /*******************************************************************************************************************
+     METHODS FOR NEW SERVERSIDE INFRASTRUCTURE THAT SEND A SIGNAL TO THE SERVER
+   ********************************************************************************************************************/
+
+
+   // Sends the player's choice of space to move to on the Board.
+   sendMoveChoice(choice: string) {
+         /*
+         data emitted from frontend to server is in the following form:
+         {
+            choice: <a string of the player’s choice
+                     (it is assumed that THIS MUST BE from the acceptable choices given back the Backend>
+         }
+         */
+         console.log(choice);
+         this.socket.emit('move_choice', {
+            choice: choice
+         });
+   }
+
+   // Send's the player's card choice
+   sendCardChoice(choice: string) {
+
+         /*
+         data emitted from server is in the following form:
+         {
+            choice: <a string of the card that the Player clicked>
+         }
+         */
+         console.log(choice);
+         this.socket.emit('card_choice', {
+            choice: choice
+         });
    }
 
 
@@ -240,7 +400,7 @@ export class ServerService {
          room: room
       });
    }
-   
+
    // TODO >>> THIS IS NEW <<<<
    // When a card is clicked on the UI, the Client sends this
    // signal to the Server. This happens regardless of the state of the game.
