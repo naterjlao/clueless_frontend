@@ -9,18 +9,14 @@ import $ from 'jquery';
 })
 export class PlayerSelectMenuComponent implements OnInit {
 
-  gameState; gameState_subscription;
   availableCharacters; availableCharacters_subscription;
 
   characterIds = ['ColonelMustard', 'MissScarlet', 'ProfessorPlum',
     'MrGreen', 'MrsWhite', 'MrsPeacock']; // used to add styles to player buttons
   currentCharacterSelected; // holds the currently selected player
   characterSelected; // captures the player's final character selection
-  
+
   constructor(private serverSvc: ServerService) {
-    this.gameState_subscription = this.serverSvc.gameState.subscribe({
-      next: (gameState) => { this.gameState = gameState; }
-    });
     this.availableCharacters_subscription = this.serverSvc.availableCharacters.subscribe({
       next: (availChars) => { console.log(availChars); this.availableCharacters = availChars; }
     });
@@ -72,7 +68,7 @@ export class PlayerSelectMenuComponent implements OnInit {
   }
 
   ngOnDestroy() { //prevent memory leak when component destroyed
-    this.gameState_subscription.unsubscribe();
+    this.availableCharacters_subscription.unsubscribe();
   }
 
 }

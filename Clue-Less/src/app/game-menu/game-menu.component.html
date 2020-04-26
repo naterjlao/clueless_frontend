@@ -6,8 +6,8 @@
 
         <button id="exitButton" (click)="disconnect()"><a routerLink="/start" routerLinkActive="active" class="navButtonLink">Exit</a></button>
         <button *ngIf="playerId === 'player0' && !gameHasBegun"
-            [disabled]="!gameIsReady"
-            [ngClass]="{'isDisabled': !gameIsReady}"
+            [disabled]="!(availableCharacters.length < 5)"
+            [ngClass]="{'isDisabled': !(availableCharacters.length < 5)}"
             (click)="beginGame()" id="beginButton">
             Begin Game
         </button>
@@ -28,7 +28,7 @@
                         {{c}}
                     </h3>
                 </div>
-                <p *ngIf="gameHasBegun" class="playerInfo" id="whosTurn"><b>It's {{getPlayerNum(whosTurn)}}'s turn!</b></p>
+                <p *ngIf="gameHasBegun" class="playerInfo" id="whosTurn"><b>It's {{getPlayerNum(gamestate.currentPlayerId)}}'s turn!</b></p>
                 <p class="playerInfo" id="playerNumber"><i>You are {{getPlayerNum(playerId)}}</i></p>
             </div>
             </div>
@@ -37,8 +37,7 @@
         <div id="middle" class="row no-gutters">
             <div class="col-9">
             <div id="gameBoard">
-                <canvas [hidden]="showGameBoard" id="game" #game></canvas>
-                <gameboard [hidden]="!showGameBoard" id="gameboard"></gameboard>
+                <gameboard id="gameboard"></gameboard>
             </div>
             </div>
 
@@ -54,23 +53,14 @@
             <div id="cardPanel">
                 <h1>Card Menu</h1>
 
-                <button type="button" class="mat-button" id="switchGameBoard" name="button" (click)="showGameBoard=!showGameBoard">
-                    Toggle GameBoard/BlockGame
-                </button>
-
-                <div id="moveOptions" *ngIf="gameHasBegun && turnData && turnData.playerId === 'playerId'">
+                <div id="moveOptions" *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId">
                     <p>Choose a room to move to:</p>
                     <!--Placeholder Variable Explanation-->
                     <!--"move" would be the text on the button and the value sent back to backend.-->
-                    <button *ngFor="let move of turnData.move_options" id="button{{move}}" value="{{move}}" (click)="makeMove(move)">
+                    <button *ngFor="let move of moveOptions" id="button{{move}}" value="{{move}}" (click)="makeMove(move)">
                         {{move}}
                     </button>
                 </div>
-
-                <button (click)="move('left')">Left</button>
-                <button (click)="move('right')">Right</button>
-                <button (click)="move('up')">Up</button>
-                <button (click)="move('down')">Down</button>
 
                 <button type="button" id="endTurn" name="button" (click)="endTurn()">End Turn</button>
             </div>

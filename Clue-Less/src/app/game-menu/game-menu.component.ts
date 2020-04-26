@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Renderer2, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ServerService } from '../server-service/server.service';
 
 @Component({
@@ -8,20 +8,13 @@ import { ServerService } from '../server-service/server.service';
 })
 export class GameMenuComponent implements OnInit {
 
-   @ViewChild('game', { static: false }) private gameCanvas: ElementRef;
-
-   private context: any;
    socket: any;
 
-   gameIsReady; gameIsReady_subscription;
    playerId; playerId_subscription;
-   whosTurn; whosTurn_subscription;
-   position; position_subscription;
    availableCharacters; availableCharacters_subscription;
-   gameState; gameState_subscription;
-   turnData; turnData_subscription;
+   gamestate; gamestate_subscription;
+   moveOptions; moveOptions_subscription;
 
-   showGameBoard = false; //temp variable for dev use
    gameHasBegun = false;
    characterNames = ['Colonel Mustard', 'Miss Scarlet', 'Professor Plum',
    'Mr Green', 'Mrs White', 'Mrs Peacock']; // all possible character names
@@ -31,26 +24,17 @@ export class GameMenuComponent implements OnInit {
       this.socket = this.serverSvc.getSocket();
 
       /* subscriptions to Subjects from the serverService */
-      this.gameIsReady_subscription = this.serverSvc.gameIsReady.subscribe({
-         next: (gameIsReady) => { this.gameIsReady = gameIsReady; }
-      });
       this.playerId_subscription = this.serverSvc.playerIdChange.subscribe({
          next: (playerId) => this.playerId = playerId
-      });
-      this.whosTurn_subscription = this.serverSvc.whosTurn.subscribe({
-         next: (turn) => this.whosTurn = turn
-      });
-      this.position_subscription = this.serverSvc.positionChange.subscribe({
-         next: (position) => { this.position = position; this.positionChange(this.position); }
       });
       this.availableCharacters_subscription = this.serverSvc.availableCharacters.subscribe({
          next: (availChars) => { this.availableCharacters = availChars; this.charactersInGame = this.getCharactersInGame(availChars) }
       });
-      this.gameState_subscription = this.serverSvc.gameState.subscribe({
-         next: (gameState) => { this.gameState = gameState; }
+      this.gamestate_subscription = this.serverSvc.gamestate.subscribe({
+         next: (gamestate) => { this.gamestate = gamestate; }
       });
-      this.turnData_subscription = this.serverSvc.turnData.subscribe({
-         next: (turnData) => { this.turnData = turnData; console.log(turnData); }
+      this.moveOptions_subscription = this.serverSvc.moveOptions.subscribe({
+         next: (moveOptions) => { this.moveOptions = moveOptions; }
       });
    }
 
@@ -58,7 +42,6 @@ export class GameMenuComponent implements OnInit {
    }
 
    ngAfterViewInit() {
-      this.context = this.gameCanvas.nativeElement.getContext('2d');
       this.serverSvc.enteredGame(); // notify server of client entering game-menu to trigger initialization communications
    }
 
@@ -68,7 +51,7 @@ export class GameMenuComponent implements OnInit {
    }
 
    makeMove(room: string) {
-      this.serverSvc.makeMove(room);
+      this.serverSvc.sendMoveChoice(room);
    }
 
    endTurn() {
@@ -103,27 +86,11 @@ export class GameMenuComponent implements OnInit {
    }
 
    ngOnDestroy() { //prevent memory leak when component destroyed
-      this.gameIsReady_subscription.unsubscribe();
       this.playerId_subscription.unsubscribe();
-      this.whosTurn_subscription.unsubscribe();
-      this.position_subscription.unsubscribe();
-      this.gameState_subscription.unsubscribe();
-      this.turnData_subscription.unsubscribe();
+      this.gamestate_subscription.unsubscribe();
+      this.moveOptions_subscription.unsubscribe();
 
       this.serverSvc.removeSocket();
-   }
-
-   /* Block game functions below */
-
-   positionChange(position) {
-      if (position === {} || !this.gameCanvas || !this.context) return;
-
-      this.context.clearRect(0, 0, this.gameCanvas.nativeElement.width, this.gameCanvas.nativeElement.height);
-      this.context.fillRect(position.x, position.y, position.w, position.h);
-   }
-
-   move(direction: string) {
-      this.serverSvc.move(direction);
    }
 
 }
