@@ -62,10 +62,6 @@ export class ServerService {
      METHODS THAT RECEIVE A SIGNAL FROM THE SERVER
    ********************************************************************************************************************/
 
-   // TODO: add a handler for 'move_options'
-   // TODO: the payload of this signal is {"move_options":<list of rooms>}
-   // TODO: this occurs AFTER a signal call to the server to make_move
-
    // THIS IS A SPECIAL CASE SIGNAL
    // receives signal that game has >= 2 players and game can now begin
    isGameReady() {
@@ -77,6 +73,7 @@ export class ServerService {
    }
 
    // receives player start info from server (currently just the player id)
+   // TODO: DO NOT DELETE
    getStartInfo() {
       this.socket.on('startInfo', data => {
          /*
@@ -91,6 +88,8 @@ export class ServerService {
       });
    }
 
+   // receives list of remaining characters to select
+   // TODO: DO NOT DELETE
    getAvailableCharacters() {
       this.socket.on('available_characters', data => {
          /*
@@ -192,7 +191,7 @@ export class ServerService {
            data emitted from server is in the following form:
          {
             currentPlayerId:<playerId of the player that has the current turn>
-            players: <list of players in the game>
+            suggestionCharacter: <character name of player that needs to respond to suggestion>
          }
          */
          console.log(data);
@@ -325,12 +324,14 @@ export class ServerService {
    **********************************************/
    // used when player clicks the Start Game button that is in the start-menu
    // intended to send signal to server to initiate transmission of data needed for player-select screen
+   // TODO: DO NOT DELETE
    enteredPlayerSelect() {
       // note: playerId does not yet exist at this point
       this.socket.emit('entered_player_select',{});
    }
 
    // tells the server which suspect the user has selected
+   // TODO: DO NOT DELETE
    selectCharacter(character: string) {
       this.character = character;
 
@@ -347,12 +348,14 @@ export class ServerService {
 
    // used when player clicks the Enter Game button that is in the player-select menu
    // intended to send signal to server to initiate transmission of data needed for game-menu screen
+   // TODO: DO NOT DELETE
    enteredGame() {
       // note: playerId does not yet exist at this point
       this.socket.emit('entered_game',{});
    }
 
    // tells server to start the game, and tell the backend to initialize gameState json
+   // TODO: DO NOT DELETE
    startGame() {
       this.socket.emit('start_game',{});
    }
