@@ -34,7 +34,6 @@ export class ServerService {
       this.socket = io(env.hostServer + ':' + env.serverPort, { forceNew: true });
 
       // add methods which trigger when a signal is emitted from the server
-      this.getAvailableCharacters(); // TODO: to be deprecated
       this.updatePlayerState();
       this.updateGamestate();
       this.updateGameboard();
@@ -59,22 +58,6 @@ export class ServerService {
    /**********************************************
      PREGAME SIGNALS
    **********************************************/
-
-   // receives list of remaining characters to select
-   // TODO: remove and update UI from gamestate.available_characters
-   getAvailableCharacters() {
-      this.socket.on('available_characters', data => {
-         /*
-         data emitted from server is in the following form:
-         {
-           available_characters: <list of available character strings>
-         }
-         */
-         console.log(data);
-         this.availableCharacters.next(data.available_characters);
-      });
-   }
-
 
    // Contains PLAYER SPECIFIC meta-information
    updatePlayerState() {
@@ -106,9 +89,11 @@ export class ServerService {
             currentPlayerId:<playerId of the player that has the current turn>
             turnStatus: <string of the status of the turn, pulled from backend’s gameState.turnStatus>
             suggestionCharacter: <character name of player that needs to respond to suggestion>
+            availableCharacters: <list of characters that are available to be picked>
          }
          */
          console.log(data);
+         this.availableCharacters.next(data.availableCharacters);
          this.gamestate.next(data);
       });
    }
