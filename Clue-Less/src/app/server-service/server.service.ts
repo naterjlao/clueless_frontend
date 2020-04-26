@@ -21,6 +21,9 @@ export class ServerService {
    gamestate: Subject<object> = new Subject<object>();
    gameboard: Subject<object> = new Subject<object>();
    moveOptions: Subject<object> = new Subject<object>();
+   checklist: Subject<object> = new Subject<object>();
+   cardList: Subject<object> = new Subject<object>();
+   message: Subject<object> = new Subject<object>();
 
    constructor() { }
 
@@ -31,15 +34,14 @@ export class ServerService {
       this.socket = io(env.hostServer + ':' + env.serverPort, { forceNew: true });
 
       // add methods which trigger when a signal is emitted from the server
-      this.getStartInfo();
-      this.getAvailableCharacters();
-
-      // methods for new serverside infra which receive a signal
+      this.getAvailableCharacters(); // TODO: to be deprecated
       this.updatePlayerState();
       this.updateGamestate();
       this.updateGameboard();
-      this.updateChecklist();
       this.updateMoveOptions();
+      this.updateSuggestionOptions();
+      this.updateAccusationOptions();
+      this.updateChecklist();
       this.updateCardList();
       this.updateMessagePanel();
    }
@@ -58,24 +60,8 @@ export class ServerService {
      PREGAME SIGNALS
    **********************************************/
 
-   // receives player start info from server (currently just the player id)
-   // TODO: DO NOT DELETE
-   getStartInfo() {
-      this.socket.on('startInfo', data => {
-         /*
-         data emitted from server is in the following form:
-         {
-           player: socket.playerId
-         }
-         */
-         console.log(data);
-         this.playerId = data.player; // store in serverService
-         this.playerIdChange.next(data.player); // update frontend with playerId
-      });
-   }
-
    // receives list of remaining characters to select
-   // TODO: DO NOT DELETE
+   // TODO: remove and update UI from gamestate.available_characters
    getAvailableCharacters() {
       this.socket.on('available_characters', data => {
          /*
@@ -90,11 +76,6 @@ export class ServerService {
    }
 
 
-   /*******************************************************************************************************************
-     METHODS FOR NEW SERVERSIDE INFRASTRUCTURE THAT RECEIVE A SIGNAL FROM THE SERVER
-   ********************************************************************************************************************/
-
-
    // Contains PLAYER SPECIFIC meta-information
    updatePlayerState() {
       this.socket.on('playerstate', data => {
@@ -103,12 +84,18 @@ export class ServerService {
          {
             playerId:<playerId of the player that has the current turn>
             suspect: <the suspect character that the player has chosen>
+            isSuggestionValid: <TRUE if the player can make a suggestion at the game’s current state>
          }
          */
          console.log(data);
-         // TODO: implement use of data
+         this.playerId = data.playerId; // store in serverService
+         this.playerIdChange.next(data.playerId); // update frontend with playerId
       });
    }
+
+   /**********************************************
+     GAME IN-PROGRESS SIGNALS
+   **********************************************/
 
    // Contains GAME WIDE meta-information
    updateGamestate() {
@@ -140,6 +127,55 @@ export class ServerService {
       });
    }
 
+   // Buttons for the Player to move to on the Board. Displays only the valid spaces
+   updateMoveOptions() {
+      this.socket.on('move_options', data => {
+         /*
+            data emitted from server is in the following form:
+         {
+            choices: <a list of rooms (strings) that the player can move to.
+                     IF THERE IS NO VALID MOVE, a singleton list containing “SKIP TURN” will be returned>
+         }
+         */
+         console.log(data);
+         this.moveOptions.next(data.choices);
+      });
+   }
+
+   // The backend will send back a list of available choices of suspects, rooms and weapons for the suggestion
+   updateSuggestionOptions() {
+      this.socket.on('suggestion_options ', data => {
+         /*
+            data emitted from server is in the following form:
+         {
+            suspects:<a list of all suspects (strings)>
+            weapons:<a list of all weapons (strings)>
+            rooms:<a list of all rooms (strings)>
+
+         }
+         */
+         console.log(data);
+         // TODO: implement
+      });
+   }
+
+   // The backend will send back a list of available choices of suspects, rooms and weapons for the accusation
+   updateAccusationOptions() {
+      this.socket.on('accusation_options ', data => {
+         /*
+            data emitted from server is in the following form:
+         {
+            suspects:<a list of all suspects (strings)>
+            weapons:<a list of all weapons (strings)>
+            rooms:<a list of all rooms (strings)>
+
+         }
+         */
+         console.log(data);
+         // TODO: implement
+      });
+   }
+
    /*
       Contains a UI window that contains the suspects, weapons and rooms
       that the Player has already seen through suggestions and the cards
@@ -157,22 +193,7 @@ export class ServerService {
          }
          */
          console.log(data);
-         // TODO: implement use of data
-      });
-   }
-
-   // Buttons for the Player to move to on the Board. Displays only the valid spaces
-   updateMoveOptions() {
-      this.socket.on('move_options', data => {
-         /*
-           data emitted from server is in the following form:
-         {
-            choices: <a list of rooms (strings) that the player can move to.
-                     IF THERE IS NO VALID MOVE, a singleton list containing “SKIP TURN” will be returned>
-         }
-         */
-         console.log(data);
-         this.moveOptions.next(data);
+         this.checklist.next(data);
       });
    }
 
@@ -186,7 +207,7 @@ export class ServerService {
          }
          */
          console.log(data);
-         // TODO: implement use of data
+         this.cardList.next(data.cardList);
       });
    }
 
@@ -201,15 +222,54 @@ export class ServerService {
          }
          */
          console.log(data);
-         // TODO: implement use of data
+         this.message.next(data);
       });
    }
 
 
    /*******************************************************************************************************************
-     METHODS FOR NEW SERVERSIDE INFRASTRUCTURE THAT SEND A SIGNAL TO THE SERVER
+     METHODS THAT SEND A SIGNAL TO THE SERVER
    ********************************************************************************************************************/
 
+   /**********************************************
+     PREGAME SIGNALS
+   **********************************************/
+   // used when player clicks the Start Game button that is in the start-menu
+   // intended to send signal to server to initiate transmission of data needed for player-select screen
+   enteredPlayerSelect() {
+      // note: playerId does not yet exist at this point
+      this.socket.emit('entered_player_select',{});
+   }
+
+   // tells the server which suspect the user has selected
+   selectCharacter(character: string) {
+      this.character = character;
+
+      /* data format:
+         {
+            character: string
+         }
+      */
+      this.socket.emit('select_character', {
+         character: character
+      });
+   }
+
+   // used when player clicks the Enter Game button that is in the player-select menu
+   // intended to send signal to server to initiate transmission of data needed for game-menu screen
+   enteredGame() {
+      // note: playerId does not yet exist at this point
+      this.socket.emit('entered_game',{});
+   }
+
+   // tells server to start the game, and tell the backend to initialize gameState json
+   startGame() {
+      this.socket.emit('start_game',{});
+   }
+
+   /**********************************************
+     GAME IN-PROGRESS SIGNALS
+   **********************************************/
 
    // Sends the player's choice of space to move to on the Board.
    sendMoveChoice(choice: string) {
@@ -224,6 +284,64 @@ export class ServerService {
          this.socket.emit('move_choice', {
             choice: choice
          });
+   }
+
+   // frontend notifies the backend of the start of a suggestion
+   sendSuggestionStart() {
+      /*
+         data emitted from server is in the following form:
+         {
+            <send an empty dict>
+         }
+      */
+      this.socket.emit('suggestion_start', {});
+   }
+
+   // frontend notifies the backend of the start of a accusation
+   sendAccusationStart() {
+      /*
+         data emitted from server is in the following form:
+         {
+            <send an empty dict>
+         }
+      */
+      this.socket.emit('accusation_start', {});
+   }
+
+   // After the player has picked his/her combination, the Frontend must send the following information:
+   sendSuggestionChoice(data) {
+      /*
+         data emitted from server is in the following form:
+         {
+            suspect:<the player’s choice of suspect>
+            weapon:<the player’s choice of weapon>
+            room:<the player’s choice of room>
+         }
+      */
+      console.log(data);
+      this.socket.emit('suggestion_choice', {
+         suspect: data.suspect,
+         weapon: data.weapon,
+         room: data.room
+      });
+   }
+
+   // After the player has picked his/her combination, the Frontend must send the following information:
+   sendAccusationChoice(data) {
+      /*
+         data emitted from server is in the following form:
+         {
+            suspect:<the player’s choice of suspect>
+            weapon:<the player’s choice of weapon>
+            room:<the player’s choice of room>
+         }
+      */
+      console.log(data);
+      this.socket.emit('accusation_choice', {
+         suspect: data.suspect,
+         weapon: data.weapon,
+         room: data.room
+      });
    }
 
    // Send's the player's card choice
@@ -241,89 +359,7 @@ export class ServerService {
          });
    }
 
-
-   /*******************************************************************************************************************
-     METHODS THAT SEND A SIGNAL TO THE SERVER
-   ********************************************************************************************************************/
-
-   /**********************************************
-     PREGAME SIGNALS
-   **********************************************/
-   // used when player clicks the Start Game button that is in the start-menu
-   // intended to send signal to server to initiate transmission of data needed for player-select screen
-   // TODO: DO NOT DELETE
-   enteredPlayerSelect() {
-      // note: playerId does not yet exist at this point
-      this.socket.emit('entered_player_select',{});
-   }
-
-   // tells the server which suspect the user has selected
-   // TODO: DO NOT DELETE
-   selectCharacter(character: string) {
-      this.character = character;
-
-      /* data format:
-         {
-            character: string
-         }
-      */
-      this.socket.emit('select_character', {
-         character: character
-      });
-   }
-
-   // used when player clicks the Enter Game button that is in the player-select menu
-   // intended to send signal to server to initiate transmission of data needed for game-menu screen
-   // TODO: DO NOT DELETE
-   enteredGame() {
-      // note: playerId does not yet exist at this point
-      this.socket.emit('entered_game',{});
-   }
-
-   // tells server to start the game, and tell the backend to initialize gameState json
-   // TODO: DO NOT DELETE
-   startGame() {
-      this.socket.emit('start_game',{});
-   }
-
-   /**********************************************
-     GAME IN-PROGRESS SIGNALS
-   **********************************************/
-
-   // tells the server the suggestion the player is making
-   makeSuggestion(suspect: string, weapon: string, room: string) {
-      /* data format:
-          {
-            suspect: string,
-            weapon: string,
-            room: string
-          }
-      */
-      this.socket.emit('make_suggestion', {
-         suspect: suspect,
-         weapon: weapon,
-         room: room
-      });
-   }
-
-   // tells the server the accusation the player is making
-   makeAccusation(suspect: string, weapon: string, room: string) {
-      /* data format:
-            {
-              suspect: string,
-              weapon: string,
-              room: string
-            }
-          */
-      this.socket.emit('make_accusation', {
-         suspect: suspect,
-         weapon: weapon,
-         room: room
-      });
-   }
-
    // ends the current players turn and tells the server to increment the turn
-   // TODO: DO NOT DELETE
    endTurn() {
       /* data format:
         {
