@@ -9,10 +9,14 @@ import { ServerService } from '../server-service/server.service';
 export class GameboardComponent implements OnInit {
 
   gameboard; gameboard_subscription;
+  gameboardKeys;
 
   constructor(private serverSvc: ServerService) {
     this.gameboard_subscription = this.serverSvc.gameboard.subscribe({
-      next: (gameboard) => { this.gameboard = gameboard; }
+      next: (gameboard) => {
+        this.gameboard = gameboard;
+        this.gameboardKeys = Object.keys(gameboard);
+      }
     });
   }
 
