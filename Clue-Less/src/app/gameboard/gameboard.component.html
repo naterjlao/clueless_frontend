@@ -3,7 +3,7 @@
     rooms can have multiple characters
 -->
 
-<div id="board" *ngIf="gameboard">
+<div id="board" *ngIf="gameboard && Object.keys(gameboard).length > 0">
     <table>
         <tr id="row1">
             <td id="study" class="room">
