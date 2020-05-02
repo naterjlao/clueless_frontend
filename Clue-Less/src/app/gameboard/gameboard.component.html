@@ -468,12 +468,12 @@
                 ></div>
                 <div class="token" *ngIf="gameboard['Dining Room'].length > 5"
                     [ngClass]="{
-                        'ColonelMustard': gameboard['Dining Room'].length > 5gameboard['Dining Room'][5] === 'Colonel Mustard',
-                        'MissScarlet': gameboard['Dining Room'].length > 5gameboard['Dining Room'][5] === 'Miss Scarlet',
-                        'ProfessorPlum': gameboard['Dining Room'].length > 5gameboard['Dining Room'][5] === 'Professor Plum',
-                        'MrGreen': gameboard['Dining Room'].length > 5gameboard['Dining Room'][5] === 'Mr Green',
-                        'MrsWhite': gameboard['Dining Room'].length > 5gameboard['Dining Room'][5] === 'Mrs White',
-                        'MrsPeacock': gameboard['Dining Room'].length > 5gameboard['Dining Room'][5] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Dining Room'].length > 5 && gameboard['Dining Room'][5] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Dining Room'].length > 5 && gameboard['Dining Room'][5] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Dining Room'].length > 5 && gameboard['Dining Room'][5] === 'Professor Plum',
+                        'MrGreen': gameboard['Dining Room'].length > 5 && gameboard['Dining Room'][5] === 'Mr Green',
+                        'MrsWhite': gameboard['Dining Room'].length > 5 && gameboard['Dining Room'][5] === 'Mrs White',
+                        'MrsPeacock': gameboard['Dining Room'].length > 5 && gameboard['Dining Room'][5] === 'Mrs Peacock'
                     }"
                 ></div>
             </td>
