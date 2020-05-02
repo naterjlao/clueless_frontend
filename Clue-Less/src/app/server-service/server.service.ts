@@ -91,9 +91,11 @@ export class ServerService {
             turnStatus: <string of the status of the turn, pulled from backend’s gameState.turnStatus>
             suggestionCharacter: <character name of player that needs to respond to suggestion>
             availableCharacters: <list of characters that are available to be picked>
+            game_has_begun: <boolean - self.state != STATE_INITIAL>
          }
          */
          console.log(data);
+         this.gameHasBegun.next(data.game_has_begun);
          this.availableCharacters.next(data.availableCharacters);
          this.gamestate.next(data);
       });
@@ -249,10 +251,8 @@ export class ServerService {
    }
 
    // tells server to start the game, and tell the backend to initialize gameState json
-   // tells all clients that gameHasBegun
    startGame() {
       this.socket.emit('start_game',{});
-      this.gameHasBegun.next(true);
    }
 
    /**********************************************
