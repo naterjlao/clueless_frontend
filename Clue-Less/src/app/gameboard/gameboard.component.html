@@ -146,14 +146,14 @@
             </td>
             <td class="hhallway">
                 <!--Where Ms. Scarlet starts-->
-                <div class="token" *ngIf="gameboard['Hall-Lounge'].length && gameboard['Hall-Lounge'].length"
+                <div class="token" *ngIf="gameboard['Hall-Lounge'].length"
                     [ngClass]="{
-                        'ColonelMustard': gameboard['Hall-Lounge'][0] === 'Colonel Mustard',
-                        'MissScarlet': gameboard['Hall-Lounge'][0] === 'Miss Scarlet',
-                        'ProfessorPlum': gameboard['Hall-Lounge'][0] === 'Professor Plum',
-                        'MrGreen': gameboard['Hall-Lounge'][0] === 'Mr Green',
-                        'MrsWhite': gameboard['Hall-Lounge'][0] === 'Mrs White',
-                        'MrsPeacock': gameboard['StHall-Loungeudy'][0] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Hall-Lounge'].length && gameboard['Hall-Lounge'][0] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Hall-Lounge'].length && gameboard['Hall-Lounge'][0] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Hall-Lounge'].length && gameboard['Hall-Lounge'][0] === 'Professor Plum',
+                        'MrGreen': gameboard['Hall-Lounge'].length && gameboard['Hall-Lounge'][0] === 'Mr Green',
+                        'MrsWhite': gameboard['Hall-Lounge'].length & gameboard['Hall-Lounge'][0] === 'Mrs White',
+                        'MrsPeacock': gameboard['Hall-Lounge'].length && gameboard['Hall-Lounge'][0] === 'Mrs Peacock'
                     }"
                 ></div>
             </td>
