@@ -10,12 +10,12 @@ export class GameMenuComponent implements OnInit {
 
    socket: any;
 
+   gameHasBegun; gameHasBegun_subscription;
    playerId; playerId_subscription;
    availableCharacters; availableCharacters_subscription;
    gamestate; gamestate_subscription;
    moveOptions; moveOptions_subscription;
 
-   gameHasBegun = false;
    characterNames = ['Colonel Mustard', 'Miss Scarlet', 'Professor Plum',
    'Mr Green', 'Mrs White', 'Mrs Peacock']; // all possible character names
    charactersInGame = []; // holds all characters in the game that players have chosen
@@ -24,6 +24,9 @@ export class GameMenuComponent implements OnInit {
       this.socket = this.serverSvc.getSocket();
 
       /* subscriptions to Subjects from the serverService */
+      this.gameHasBegun_subscription = this.serverSvc.gameHasBegun.subscribe({
+         next: (gameHasBegun) => this.gameHasBegun = gameHasBegun
+      });
       this.playerId_subscription = this.serverSvc.playerIdChange.subscribe({
          next: (playerId) => this.playerId = playerId
       });
@@ -47,7 +50,6 @@ export class GameMenuComponent implements OnInit {
 
    beginGame() {
       this.serverSvc.startGame();
-      this.gameHasBegun = true;
    }
 
    makeMove(room: string) {
@@ -86,6 +88,7 @@ export class GameMenuComponent implements OnInit {
    }
 
    ngOnDestroy() { //prevent memory leak when component destroyed
+      this.gameHasBegun_subscription.unsubscribe();
       this.playerId_subscription.unsubscribe();
       this.gamestate_subscription.unsubscribe();
       this.moveOptions_subscription.unsubscribe();

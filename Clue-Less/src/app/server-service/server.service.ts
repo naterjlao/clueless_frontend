@@ -16,6 +16,7 @@ export class ServerService {
    /**************************************************************************************************
      variables that recieve updates from the server and send updates to subscribed frontend components
    **************************************************************************************************/
+   gameHasBegun: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
    playerIdChange: Subject<string> = new Subject<string>();
    availableCharacters: BehaviorSubject<object> = new BehaviorSubject<object>(["Colonel Mustard", "Miss Scarlet", "Professor Plum", "Mr Green", "Mrs White", "Mrs Peacock"]);
    gamestate: Subject<object> = new Subject<object>();
@@ -248,8 +249,10 @@ export class ServerService {
    }
 
    // tells server to start the game, and tell the backend to initialize gameState json
+   // tells all clients that gameHasBegun
    startGame() {
       this.socket.emit('start_game',{});
+      this.gameHasBegun.next(true);
    }
 
    /**********************************************
