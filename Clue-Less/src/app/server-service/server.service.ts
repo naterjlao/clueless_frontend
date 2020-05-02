@@ -120,13 +120,13 @@ export class ServerService {
       this.socket.on('move_options', data => {
          /*
             data emitted from server is in the following form:
-         {
-            choices: <a list of rooms (strings) that the player can move to.
-                     IF THERE IS NO VALID MOVE, a singleton list containing “SKIP TURN” will be returned>
-         }
+         [
+            <a list of rooms (strings) that the player can move to.
+            IF THERE IS NO VALID MOVE, a singleton list containing “SKIP TURN” will be returned>
+         ]
          */
          console.log(data);
-         this.moveOptions.next(data.choices);
+         this.moveOptions.next(data);
       });
    }
 
