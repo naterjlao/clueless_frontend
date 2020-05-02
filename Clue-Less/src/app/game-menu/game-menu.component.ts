@@ -37,7 +37,7 @@ export class GameMenuComponent implements OnInit {
          next: (gamestate) => { this.gamestate = gamestate; }
       });
       this.moveOptions_subscription = this.serverSvc.moveOptions.subscribe({
-         next: (moveOptions) => { this.moveOptions = moveOptions; }
+         next: (moveOptions) => { this.moveOptions = moveOptions; console.log(moveOptions); }
       });
    }
 
