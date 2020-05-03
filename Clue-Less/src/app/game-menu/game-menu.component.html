@@ -54,10 +54,11 @@
             <div class="col">
             <div id="cardPanel">
                 <h1>Card Menu</h1>
-                <!--Suggestion Button Somewhere-->
                 <button type="button" class="mat-button" id="switchGameBoard" name="button" (click)="showGameBoard=!showGameBoard">
                     Toggle GameBoard/BlockGame
                 </button>
+
+                <!--Player color div-->
 
                 <div id="moveOptions" *ngIf="gameHasBegun && turnData && turnData.playerId === 'playerId'">
                     <p>Choose a room to move to:</p>
@@ -72,8 +73,10 @@
                 <button (click)="move('right')">Right</button>
                 <button (click)="move('up')">Up</button>
                 <button (click)="move('down')">Down</button>-->
-                <div id="outputTxt"></div>
 
+                <!--Player Hand Div-->
+                <div id="outputTxt"></div>
+                <!--Suggestion Button Somewhere-->
                 <button type="button" id="endTurn" name="button" (click)="endTurn()">End Turn</button>
             </div>
             </div>
