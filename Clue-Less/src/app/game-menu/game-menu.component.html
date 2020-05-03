@@ -16,19 +16,21 @@
             <div id="playersPanel">
                 <div class="row">
                     <h1 class="col">Players</h1>
-                    <h3 class="col" *ngIf="gamestate" *ngFor='let c of gamestate.characters_in_game'
-                        [ngClass]="{
-                            'ColonelMustard': c === 'Colonel Mustard',
-                            'MissScarlet': c === 'Miss Scarlet',
-                            'ProfessorPlum': c === 'Professor Plum',
-                            'MrGreen': c === 'Mr Green',
-                            'MrsWhite': c === 'Mrs White',
-                            'MrsPeacock': c === 'Mrs Peacock'
-                        }">
-                        {{c}}
-                    </h3>
+                    <ng-container *ngIf="gamestate">
+                        <h3 class="col" *ngFor='let c of gamestate.characters_in_game'
+                            [ngClass]="{
+                                'ColonelMustard': c === 'Colonel Mustard',
+                                'MissScarlet': c === 'Miss Scarlet',
+                                'ProfessorPlum': c === 'Professor Plum',
+                                'MrGreen': c === 'Mr Green',
+                                'MrsWhite': c === 'Mrs White',
+                                'MrsPeacock': c === 'Mrs Peacock'
+                            }">
+                            {{c}}
+                        </h3>
+                    </ng-container>
                 </div>
-                <p *ngIf="gameHasBegun" class="playerInfo" id="whosTurn"><b>It's {{getPlayerNum(gamestate.currentPlayerId)}}'s turn!</b></p>
+                <p *ngIf="gameHasBegun && gamestate" class="playerInfo" id="whosTurn"><b>It's {{getPlayerNum(gamestate.currentPlayerId)}}'s turn!</b></p>
                 <p class="playerInfo" id="playerNumber"><i>You are {{getPlayerNum(playerId)}}</i></p>
             </div>
             </div>
