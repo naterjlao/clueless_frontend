@@ -9,6 +9,7 @@ import { ServerService } from '../server-service/server.service';
 export class GameMenuComponent implements OnInit {
 
    socket: any;
+   character;
 
    gameHasBegun; gameHasBegun_subscription;
    playerId; playerId_subscription;
@@ -45,6 +46,7 @@ export class GameMenuComponent implements OnInit {
 
    ngAfterViewInit() {
       this.serverSvc.enteredGame(); // notify server of client entering game-menu to trigger initialization communications
+      this.character = this.serverSvc.getCharacter();
    }
 
    beginGame() {

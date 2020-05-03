@@ -46,7 +46,7 @@ export class PlayerSelectMenuComponent implements OnInit {
   // finalizes character selection and sends to server
   selectCharacter(character: string) {
     // add space into name to put in format that backend accepts
-    let characterNameFormatted = character.replace(/([A-Z])/g, ' $1').trim()
+    let characterNameFormatted = character.replace(/([A-Z])/g, ' $1').trim(); // add space in name
     this.serverSvc.selectCharacter(characterNameFormatted);
 
     // mark final selection and remove other options from screen

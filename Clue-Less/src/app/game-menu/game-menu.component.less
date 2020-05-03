@@ -5,23 +5,41 @@
 @color-white: #FFFFFF;
 @color-peacock: #004C99;
 
-.ColonelMustard {
+.ColonelMustardFont {
     color: @color-mustard;
 }
-.MissScarlet {
+.ColonelMustardBkgd {
+    background-color: @color-mustard;
+}
+.MissScarletFont {
     color: @color-scarlet;
 }
-.ProfessorPlum {
+.MissScarletBkgd {
+    background-color: @color-scarlet;
+}
+.ProfessorPlumFont {
     color: @color-plum;
 }
-.MrGreen {
+.ProfessorPlumBkgd {
+    background-color: @color-plum;
+}
+.MrGreenFont {
     color: @color-green;
 }
-.MrsWhite {
+.MrGreenBkgd {
+    background-color: @color-green;
+}
+.MrsWhiteFont {
     color: black; // black so the font shows on the white background
 }
-.MrsPeacock {
+.MrsWhiteBkgd {
+    background-color: @color-white; // black so the font shows on the white background
+}
+.MrsPeacockFont {
     color: @color-peacock;
+}
+.MrsPeacockBkgd {
+    background-color: @color-peacock;
 }
 
 #ClueLess {
@@ -43,11 +61,22 @@
     height: 5em;
 }
 #cardPanel {
-    height: 10em;
+    height: 30em;
 }
 
 #endTurn {
     margin-left: 2em;
+    color: black;
+	background-color: white;
+	border: solid black;
+	height: 40px;
+	/*width: 100px;*/
+	font-family: "Lucida Console", Verdana, Geneva, sans-serif;
+	border-radius: 13px;
+    font-size: 16px;
+    position: relative;
+    left: 4%;
+    top: 15px;
 }
 
 .isDisabled {
@@ -55,6 +84,11 @@
     cursor: not-allowed;
     opacity: 0.5;
     text-decoration: none;
+    background-color: #9e9e9e;
+}
+
+.isDisabled:hover {
+    background-color: #9e9e9e;
 }
 
 .playerInfo {
@@ -79,7 +113,7 @@ div, h1, h2, p {
 	background-color: white;
 	border: solid black;
 	height: 40px;
-	width: 75px;
+	/*width: 75px;*/
 	font-family: "Lucida Console", Verdana, Geneva, sans-serif;
 	border-radius: 13px;
 	font-size: 16px;
@@ -90,13 +124,48 @@ div, h1, h2, p {
 	background-color: white;
 	border: solid black;
 	height: 40px;
-	width: 125px;
+	/*width: 125px;*/
 	font-family: "Lucida Console", Verdana, Geneva, sans-serif;
 	border-radius: 13px;
 	font-size: 16px;
 }
 
-#exitButton:hover, #beginButton:hover {
+#suggBtn {
+    height: 40px;
+    position: relative;
+    left: 83%;
+    bottom: 30%;
+    color: black;
+	background-color: white;
+    border: solid black;
+    font-family: "Lucida Console", Verdana, Geneva, sans-serif;
+	border-radius: 13px;
+	font-size: 16px;
+}
+
+#accuBtn {
+    height: 40px;
+    color: black;
+	background-color: white;
+	border: solid black;
+	font-family: "Lucida Console", Verdana, Geneva, sans-serif;
+	border-radius: 13px;
+    font-size: 16px;
+    position: relative;
+    left: 25%;
+}
+
+.moveButtons {
+	color: black;
+	background-color: white;
+	border: solid black;
+	height: 40px;
+	font-family: "Lucida Console", Verdana, Geneva, sans-serif;
+	border-radius: 13px;
+	font-size: 16px;
+}
+
+#exitButton:hover, #beginButton:hover, #endTurn:hover, .moveButtons:hover {
 	background-color: black;
 	color: white;
 }
@@ -109,4 +178,39 @@ div, h1, h2, p {
 .navButtonLink:hover{
     color: white;
     text-decoration: none;
+}
+
+#outputTxt{
+    border: 2px solid grey;
+    height: 30%;
+    width: 70%;
+    position: relative;
+    left: 28%;
+    bottom: 33%;
+}
+
+#playerClr {
+    border: 2px solid grey;
+    height: 100px;
+    width: 100px;
+    position: relative;
+    left: 7%;
+}
+
+#playerHnd {
+    border: 2px solid grey;
+    height: 23%;
+    width: 70%;
+    position: relative;
+    left: 28%;
+    bottom: 27%;
+}
+
+#moveOptions {
+    border: 2px solid grey;
+    height: 70px;
+    width: 50%;
+    position: relative;
+    left: 28%;
+    bottom: 30%;
 }

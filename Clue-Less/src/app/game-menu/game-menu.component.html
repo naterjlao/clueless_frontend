@@ -19,12 +19,12 @@
                     <ng-container *ngIf="gamestate">
                         <h3 class="col" *ngFor='let c of gamestate.characters_in_game'
                             [ngClass]="{
-                                'ColonelMustard': c === 'Colonel Mustard',
-                                'MissScarlet': c === 'Miss Scarlet',
-                                'ProfessorPlum': c === 'Professor Plum',
-                                'MrGreen': c === 'Mr Green',
-                                'MrsWhite': c === 'Mrs White',
-                                'MrsPeacock': c === 'Mrs Peacock'
+                                'ColonelMustardFont': c === 'Colonel Mustard',
+                                'MissScarletFont': c === 'Miss Scarlet',
+                                'ProfessorPlumFont': c === 'Professor Plum',
+                                'MrGreenFont': c === 'Mr Green',
+                                'MrsWhiteFont': c === 'Mrs White',
+                                'MrsPeacockFont': c === 'Mrs Peacock'
                             }">
                             {{c}}
                         </h3>
@@ -46,6 +46,7 @@
             <div class="col">
             <div id="checklistPanel">
                 <h1>Checklist</h1>
+                <button id="accuBtn">Accusation</button>
             </div>
             </div>
         </div>
@@ -55,16 +56,31 @@
             <div id="cardPanel">
                 <h1>Card Menu</h1>
 
-                <div id="moveOptions" *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId">
-                    <p>Choose a room to move to:</p>
-                    <!--Placeholder Variable Explanation-->
-                    <!--"move" would be the text on the button and the value sent back to backend.-->
-                    <button *ngFor="let move of moveOptions" class="moveOption" value="move" (click)="makeMove(move)">
+                <div id="playerClr"
+                    [ngClass]="{
+                        'ColonelMustardBkgd': c === 'Colonel Mustard',
+                        'MissScarletBkgd': c === 'Miss Scarlet',
+                        'ProfessorPlumBkgd': c === 'Professor Plum',
+                        'MrGreenBkgd': c === 'Mr Green',
+                        'MrsWhiteBkgd': c === 'Mrs White',
+                        'MrsPeacockBkgd': c === 'Mrs Peacock'
+                    }"
+                ></div>
+
+                <button type="button" id="endTurn" name="button" (click)="endTurn()">End Turn</button>
+
+                <div id="outputTxt"></div>
+
+                <div id="moveOptions" class="row" *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId">
+                    <p class="col">Choose a room to move to:</p>
+                    <button *ngFor="let move of moveOptions" class="col moveButtons" value="move" (click)="makeMove(move)">
                         {{ move.includes('-') ? move + ' Hallway' : move }}
                     </button>
                 </div>
 
-                <button type="button" id="endTurn" name="button" (click)="endTurn()">End Turn</button>
+                <button id="suggBtn">Suggestion</button>
+
+                <div id="playerHnd"></div>
             </div>
             </div>
         </div>
