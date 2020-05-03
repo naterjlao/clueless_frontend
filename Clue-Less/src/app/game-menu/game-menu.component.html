@@ -44,7 +44,7 @@
 
             <div class="col">
             <div id="checklistPanel">
-                <!--Accusation Button-->
+                <!--<button id="accuBt">Accusation</button>-->
                 <h1>Checklist</h1>
             </div>
             </div>
@@ -58,9 +58,10 @@
                     Toggle GameBoard/BlockGame
                 </button>
 
-                <!--Player color div-->
+                <div id="playerClr"></div>>
 
-                <div id="moveOptions" *ngIf="gameHasBegun && turnData && turnData.playerId === 'playerId'">
+                <div id="moveOptions">
+                <!--<div id="moveOptions" *ngIf="gameHasBegun && turnData && turnData.playerId === 'playerId'">-->
                     <p>Choose a room to move to:</p>
                     <!--Placeholder Variable Explanation-->
                     <!--"move" would be the text on the button and the value sent back to backend.-->
@@ -74,9 +75,9 @@
                 <button (click)="move('up')">Up</button>
                 <button (click)="move('down')">Down</button>-->
 
-                <!--Player Hand Div-->
+                <div id="playerHnd"></div>>
                 <div id="outputTxt"></div>
-                <!--Suggestion Button Somewhere-->
+                <!--<button id="suggBt">Suggestion</button>-->
                 <button type="button" id="endTurn" name="button" (click)="endTurn()">End Turn</button>
             </div>
             </div>
