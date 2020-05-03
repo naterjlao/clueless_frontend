@@ -18,7 +18,6 @@ export class GameMenuComponent implements OnInit {
 
    characterNames = ['Colonel Mustard', 'Miss Scarlet', 'Professor Plum',
    'Mr Green', 'Mrs White', 'Mrs Peacock']; // all possible character names
-   charactersInGame = []; // holds all characters in the game that players have chosen
 
    constructor(private serverSvc: ServerService) {
       this.socket = this.serverSvc.getSocket();
@@ -31,13 +30,13 @@ export class GameMenuComponent implements OnInit {
          next: (playerId) => this.playerId = playerId
       });
       this.availableCharacters_subscription = this.serverSvc.availableCharacters.subscribe({
-         next: (availChars) => { this.availableCharacters = availChars; this.charactersInGame = this.getCharactersInGame(availChars) }
+         next: (availChars) => { this.availableCharacters = availChars; }
       });
       this.gamestate_subscription = this.serverSvc.gamestate.subscribe({
          next: (gamestate) => { this.gamestate = gamestate; }
       });
       this.moveOptions_subscription = this.serverSvc.moveOptions.subscribe({
-         next: (moveOptions) => { this.moveOptions = moveOptions; console.log(moveOptions); }
+         next: (moveOptions) => { this.moveOptions = moveOptions; }
       });
    }
 
@@ -77,10 +76,6 @@ export class GameMenuComponent implements OnInit {
          // should never be more than 6 players, but this is reached if playerId is undefined
          return 'TIAAT';
       }
-   }
-
-   getCharactersInGame(availChars) {
-      return this.characterNames.filter( (x) => !availChars.includes(x) );
    }
 
    disconnect() {

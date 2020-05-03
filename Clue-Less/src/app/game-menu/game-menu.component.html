@@ -16,7 +16,7 @@
             <div id="playersPanel">
                 <div class="row">
                     <h1 class="col">Players</h1>
-                    <h3 class="col" *ngFor='let c of charactersInGame'
+                    <h3 class="col" *ngFor='let c of gamestate.characters_in_game'
                         [ngClass]="{
                             'ColonelMustard': c === 'Colonel Mustard',
                             'MissScarlet': c === 'Miss Scarlet',

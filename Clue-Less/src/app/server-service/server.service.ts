@@ -91,6 +91,7 @@ export class ServerService {
             turnStatus: <string of the status of the turn, pulled from backend’s gameState.turnStatus>
             suggestionCharacter: <character name of player that needs to respond to suggestion>
             availableCharacters: <list of characters that are available to be picked>
+            characters_in_game: <list of string characters selected by all players in the game>
             game_has_begun: <boolean - self.state != STATE_INITIAL>
          }
          */
