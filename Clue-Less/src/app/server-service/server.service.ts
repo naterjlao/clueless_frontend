@@ -19,6 +19,7 @@ export class ServerService {
    gameHasBegun: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
    playerIdChange: Subject<string> = new Subject<string>();
    availableCharacters: BehaviorSubject<object> = new BehaviorSubject<object>(["Colonel Mustard", "Miss Scarlet", "Professor Plum", "Mr Green", "Mrs White", "Mrs Peacock"]);
+   playerstate: Subject<object> = new Subject<object>();
    gamestate: Subject<object> = new Subject<object>();
    gameboard: Subject<object> = new Subject<object>();
    moveOptions: Subject<object> = new Subject<object>();
@@ -74,6 +75,7 @@ export class ServerService {
          console.log(data);
          this.playerId = data.playerId; // store in serverService
          this.playerIdChange.next(data.playerId); // update frontend with playerId
+         this.playerstate.next(data);
       });
    }
 

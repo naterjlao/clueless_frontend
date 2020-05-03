@@ -9,11 +9,11 @@ import { ServerService } from '../server-service/server.service';
 export class GameMenuComponent implements OnInit {
 
    socket: any;
-   character;
 
    gameHasBegun; gameHasBegun_subscription;
    playerId; playerId_subscription;
    availableCharacters; availableCharacters_subscription;
+   playerstate; playerstate_subscription;
    gamestate; gamestate_subscription;
    moveOptions; moveOptions_subscription;
 
@@ -33,6 +33,9 @@ export class GameMenuComponent implements OnInit {
       this.availableCharacters_subscription = this.serverSvc.availableCharacters.subscribe({
          next: (availChars) => { this.availableCharacters = availChars; }
       });
+      this.playerstate_subscription = this.serverSvc.playerstate.subscribe({
+         next: (playerstate) => { this.playerstate = playerstate; }
+      });
       this.gamestate_subscription = this.serverSvc.gamestate.subscribe({
          next: (gamestate) => { this.gamestate = gamestate; }
       });
@@ -46,7 +49,6 @@ export class GameMenuComponent implements OnInit {
 
    ngAfterViewInit() {
       this.serverSvc.enteredGame(); // notify server of client entering game-menu to trigger initialization communications
-      this.character = this.serverSvc.getCharacter();
    }
 
    beginGame() {
@@ -87,6 +89,7 @@ export class GameMenuComponent implements OnInit {
    ngOnDestroy() { //prevent memory leak when component destroyed
       this.gameHasBegun_subscription.unsubscribe();
       this.playerId_subscription.unsubscribe();
+      this.playerstate_subscription.unsubscribe();
       this.gamestate_subscription.unsubscribe();
       this.moveOptions_subscription.unsubscribe();
 
