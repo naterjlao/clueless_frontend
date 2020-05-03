@@ -4,11 +4,11 @@
         <h2 *ngIf="availableCharacters.length < 5 && !gameHasBegun">First Player only can start the game! Begin whenever you're ready.</h2>
         <h2 *ngIf="!(availableCharacters.length < 5)">Waiting for at least 1 more player to join...</h2>
 
-        <button id="exitButton" (click)="disconnect()"><a routerLink="/start" routerLinkActive="active" class="navButtonLink">Exit</a></button>
+        <button id="exitButton" (click)="disconnect()" class="genButtonStyle"><a routerLink="/start" routerLinkActive="active" class="navButtonLink">Exit</a></button>
         <button *ngIf="playerId === 'player0' && !gameHasBegun"
             [disabled]="!gameIsReady"
             [ngClass]="{'isDisabled': !gameIsReady}"
-            (click)="beginGame()" id="beginButton">
+            (click)="beginGame()" id="beginButton" class="genButtonStyle">
             Begin Game
         </button>
         <div id="top" class="row no-gutters">
@@ -45,7 +45,9 @@
             <div class="col">
             <div id="checklistPanel">
                 <h1>Checklist</h1>
-                <button id="accuBtn">Accusation</button>
+                
+                <!--accuBtn is for when players make their one allowed accusation-->
+                <button id="accuBtn" class="genButtonStyle">Accusation</button>
             </div>
             </div>
         </div>
@@ -57,13 +59,16 @@
                 <button type="button" class="mat-button" id="switchGameBoard" name="button" (click)="showGameBoard=!showGameBoard">
                     Toggle GameBoard/BlockGame
                 </button>
-
+                
+                <!--playerClr div will display the color of the suspect the player chose to play as so they do not get lost while playing.-->
+                <!--TODO - Stlying: Re-aling playerClr div and endTurn button after switchGameBoard button is removed-->
                 <div id="playerClr"></div>
 
-                <button type="button" id="endTurn" name="button" (click)="endTurn()">End Turn</button>
-
-                <div id="outputTxt"></div>
+                <button type="button" id="endTurn" name="button" (click)="endTurn()" class="genButtonStyle">End Turn</button>
                 
+                <!--outputTxt div serves as the requested "message box" for communicating information to players.-->
+                <div id="outputTxt"></div>
+
                 <!--Temporary div tag for styling moveOptions div-->
                 <!--<div id="moveOptions">-->
                 <div id="moveOptions" *ngIf="gameHasBegun && turnData && turnData.playerId === 'playerId'">
@@ -75,8 +80,10 @@
                     </button>
                 </div>
                 
-                <button id="suggBtn">Suggestion</button>
-
+                <!--suggBtn is the button for players to make suggestions when they can.-->
+                <button id="suggBtn" class="genButtonStyle">Suggestion</button>
+                
+                <!--playerHnd div is to contain the player's cards they're dealt at the beginning of the game-->
                 <div id="playerHnd"></div>
 
                 <!--<button (click)="move('left')">Left</button>
