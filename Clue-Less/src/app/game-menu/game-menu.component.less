@@ -43,7 +43,7 @@
     height: 5em;
 }
 #cardPanel {
-    height: 30em;
+    height: 100%;
 }
 
 #switchGameBoard {
@@ -117,10 +117,11 @@ div, h1, h2, p {
 }
 
 #suggBtn {
-    height: 40px;
+    display: block;
     position: relative;
-    left: 83%;
-    bottom: 30%;
+    left: 85%;
+    bottom: 59%;
+    height: 40px;
     color: black;
 	background-color: white;
     border: solid black;
@@ -130,6 +131,10 @@ div, h1, h2, p {
 }
 
 #accuBtn {
+    display: block;
+    position: relative;
+    left: 25%;
+    top: 70%;
     height: 40px;
     color: black;
 	background-color: white;
@@ -137,8 +142,6 @@ div, h1, h2, p {
 	font-family: "Lucida Console", Verdana, Geneva, sans-serif;
 	border-radius: 13px;
     font-size: 16px;
-    position: relative;
-    left: 25%;
 }
 
 .moveButtons {
@@ -151,7 +154,7 @@ div, h1, h2, p {
 	font-size: 16px;
 }
 
-#exitButton:hover, #beginButton:hover, #endTurn:hover, .moveButtons:hover {
+#exitButton:hover, #beginButton:hover, #endTurn:hover, .moveButtons:hover, #suggBtn:hover, #accuBtn:hover {
 	background-color: black;
 	color: white;
 }
@@ -172,7 +175,7 @@ div, h1, h2, p {
     width: 70%;
     position: relative;
     left: 28%;
-    bottom: 33%;
+    bottom: 45%;
 }
 
 #playerClr {
@@ -189,14 +192,14 @@ div, h1, h2, p {
     width: 70%;
     position: relative;
     left: 28%;
-    bottom: 27%;
+    bottom: 52%;
 }
 
 #moveOptions {
     border: 2px solid grey;
     height: 70px;
-    width: 50%;
+    width: 55%;
     position: relative;
     left: 28%;
-    bottom: 30%;
+    bottom: 43%;
 }
