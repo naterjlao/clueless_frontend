@@ -62,7 +62,7 @@
                     <p>Choose a room to move to:</p>
                     <!--Placeholder Variable Explanation-->
                     <!--"move" would be the text on the button and the value sent back to backend.-->
-                    <button *ngFor="let move of turnData.move_options" id="button{{move}}" value="{{move}}" (click)="makeMove(move)">
+                    <button *ngFor="let move of turnData.move_options" id="button{{move}}" class="moveButtons" value="{{move}}" (click)="makeMove(move)">
                         {{move}}
                     </button>
                 </div>
