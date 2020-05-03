@@ -5,19 +5,11 @@
         <h2 *ngIf="gamestate && !(gamestate.characters_in_game.length > 1)">Waiting for at least 1 more player to join...</h2>
         <h2 *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId">It's your turn!</h2>
 
-<<<<<<< HEAD
-        <button id="exitButton" (click)="disconnect()"><a routerLink="/start" routerLinkActive="active" class="navButtonLink">Exit</a></button>
+        <button id="exitButton" (click)="disconnect()"><a routerLink="/start" routerLinkActive="active" class="genButtonStyle navButtonLink">Exit</a></button>
         <button *ngIf="gamestate && !gameHasBegun && playerId === 'player0'"
             [disabled]="!(gamestate.characters_in_game.length > 1)"
             [ngClass]="{'isDisabled': !(gamestate.characters_in_game.length > 1)}"
-            (click)="beginGame()" id="beginButton">
-=======
-        <button id="exitButton" (click)="disconnect()" class="genButtonStyle"><a routerLink="/start" routerLinkActive="active" class="navButtonLink">Exit</a></button>
-        <button *ngIf="playerId === 'player0' && !gameHasBegun"
-            [disabled]="!gameIsReady"
-            [ngClass]="{'isDisabled': !gameIsReady}"
             (click)="beginGame()" id="beginButton" class="genButtonStyle">
->>>>>>> ui_updates
             Begin Game
         </button>
         <div id="top" class="row no-gutters">
@@ -55,7 +47,7 @@
             <div class="col">
             <div id="checklistPanel">
                 <h1>Checklist</h1>
-                
+
                 <!--accuBtn is for when players make their one allowed accusation-->
                 <button id="accuBtn" class="genButtonStyle">Accusation</button>
             </div>
@@ -78,7 +70,7 @@
                     }"
                 ></div>
 
-                <button type="button" id="endTurn" name="button" (click)="endTurn()">End Turn</button>
+                <button type="button" id="endTurn" class="genButtonStyle" name="button" (click)="endTurn()">End Turn</button>
 
                 <div id="outputTxt"></div>
 
@@ -89,7 +81,7 @@
                     </button>
                 </div>
 
-                <button id="suggBtn">Suggestion</button>
+                <button id="suggBtn" class="genButtonStyle">Suggestion</button>
 
                 <div id="playerHnd"></div>
             </div>
