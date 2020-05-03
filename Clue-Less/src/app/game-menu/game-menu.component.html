@@ -58,12 +58,12 @@
 
                 <div id="playerClr" *ngIf="playerstate"
                     [ngClass]="{
-                        'ColonelMustardBkgd': playerstate.character === 'Colonel Mustard',
-                        'MissScarletBkgd': playerstate.character === 'Miss Scarlet',
-                        'ProfessorPlumBkgd': playerstate.character === 'Professor Plum',
-                        'MrGreenBkgd': playerstate.character === 'Mr Green',
-                        'MrsWhiteBkgd': playerstate.character === 'Mrs White',
-                        'MrsPeacockBkgd': playerstate.character === 'Mrs Peacock'
+                        'ColonelMustardBkgd': playerstate.suspect === 'Colonel Mustard',
+                        'MissScarletBkgd': playerstate.suspect === 'Miss Scarlet',
+                        'ProfessorPlumBkgd': playerstate.suspect === 'Professor Plum',
+                        'MrGreenBkgd': playerstate.suspect === 'Mr Green',
+                        'MrsWhiteBkgd': playerstate.suspect === 'Mrs White',
+                        'MrsPeacockBkgd': playerstate.suspect === 'Mrs Peacock'
                     }"
                 ></div>
 
