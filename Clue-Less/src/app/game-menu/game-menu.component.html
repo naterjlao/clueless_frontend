@@ -63,7 +63,8 @@
                 <button type="button" id="endTurn" name="button" (click)="endTurn()">End Turn</button>
 
                 <div id="outputTxt"></div>
-
+                
+                <!--Temporary div tag for styling moveOptions div-->
                 <!--<div id="moveOptions">-->
                 <div id="moveOptions" *ngIf="gameHasBegun && turnData && turnData.playerId === 'playerId'">
                     <p>Choose a room to move to:</p>
