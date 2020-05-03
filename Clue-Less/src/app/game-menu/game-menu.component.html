@@ -56,7 +56,7 @@
             <div id="cardPanel">
                 <h1>Card Menu</h1>
 
-                <div id="playerClr"
+                <div id="playerClr" *ngIf="playerstate"
                     [ngClass]="{
                         'ColonelMustardBkgd': playerstate.character === 'Colonel Mustard',
                         'MissScarletBkgd': playerstate.character === 'Miss Scarlet',
