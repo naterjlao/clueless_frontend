@@ -237,7 +237,7 @@
             </td>
             <td></td>
             <td class="vhallway">
-                <div class="token" *ngIf="gameboard['Billiard Room-Hall'].length < 0"
+                <div class="token" *ngIf="gameboard['Billiard Room-Hall'].length > 0"
                     [ngClass]="{
                         'ColonelMustard': gameboard['Billiard Room-Hall'].length && gameboard['Billiard Room-Hall'][0] === 'Colonel Mustard',
                         'MissScarlet': gameboard['Billiard Room-Hall'].length && gameboard['Billiard Room-Hall'][0] === 'Miss Scarlet',
