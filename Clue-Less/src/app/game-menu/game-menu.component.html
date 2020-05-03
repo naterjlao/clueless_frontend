@@ -16,7 +16,7 @@
             <div id="playersPanel">
                 <div class="row">
                     <h1 class="col">Players</h1>
-                    <h3 class="col" *ngFor='let c of gamestate.characters_in_game'
+                    <h3 class="col" *ngIf="gamestate" *ngFor='let c of gamestate.characters_in_game'
                         [ngClass]="{
                             'ColonelMustard': c === 'Colonel Mustard',
                             'MissScarlet': c === 'Miss Scarlet',
@@ -58,7 +58,7 @@
                     <!--Placeholder Variable Explanation-->
                     <!--"move" would be the text on the button and the value sent back to backend.-->
                     <button *ngFor="let move of moveOptions" class="moveOption" value="move" (click)="makeMove(move)">
-                        {{move}}
+                        {{ move.includes('-') ? move + ' Hallway' : move }}
                     </button>
                 </div>
 
