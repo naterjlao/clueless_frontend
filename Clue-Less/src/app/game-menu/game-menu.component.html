@@ -58,7 +58,11 @@
                     Toggle GameBoard/BlockGame
                 </button>
 
-                <div id="playerClr"></div>>
+                <div id="playerClr"></div>
+
+                <button type="button" id="endTurn" name="button" (click)="endTurn()">End Turn</button>
+
+                <div id="outputTxt"></div>
 
                 <div id="moveOptions">
                 <!--<div id="moveOptions" *ngIf="gameHasBegun && turnData && turnData.playerId === 'playerId'">-->
@@ -69,16 +73,15 @@
                         {{move}}
                     </button>
                 </div>
+                
+                <!--<button id="suggBt">Suggestion</button>-->
+
+                <div id="playerHnd"></div>
 
                 <!--<button (click)="move('left')">Left</button>
                 <button (click)="move('right')">Right</button>
                 <button (click)="move('up')">Up</button>
                 <button (click)="move('down')">Down</button>-->
-
-                <div id="playerHnd"></div>>
-                <div id="outputTxt"></div>
-                <!--<button id="suggBt">Suggestion</button>-->
-                <button type="button" id="endTurn" name="button" (click)="endTurn()">End Turn</button>
             </div>
             </div>
         </div>
