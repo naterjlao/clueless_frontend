@@ -72,7 +72,9 @@
 
                 <button type="button" id="endTurn" class="genButtonStyle" name="button" (click)="endTurn()">End Turn</button>
 
-                <div id="outputTxt"></div>
+                <div id="outputTxt">
+                    <h5 *ngIf="message">{{message}}</h5>
+                </div>
 
                 <div id="moveOptions" class="row" *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId">
                     <p class="col">Choose a room to move to:</p>

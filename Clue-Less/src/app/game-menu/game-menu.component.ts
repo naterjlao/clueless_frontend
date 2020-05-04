@@ -17,6 +17,7 @@ export class GameMenuComponent implements OnInit {
    gamestate; gamestate_subscription;
    moveOptions; moveOptions_subscription;
    cardList; cardList_subscription;
+   message; message_subscription;
 
    characterNames = ['Colonel Mustard', 'Miss Scarlet', 'Professor Plum',
    'Mr Green', 'Mrs White', 'Mrs Peacock']; // all possible character names
@@ -45,6 +46,9 @@ export class GameMenuComponent implements OnInit {
       });
       this.cardList_subscription = this.serverSvc.cardList.subscribe({
          next: (cardList) => { this.cardList = cardList; }
+      });
+      this.message_subscription = this.serverSvc.message.subscribe({
+         next: (message) => { this.message = message; }
       });
    }
 
@@ -97,6 +101,7 @@ export class GameMenuComponent implements OnInit {
       this.gamestate_subscription.unsubscribe();
       this.moveOptions_subscription.unsubscribe();
       this.cardList_subscription.unsubscribe();
+      this.message_subscription.unsubscribe();
 
       this.serverSvc.removeSocket();
    }
