@@ -57,7 +57,8 @@
     </div>
 </div>
 
-<button *ngIf="!characterSelected" (click)="selectCharacter(currentCharacterSelected)" [disabled]="!currentCharacterSelected" id="selectButton">
+<button *ngIf="!characterSelected" (click)="selectCharacter(currentCharacterSelected)"
+    [disabled]="!currentCharacterSelected" [ngClass]="{'isDisabled': !currentCharacterSelected}" id="selectButton" >
     Select Character
 </button>
 

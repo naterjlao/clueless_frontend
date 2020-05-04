@@ -81,7 +81,9 @@
                     </button>
                 </div>
 
-                <button id="suggBtn" class="genButtonStyle">Suggestion</button>
+                <button *ngIf="playerstate" id="suggBtn" class="genButtonStyle"
+                    [disabled]="!playerstate.isSuggestionValid" [ngClass]="{'isDisabled': !!playerstate.isSuggestionValid}"
+                >Suggestion</button>
 
                 <div id="playerHnd"></div>
             </div>
