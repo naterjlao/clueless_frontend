@@ -48,12 +48,12 @@
             <div id="checklistPanel">
                 <h1>Checklist</h1>
 
-                <h2>Suspects</h2>
-                <mat-list>
+                <h2 class="sublist-title">Suspects</h2>
+                <mat-list class="sublist">
                     <mat-list-item>
                         <mat-checkbox>Mr. Green</mat-checkbox>
                     </mat-list-item>
-                
+
                     <mat-list-item>
                         <mat-checkbox>Prof. Plum</mat-checkbox>
                     </mat-list-item>
@@ -75,12 +75,12 @@
                     </mat-list-item>
                 </mat-list>
 
-                <h2>Weapons</h2>
-                <mat-list>
+                <h2 class="sublist-title">Weapons</h2>
+                <mat-list class="sublist">
                     <mat-list-item>
                         <mat-checkbox>Candlestick</mat-checkbox>
                     </mat-list-item>
-                
+
                     <mat-list-item>
                         <mat-checkbox>Knife</mat-checkbox>
                     </mat-list-item>
@@ -102,12 +102,12 @@
                     </mat-list-item>
                 </mat-list>
 
-                <h2>Rooms</h2>
-                <mat-list>
+                <h2 class="sublist-title">Rooms</h2>
+                <mat-list class="sublist">
                     <mat-list-item>
                         <mat-checkbox>Conservatory</mat-checkbox>
                     </mat-list-item>
-                
+
                     <mat-list-item>
                         <mat-checkbox>Lounge</mat-checkbox>
                     </mat-list-item>
@@ -151,41 +151,51 @@
             <div class="col">
             <div id="cardPanel">
                 <h1>Card Menu</h1>
+                <div class="row">
+                    <div class="col-3">
+                        <div id="playerClr" *ngIf="playerstate"
+                            [ngClass]="{
+                                'ColonelMustardBkgd': playerstate.suspect === 'Colonel Mustard',
+                                'MissScarletBkgd': playerstate.suspect === 'Miss Scarlet',
+                                'ProfessorPlumBkgd': playerstate.suspect === 'Professor Plum',
+                                'MrGreenBkgd': playerstate.suspect === 'Mr Green',
+                                'MrsWhiteBkgd': playerstate.suspect === 'Mrs White',
+                                'MrsPeacockBkgd': playerstate.suspect === 'Mrs Peacock'
+                            }"
+                        ></div>
 
-                <div id="playerClr" *ngIf="playerstate"
-                    [ngClass]="{
-                        'ColonelMustardBkgd': playerstate.suspect === 'Colonel Mustard',
-                        'MissScarletBkgd': playerstate.suspect === 'Miss Scarlet',
-                        'ProfessorPlumBkgd': playerstate.suspect === 'Professor Plum',
-                        'MrGreenBkgd': playerstate.suspect === 'Mr Green',
-                        'MrsWhiteBkgd': playerstate.suspect === 'Mrs White',
-                        'MrsPeacockBkgd': playerstate.suspect === 'Mrs Peacock'
-                    }"
-                ></div>
+                        <button *ngIf="playerstate" id="suggBtn" class="genButtonStyle"
+                            [disabled]="!playerstate.isSuggestionValid" [ngClass]="{'isDisabled': !!playerstate.isSuggestionValid}"
+                        >Suggestion</button>
 
-                <button type="button" id="endTurn" class="genButtonStyle" name="button" (click)="endTurn()">End Turn</button>
-
-                <div id="outputTxt">
-                    <h5 *ngIf="message">{{message}}</h5>
-                </div>
-
-                <div id="moveOptions" class="row" *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId">
-                    <p class="col">Choose a room to move to:</p>
-                    <button *ngFor="let move of moveOptions" class="col moveButtons" value="move" (click)="makeMove(move)">
-                        {{ move.includes('-') ? move + ' Hallway' : move }}
-                    </button>
-                </div>
-
-                <button *ngIf="playerstate" id="suggBtn" class="genButtonStyle"
-                    [disabled]="!playerstate.isSuggestionValid" [ngClass]="{'isDisabled': !!playerstate.isSuggestionValid}"
-                >Suggestion</button>
-
-                <div id="playerHnd" class="row">
-                    <div *ngFor="let card of cardList" class="col card bg-light mb-3" style="max-width: 18rem;">
-                        <div class="card-header">{{card}}</div>
-                        <div class="card-header"><small class="text-muted">Type</small></div>
-                        <img class="card-img-bottom" src="" alt="card">
+                        <button type="button" id="endTurn" class="genButtonStyle" name="button" (click)="endTurn()">End Turn</button>
                     </div>
+
+                    <div class="col-9">
+                        <div class="row">
+                            <div id="outputTxt">
+                                <h5 *ngIf="message">{{message.message}}</h5>
+                            </div>
+                        </div>
+
+                        <div id="playerHnd" class="row">
+                            <div *ngFor="let card of cardList" class="col card bg-light mb-3" style="max-width: 18rem;">
+                                <div class="card-header">{{card}}</div>
+                                <div class="card-header"><small class="text-muted">Type</small></div>
+                                <img class="card-img-bottom" src="" alt="card">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div id="moveOptions" class="row" *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId">
+                                <p class="col">Choose a room to move to:</p>
+                                <button *ngFor="let move of moveOptions" class="col moveButtons" value="move" (click)="makeMove(move)">
+                                    {{ move.includes('-') ? move + ' Hallway' : move }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             </div>
