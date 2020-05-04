@@ -5,7 +5,7 @@
         <h2 *ngIf="gamestate && !(gamestate.characters_in_game.length > 1)">Waiting for at least 1 more player to join...</h2>
         <h2 *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId">It's your turn!</h2>
 
-        <button id="exitButton" (click)="disconnect()"><a routerLink="/start" routerLinkActive="active" class="genButtonStyle navButtonLink">Exit</a></button>
+        <button id="exitButton" class="genButtonStyle" (click)="disconnect()"><a class="navButtonLink" routerLink="/start" routerLinkActive="active">Exit</a></button>
         <button *ngIf="gamestate && !gameHasBegun && playerId === 'player0'"
             [disabled]="!(gamestate.characters_in_game.length > 1)"
             [ngClass]="{'isDisabled': !(gamestate.characters_in_game.length > 1)}"
@@ -85,7 +85,13 @@
                     [disabled]="!playerstate.isSuggestionValid" [ngClass]="{'isDisabled': !!playerstate.isSuggestionValid}"
                 >Suggestion</button>
 
-                <div id="playerHnd"></div>
+                <div id="playerHnd" class="row">
+                    <div *ngFor="let card for cardList" class="card bg-light mb-3" style="max-width: 18rem;">
+                        <div class="card-header">{{card}}</div>
+                        <div class="card-header"><small class="text-muted">Type</small></div>
+                        <img class="card-img-bottom" src="" alt="card">
+                    </div>
+                </div>
             </div>
             </div>
         </div>
