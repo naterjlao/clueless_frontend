@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatListModule} from '@angular/material/list';
 import { GameboardComponent } from './gameboard/gameboard.component';
 
 @NgModule({
@@ -26,7 +27,8 @@ import { GameboardComponent } from './gameboard/gameboard.component';
     BrowserAnimationsModule,
 
     MatButtonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent],
