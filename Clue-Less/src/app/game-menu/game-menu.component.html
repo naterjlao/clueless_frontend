@@ -12,192 +12,183 @@
             (click)="beginGame()" id="beginButton" class="genButtonStyle">
             Begin Game
         </button>
+
         <div id="top" class="row no-gutters">
             <div class="col">
-            <div id="playersPanel">
-                <div class="row">
-                    <h1 class="col">Players</h1>
-                    <ng-container *ngIf="gamestate">
-                        <h3 class="col" *ngFor='let c of gamestate.characters_in_game'
-                            [ngClass]="{
-                                'ColonelMustardFont': c === 'Colonel Mustard',
-                                'MissScarletFont': c === 'Miss Scarlet',
-                                'ProfessorPlumFont': c === 'Professor Plum',
-                                'MrGreenFont': c === 'Mr Green',
-                                'MrsWhiteFont': c === 'Mrs White',
-                                'MrsPeacockFont': c === 'Mrs Peacock'
-                            }">
-                            {{c}}
-                        </h3>
-                    </ng-container>
+                <div id="playersPanel">
+                    <div class="row">
+                        <h1 class="col">Players</h1>
+                        <ng-container *ngIf="gamestate">
+                            <h3 class="col" *ngFor='let c of gamestate.characters_in_game'
+                                [ngClass]="{
+                                    'ColonelMustardFont': c === 'Colonel Mustard',
+                                    'MissScarletFont': c === 'Miss Scarlet',
+                                    'ProfessorPlumFont': c === 'Professor Plum',
+                                    'MrGreenFont': c === 'Mr Green',
+                                    'MrsWhiteFont': c === 'Mrs White',
+                                    'MrsPeacockFont': c === 'Mrs Peacock'
+                                }">
+                                {{c}}
+                            </h3>
+                        </ng-container>
+                    </div>
+                    <p *ngIf="gameHasBegun && gamestate" class="playerInfo" id="whosTurn"><b>It's {{getPlayerNum(gamestate.currentPlayerId)}}'s turn!</b></p>
+                    <p class="playerInfo" id="playerNumber"><i>You are {{getPlayerNum(playerId)}}</i></p>
                 </div>
-                <p *ngIf="gameHasBegun && gamestate" class="playerInfo" id="whosTurn"><b>It's {{getPlayerNum(gamestate.currentPlayerId)}}'s turn!</b></p>
-                <p class="playerInfo" id="playerNumber"><i>You are {{getPlayerNum(playerId)}}</i></p>
-            </div>
             </div>
         </div>
 
         <div id="middle" class="row no-gutters">
             <div class="col-9">
-            <div id="gameBoard">
-                <gameboard id="gameboard"></gameboard>
+                <div id="gameBoard">
+                    <gameboard id="gameboard"></gameboard>
+                </div>
             </div>
-            </div>
 
-            <div class="col">
-            <div id="checklistPanel">
-                <h1>Checklist</h1>
+            <div class="col-3">
+                <div id="checklistPanel">
+                    <h1>Checklist</h1>
 
-                <h2 class="sublist-title">Suspects</h2>
-                <mat-list class="sublist">
-                    <mat-list-item>
-                        <mat-checkbox>Mr. Green</mat-checkbox>
-                    </mat-list-item>
+                    <h2 class="sublist-title">Suspects</h2>
+                    <mat-list class="sublist">
+                        <mat-list-item>
+                            <mat-checkbox>Mr. Green</mat-checkbox>
+                        </mat-list-item>
 
-                    <mat-list-item>
-                        <mat-checkbox>Prof. Plum</mat-checkbox>
-                    </mat-list-item>
+                        <mat-list-item>
+                            <mat-checkbox>Prof. Plum</mat-checkbox>
+                        </mat-list-item>
 
-                    <mat-list-item>
-                        <mat-checkbox>Coln. Mustard</mat-checkbox>
-                    </mat-list-item>
+                        <mat-list-item>
+                            <mat-checkbox>Coln. Mustard</mat-checkbox>
+                        </mat-list-item>
 
-                    <mat-list-item>
-                        <mat-checkbox>Mrs. Peacock</mat-checkbox>
-                    </mat-list-item>
+                        <mat-list-item>
+                            <mat-checkbox>Mrs. Peacock</mat-checkbox>
+                        </mat-list-item>
 
-                    <mat-list-item>
-                        <mat-checkbox>Miss Scarlet</mat-checkbox>
-                    </mat-list-item>
+                        <mat-list-item>
+                            <mat-checkbox>Miss Scarlet</mat-checkbox>
+                        </mat-list-item>
 
-                    <mat-list-item>
-                        <mat-checkbox>Mrs. White</mat-checkbox>
-                    </mat-list-item>
-                </mat-list>
+                        <mat-list-item>
+                            <mat-checkbox>Mrs. White</mat-checkbox>
+                        </mat-list-item>
+                    </mat-list>
 
-                <h2 class="sublist-title">Weapons</h2>
-                <mat-list class="sublist">
-                    <mat-list-item>
-                        <mat-checkbox>Candlestick</mat-checkbox>
-                    </mat-list-item>
+                    <h2 class="sublist-title">Weapons</h2>
+                    <mat-list class="sublist">
+                        <mat-list-item>
+                            <mat-checkbox>Candlestick</mat-checkbox>
+                        </mat-list-item>
 
-                    <mat-list-item>
-                        <mat-checkbox>Knife</mat-checkbox>
-                    </mat-list-item>
+                        <mat-list-item>
+                            <mat-checkbox>Knife</mat-checkbox>
+                        </mat-list-item>
 
-                    <mat-list-item>
-                        <mat-checkbox>Lead Pipe</mat-checkbox>
-                    </mat-list-item>
+                        <mat-list-item>
+                            <mat-checkbox>Lead Pipe</mat-checkbox>
+                        </mat-list-item>
 
-                    <mat-list-item>
-                        <mat-checkbox>Revolver</mat-checkbox>
-                    </mat-list-item>
+                        <mat-list-item>
+                            <mat-checkbox>Revolver</mat-checkbox>
+                        </mat-list-item>
 
-                    <mat-list-item>
-                        <mat-checkbox>Rope</mat-checkbox>
-                    </mat-list-item>
+                        <mat-list-item>
+                            <mat-checkbox>Rope</mat-checkbox>
+                        </mat-list-item>
 
-                    <mat-list-item>
-                        <mat-checkbox>Wrench</mat-checkbox>
-                    </mat-list-item>
-                </mat-list>
+                        <mat-list-item>
+                            <mat-checkbox>Wrench</mat-checkbox>
+                        </mat-list-item>
+                    </mat-list>
 
-                <h2 class="sublist-title">Rooms</h2>
-                <mat-list class="sublist">
-                    <mat-list-item>
-                        <mat-checkbox>Conservatory</mat-checkbox>
-                    </mat-list-item>
+                    <h2 class="sublist-title">Rooms</h2>
+                    <mat-list class="sublist">
+                        <mat-list-item>
+                            <mat-checkbox>Conservatory</mat-checkbox>
+                        </mat-list-item>
 
-                    <mat-list-item>
-                        <mat-checkbox>Lounge</mat-checkbox>
-                    </mat-list-item>
+                        <mat-list-item>
+                            <mat-checkbox>Lounge</mat-checkbox>
+                        </mat-list-item>
 
-                    <mat-list-item>
-                        <mat-checkbox>Kitchen</mat-checkbox>
-                    </mat-list-item>
+                        <mat-list-item>
+                            <mat-checkbox>Kitchen</mat-checkbox>
+                        </mat-list-item>
 
-                    <mat-list-item>
-                        <mat-checkbox>Library</mat-checkbox>
-                    </mat-list-item>
+                        <mat-list-item>
+                            <mat-checkbox>Library</mat-checkbox>
+                        </mat-list-item>
 
-                    <mat-list-item>
-                        <mat-checkbox>Hall</mat-checkbox>
-                    </mat-list-item>
+                        <mat-list-item>
+                            <mat-checkbox>Hall</mat-checkbox>
+                        </mat-list-item>
 
-                    <mat-list-item>
-                        <mat-checkbox>Study</mat-checkbox>
-                    </mat-list-item>
+                        <mat-list-item>
+                            <mat-checkbox>Study</mat-checkbox>
+                        </mat-list-item>
 
-                    <mat-list-item>
-                        <mat-checkbox>Ballroom</mat-checkbox>
-                    </mat-list-item>
+                        <mat-list-item>
+                            <mat-checkbox>Ballroom</mat-checkbox>
+                        </mat-list-item>
 
-                    <mat-list-item>
-                        <mat-checkbox>Dining Room</mat-checkbox>
-                    </mat-list-item>
+                        <mat-list-item>
+                            <mat-checkbox>Dining Room</mat-checkbox>
+                        </mat-list-item>
 
-                    <mat-list-item>
-                        <mat-checkbox>Billiard Room</mat-checkbox>
-                    </mat-list-item>
-                </mat-list>
+                        <mat-list-item>
+                            <mat-checkbox>Billiard Room</mat-checkbox>
+                        </mat-list-item>
+                    </mat-list>
 
-                <!--accuBtn is for when players make their one allowed accusation-->
-                <button id="accuBtn" class="genButtonStyle">Accusation</button>
-            </div>
+                    <!--accuBtn is for when players make their one allowed accusation-->
+                    <button id="accuBtn" class="genButtonStyle">Accusation</button>
+                </div>
             </div>
         </div>
 
-        <div id="bottom" class="row no-gutters">
-            <div class="col">
-            <div id="cardPanel">
+        <div id="bottom" class="row no-gutters cardPanel">
+            <div class="col-3">
                 <h1>Card Menu</h1>
-                <div class="row">
-                    <div class="col-3">
-                        <div id="playerClr" *ngIf="playerstate"
-                            [ngClass]="{
-                                'ColonelMustardBkgd': playerstate.suspect === 'Colonel Mustard',
-                                'MissScarletBkgd': playerstate.suspect === 'Miss Scarlet',
-                                'ProfessorPlumBkgd': playerstate.suspect === 'Professor Plum',
-                                'MrGreenBkgd': playerstate.suspect === 'Mr Green',
-                                'MrsWhiteBkgd': playerstate.suspect === 'Mrs White',
-                                'MrsPeacockBkgd': playerstate.suspect === 'Mrs Peacock'
-                            }"
-                        ></div>
+                <div id="playerClr" *ngIf="playerstate"
+                [ngClass]="{
+                    'ColonelMustardBkgd': playerstate.suspect === 'Colonel Mustard',
+                    'MissScarletBkgd': playerstate.suspect === 'Miss Scarlet',
+                    'ProfessorPlumBkgd': playerstate.suspect === 'Professor Plum',
+                    'MrGreenBkgd': playerstate.suspect === 'Mr Green',
+                    'MrsWhiteBkgd': playerstate.suspect === 'Mrs White',
+                    'MrsPeacockBkgd': playerstate.suspect === 'Mrs Peacock'
+                    }"
+                ></div>
 
-                        <button *ngIf="playerstate" id="suggBtn" class="genButtonStyle"
-                            [disabled]="!playerstate.isSuggestionValid" [ngClass]="{'isDisabled': !!playerstate.isSuggestionValid}"
-                        >Suggestion</button>
+                <button *ngIf="playerstate" id="suggBtn" class="genButtonStyle"
+                    [disabled]="!playerstate.isSuggestionValid" [ngClass]="{'isDisabled': !!playerstate.isSuggestionValid}"
+                >Suggestion</button>
 
-                        <button type="button" id="endTurn" class="genButtonStyle" name="button" (click)="endTurn()">End Turn</button>
-                    </div>
-
-                    <div class="col-9">
-                        <div class="row">
-                            <div id="outputTxt">
-                                <h5 *ngIf="message">{{message.message}}</h5>
-                            </div>
-                        </div>
-
-                        <div id="playerHnd" class="row">
-                            <div *ngFor="let card of cardList" class="col card bg-light mb-3" style="max-width: 18rem;">
-                                <div class="card-header">{{card}}</div>
-                                <div class="card-header"><small class="text-muted">Type</small></div>
-                                <img class="card-img-bottom" src="" alt="card">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div id="moveOptions" class="row" *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId">
-                                <p class="col">Choose a room to move to:</p>
-                                <button *ngFor="let move of moveOptions" class="col moveButtons" value="move" (click)="makeMove(move)">
-                                    {{ move.includes('-') ? move + ' Hallway' : move }}
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+                <button type="button" id="endTurn" class="genButtonStyle" name="button" (click)="endTurn()">End Turn</button>
             </div>
+
+            <div class="col-9">
+                <div id="outputTxt">
+                    <h5 *ngIf="message">{{message.message}}</h5>
+                </div>
+
+                <div id="playerHnd">
+                    <div *ngFor="let card of cardList" class="col card bg-light mb-3" style="max-width: 18rem;">
+                        <div class="card-header">{{card}}</div>
+                        <div class="card-header"><small class="text-muted">Type</small></div>
+                        <img class="card-img-bottom" src="" alt="card">
+                    </div>
+                </div>
+
+                <div id="moveOptions" class="row" *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId">
+                    <p class="col">Choose a room to move to:</p>
+                    <button *ngFor="let move of moveOptions" class="col moveButtons" value="move" (click)="makeMove(move)">
+                        {{ move.includes('-') ? move + ' Hallway' : move }}
+                    </button>
+                </div>
+                
             </div>
         </div>
     </div>
