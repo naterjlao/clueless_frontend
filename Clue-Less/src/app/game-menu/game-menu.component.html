@@ -173,8 +173,8 @@
                     <h5 *ngIf="message">{{message.message}}</h5>
                 </div>
 
-                <div id="playerHnd">
-                    <div *ngFor="let card of cardList" class="col card bg-light mb-3" style="max-width: 18rem;">
+                <div id="playerHnd" class="card-columns">
+                    <div *ngFor="let card of cardList" class="card bg-light mb-3" style="max-width: 18rem;">
                         <div class="card-header">{{card}}</div>
                         <div class="card-header"><small class="text-muted">Type</small></div>
                         <img class="card-img-bottom" src="" alt="card">
