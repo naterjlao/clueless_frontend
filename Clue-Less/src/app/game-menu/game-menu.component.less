@@ -91,14 +91,6 @@
     text-decoration: none;
 }
 
-/* Positioning of endTurn button*/
-#endTurn {
-    margin-left: 2em;
-    position: relative;
-    left: 4%;
-    top: 15px;
-}
-
 .isDisabled {
     color: currentColor;
     cursor: not-allowed;
@@ -117,6 +109,7 @@
     display: inline;
     margin: 0;
 }
+
 #whosTurn {
     float: left;
     padding-left: 5px;
@@ -131,20 +124,49 @@ div, h1, h2, p {
 	font-family: "Lucida Console", Verdana, Geneva, sans-serif;
 }
 
-/* Positioning for the suggestion button */
-#suggBtn {
-    display: block;
-    position: relative;
-    left: 85%;
-    bottom: 59%;
-}
-
 /* Positioning for the accusation button */
 #accuBtn {
     display: block;
     position: relative;
     left: 25%;
     top: 70%;
+}
+
+#cardPanel_left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#cardMenuTitle, #playerClr, #suggBtn, #endTurn {
+    display: inline-block;
+    position: relative;
+}
+#suggBtn {
+    margin: 1em;
+}
+#endTurn {
+    margin-bottom: 0.5em;
+}
+
+#playerClr {
+    border: 2px solid black;
+    height: 100px;
+    width: 100px;
+}
+
+#outputTxt{
+    border: 2px solid #d4d6d4;
+    background-color: #d4d6d4;
+    height: 30%;
+    width: 70%;
+    position: absolute;
+}
+
+#playerHnd {
+    border: 2px solid black;
+    height: 23%;
+    width: 70%;
 }
 
 /* Styling for the moveButtons within the moveOptions div. */
@@ -158,40 +180,11 @@ div, h1, h2, p {
 	font-size: 16px;
 }
 
-#outputTxt{
-    border: 2px solid #d4d6d4;
-    background-color: #d4d6d4;
-    height: 30%;
-    width: 70%;
-    position: relative;
-    left: 28%;
-    bottom: 65%;
-}
-
-#playerClr {
-    border: 2px solid black;
-    height: 100px;
-    width: 100px;
-    position: relative;
-    left: 7%;
-}
-
-#playerHnd {
-    border: 2px solid black;
-    height: 23%;
-    width: 70%;
-    position: relative;
-    left: 28%;
-    bottom: 52%;
-}
-
 #moveOptions {
     /*border: 2px solid grey;*/
     height: 70px;
     width: 55%;
     position: relative;
-    left: 28%;
-    bottom: 43%;
 }
 
 .sublist {

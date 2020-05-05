@@ -149,8 +149,8 @@
         </div>
 
         <div id="bottom" class="row no-gutters cardPanel">
-            <div class="col-3">
-                <h1>Card Menu</h1>
+            <div id="cardPanel_left" class="col-3">
+                <h1 id="cardMenuTitle">Card Menu</h1>
                 <div id="playerClr" *ngIf="playerstate"
                 [ngClass]="{
                     'ColonelMustardBkgd': playerstate.suspect === 'Colonel Mustard',
@@ -161,7 +161,6 @@
                     'MrsPeacockBkgd': playerstate.suspect === 'Mrs Peacock'
                     }"
                 ></div>
-
                 <button *ngIf="playerstate" id="suggBtn" class="genButtonStyle"
                     [disabled]="!playerstate.isSuggestionValid" [ngClass]="{'isDisabled': !!playerstate.isSuggestionValid}"
                 >Suggestion</button>
@@ -170,11 +169,11 @@
             </div>
 
             <div class="col-9">
-                <div id="outputTxt">
+                <div id="outputTxt" class="row">
                     <h5 *ngIf="message">{{message.message}}</h5>
                 </div>
 
-                <div id="playerHnd">
+                <div id="playerHnd" class="row">
                     <div *ngFor="let card of cardList" class="col card bg-light mb-3" style="max-width: 18rem;">
                         <div class="card-header">{{card}}</div>
                         <div class="card-header"><small class="text-muted">Type</small></div>
@@ -188,7 +187,7 @@
                         {{ move.includes('-') ? move + ' Hallway' : move }}
                     </button>
                 </div>
-                
+
             </div>
         </div>
     </div>
