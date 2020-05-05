@@ -168,12 +168,12 @@
                 <button type="button" id="endTurn" class="genButtonStyle" name="button" (click)="endTurn()">End Turn</button>
             </div>
 
-            <div class="col-9">
-                <div id="outputTxt" class="row">
+            <div id="cardPanel_right" class="col-9">
+                <div id="outputTxt">
                     <h5 *ngIf="message">{{message.message}}</h5>
                 </div>
 
-                <div id="playerHnd" class="row">
+                <div id="playerHnd">
                     <div *ngFor="let card of cardList" class="col card bg-light mb-3" style="max-width: 18rem;">
                         <div class="card-header">{{card}}</div>
                         <div class="card-header"><small class="text-muted">Type</small></div>
@@ -181,7 +181,7 @@
                     </div>
                 </div>
 
-                <div id="moveOptions" class="row" *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId">
+                <div id="moveOptions" *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId">
                     <p class="col">Choose a room to move to:</p>
                     <button *ngFor="let move of moveOptions" class="col moveButtons" value="move" (click)="makeMove(move)">
                         {{ move.includes('-') ? move + ' Hallway' : move }}

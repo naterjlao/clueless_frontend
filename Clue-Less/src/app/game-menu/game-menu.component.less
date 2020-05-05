@@ -132,15 +132,21 @@ div, h1, h2, p {
     top: 70%;
 }
 
-#cardPanel_left {
+#cardPanel_left, #cardPanel_right {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-#cardMenuTitle, #playerClr, #suggBtn, #endTurn {
+#cardMenuTitle, #playerClr, #suggBtn,#endTurn,
+#outputTxt, #playerHnd, #moveOptions {
     display: inline-block;
     position: relative;
+}
+#playerClr {
+    border: 2px solid black;
+    height: 100px;
+    width: 100px;
 }
 #suggBtn {
     margin: 1em;
@@ -149,26 +155,22 @@ div, h1, h2, p {
     margin-bottom: 0.5em;
 }
 
-#playerClr {
-    border: 2px solid black;
-    height: 100px;
-    width: 100px;
-}
-
 #outputTxt{
     border: 2px solid #d4d6d4;
     background-color: #d4d6d4;
     height: 30%;
     width: 70%;
-    position: absolute;
 }
-
 #playerHnd {
     border: 2px solid black;
     height: 23%;
     width: 70%;
 }
-
+#moveOptions {
+    /*border: 2px solid grey;*/
+    height: 70px;
+    width: 55%;
+}
 /* Styling for the moveButtons within the moveOptions div. */
 .moveButtons {
 	color: black;
@@ -178,13 +180,6 @@ div, h1, h2, p {
 	font-family: "Lucida Console", Verdana, Geneva, sans-serif;
 	border-radius: 13px;
 	font-size: 16px;
-}
-
-#moveOptions {
-    /*border: 2px solid grey;*/
-    height: 70px;
-    width: 55%;
-    position: relative;
 }
 
 .sublist {
