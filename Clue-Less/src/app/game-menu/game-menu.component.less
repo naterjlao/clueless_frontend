@@ -61,8 +61,9 @@
     height: 5em;
 }
 
-#switchGameBoard {
-    margin-right: 2em;
+// set max-height for each checklist item
+.sublist .mat-list-item {
+    max-height: 1em;
 }
 
 /* Created a general button style class to reduce boilerplate style code. */
@@ -132,12 +133,13 @@ div, h1, h2, p {
     top: 70%;
 }
 
-#cardPanel_left, #cardPanel_right {
+#checklistPanel, #cardPanel_left, #cardPanel_right {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+#accuBtn, #checklist
 #cardMenuTitle, #playerClr, #suggBtn,#endTurn,
 #outputTxt, #playerHnd, #moveOptions {
     display: inline-block;
@@ -160,11 +162,13 @@ div, h1, h2, p {
     background-color: #d4d6d4;
     height: 30%;
     width: 70%;
+    margin: 1em;
 }
 #playerHnd {
     border: 2px solid black;
     height: 23%;
     width: 70%;
+    margin: 1em;
 }
 .card {
     display: inline-block;

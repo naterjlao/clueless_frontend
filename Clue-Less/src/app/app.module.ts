@@ -8,9 +8,10 @@ import { GameMenuComponent } from './game-menu/game-menu.component';
 import { PlayerSelectMenuComponent } from './player-select-menu/player-select-menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {MatButtonModule} from '@angular/material/button';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatListModule} from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatListModule } from '@angular/material/list';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { GameboardComponent } from './gameboard/gameboard.component';
 
 @NgModule({
@@ -28,7 +29,8 @@ import { GameboardComponent } from './gameboard/gameboard.component';
 
     MatButtonModule,
     MatCheckboxModule,
-    MatListModule
+    MatListModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent],
