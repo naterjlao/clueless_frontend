@@ -186,8 +186,8 @@ div, h1, h2, p {
 	background-color: white;
 }
 
-.cardPanel div {
-	background-color: #eeeee;
+.cardPanel > div {
+	background-color: white;
 	border: solid black 3px;
 }
 
@@ -198,7 +198,7 @@ div, h1, h2, p {
 	background-color: white;
 }
 
-.gameboard div {
+.gameboard > div {
 	background-color: #eeeee;
 	border: solid black 3px;
 }
@@ -209,14 +209,14 @@ div, h1, h2, p {
 	grid-auto-rows:minmax(10px, auto);
 }
 
-.wrapper div {
+.wrapper > div {
 	/*background-color: #eee;*/
 	padding: 1em;
 }
 
-/*.wrapper div:nth-child(odd){
-	background-color: #ddd;
-}*/
+.wrapper > div:nth-child(odd){
+	/*background-color: #ddd;*/
+}
 
 .wrapHeader {
 	display: grid;
