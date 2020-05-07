@@ -172,7 +172,7 @@
             <div id="cardPanel_left" class="col-3">
                 <h1 id="cardMenuTitle">Card Menu</h1>
                 <div id="playerClr" *ngIf="playerstate"
-                    matTooltip="{{playerstate.suspect}}"
+                    matTooltip="{{playerstate.suspect}}" matTooltipPosition="right"
                     [ngClass]="{
                         'ColonelMustardBkgd': playerstate.suspect === 'Colonel Mustard',
                         'MissScarletBkgd': playerstate.suspect === 'Miss Scarlet',
@@ -182,11 +182,11 @@
                         'MrsPeacockBkgd': playerstate.suspect === 'Mrs Peacock'
                         }"
                 ></div>
-                <button *ngIf="playerstate" id="suggBtn" class="genButtonStyle" matTooltip="Make a suggestion"
+                <button *ngIf="playerstate" id="suggBtn" class="genButtonStyle"
                     [disabled]="!playerstate.isSuggestionValid" [ngClass]="{'isDisabled': !!playerstate.isSuggestionValid}"
                 >Suggestion</button>
 
-                <button type="button" id="endTurn" class="genButtonStyle" name="button" matTooltip="End your turn" (click)="endTurn()">End Turn</button>
+                <button type="button" id="endTurn" class="genButtonStyle" name="button" (click)="endTurn()">End Turn</button>
             </div>
 
             <div id="cardPanel_right" class="col-9">
