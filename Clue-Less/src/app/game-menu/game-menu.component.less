@@ -63,7 +63,7 @@
 
 // set max-height for each checklist item
 .sublist .mat-list-item {
-    max-height: 1em;
+    max-height: 1.5em;
 }
 
 /* Created a general button style class to reduce boilerplate style code. */
@@ -131,6 +131,7 @@ div, h1, h2, p {
     position: relative;
     left: 25%;
     top: 70%;
+    margin: 1em 0;
 }
 
 #checklistPanel, #cardPanel_left, #cardPanel_right {
@@ -138,6 +139,15 @@ div, h1, h2, p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+#checklistPanel {
+    display: block;
+}
+#checklist {
+    display: block;
+    position: relative;
+    left: 25%;
+    padding-bottom: 1em;
 }
 #accuBtn, #checklist
 #cardMenuTitle, #playerClr, #suggBtn,#endTurn,

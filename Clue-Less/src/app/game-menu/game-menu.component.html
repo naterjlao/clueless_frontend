@@ -7,18 +7,28 @@
             <h2 *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId">It's your turn!</h2>
         </div>
 
-        <div id="topMessage" class="row">
-            <button id="exitButton" class="col genButtonStyle" (click)="disconnect()" matTooltip="Quit game">
+        <div class="d-flex justify-content-between">
+            <button id="exitButton" class="genButtonStyle" (click)="disconnect()" matTooltip="Quit game">
                 <a class="navButtonLink" routerLink="/start" routerLinkActive="active">Exit</a>
             </button>
             <button *ngIf="gamestate && !gameHasBegun && playerId === 'player0'"
                 [disabled]="!(gamestate.characters_in_game.length > 1)"
                 [ngClass]="{'isDisabled': !(gamestate.characters_in_game.length > 1)}"
-                (click)="beginGame()" id="beginButton" class="col genButtonStyle"
+                (click)="beginGame()" id="beginButton" class="genButtonStyle"
                 matTooltip="Player 1, Begin Game">
                 <b>Begin Game</b>
             </button>
-            <a class="col" href="#" onclick="window.open('../../assets/Clue-Less_Rules.pdf', '_blank', 'fullscreen=yes');">Clue-Less Game Rules</a>
+            <a class="d-flex align-items-end" href="#"
+                onclick="window.open('../../assets/Clue-Less_Rules.pdf', '_blank', 'fullscreen=yes'); return false;">
+                <h4 style="margin: 0">Clue-Less Game Rules</h4>
+                <!-- Open in new window icon -->
+                <div>
+                    <svg class="bi bi-box-arrow-up-right" style="font-size: 15px;" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M1.5 13A1.5 1.5 0 003 14.5h8a1.5 1.5 0 001.5-1.5V9a.5.5 0 00-1 0v4a.5.5 0 01-.5.5H3a.5.5 0 01-.5-.5V5a.5.5 0 01.5-.5h4a.5.5 0 000-1H3A1.5 1.5 0 001.5 5v8zm7-11a.5.5 0 01.5-.5h5a.5.5 0 01.5.5v5a.5.5 0 01-1 0V2.5H9a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+                        <path fill-rule="evenodd" d="M14.354 1.646a.5.5 0 010 .708l-8 8a.5.5 0 01-.708-.708l8-8a.5.5 0 01.708 0z" clip-rule="evenodd"/>
+                    </svg>
+                </div>
+            </a>
         </div>
 
         <div id="top" class="row no-gutters">
@@ -59,7 +69,7 @@
                     <button id="accuBtn" class="genButtonStyle">Accusation</button>
 
                     <div id="checklist">
-                        <h1>Checklist</h1>
+                        <h1 id="checklistTitle"><u>Checklist</u></h1>
 
                         <h2 class="sublist-title">Suspects</h2>
                         <mat-list class="sublist">
@@ -88,7 +98,7 @@
                             </mat-list-item>
                         </mat-list>
 
-                        <h2 class="sublist-title">Weapons</h2>
+                        <h2 class="sublist-title" style="padding-top: 1em;">Weapons</h2>
                         <mat-list class="sublist">
                             <mat-list-item>
                                 <mat-checkbox>Candlestick</mat-checkbox>
@@ -115,7 +125,7 @@
                             </mat-list-item>
                         </mat-list>
 
-                        <h2 class="sublist-title">Rooms</h2>
+                        <h2 class="sublist-title" style="padding-top: 1em;">Rooms</h2>
                         <mat-list class="sublist">
                             <mat-list-item>
                                 <mat-checkbox>Conservatory</mat-checkbox>
