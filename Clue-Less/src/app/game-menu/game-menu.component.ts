@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, ElementRef, ViewChild } from '@angular/core';
 import { ServerService } from '../server-service/server.service';
 
 @Component({
@@ -6,7 +6,9 @@ import { ServerService } from '../server-service/server.service';
    templateUrl: './game-menu.component.html',
    styleUrls: ['./game-menu.component.less']
 })
-export class GameMenuComponent implements OnInit {
+export class GameMenuComponent implements OnInit, AfterViewChecked  {
+
+   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
    socket: any;
 
@@ -53,10 +55,15 @@ export class GameMenuComponent implements OnInit {
    }
 
    ngOnInit() {
+      this.scrollToBottom();
    }
 
    ngAfterViewInit() {
       this.serverSvc.enteredGame(); // notify server of client entering game-menu to trigger initialization communications
+   }
+
+   ngAfterViewChecked() {
+      this.scrollToBottom();
    }
 
    beginGame() {
@@ -88,6 +95,12 @@ export class GameMenuComponent implements OnInit {
          // should never be more than 6 players, but this is reached if playerId is undefined
          return 'TIAAT';
       }
+   }
+
+   scrollToBottom(): void {
+      try {
+         this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+      } catch(err) { }
    }
 
    disconnect() {
