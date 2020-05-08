@@ -129,7 +129,6 @@ div, h1, h2, p {
 #accuBtn {
     display: block;
     position: relative;
-    left: 25%;
     top: 70%;
     margin: 1em 0;
 }
@@ -208,4 +207,12 @@ div, h1, h2, p {
 .sublist-title {
     padding-bottom: 0 !important;
     margin-bottom: 0;
+}
+
+// keep checklist colored black even though it's disabled
+::ng-deep .mat-checkbox .mat-checkbox-frame {
+    border-color: black;
+}
+::ng-deep .mat-checkbox .mat-checkbox-label {
+    color: black;
 }

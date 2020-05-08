@@ -8,7 +8,7 @@
         </div>
 
         <div class="d-flex justify-content-between">
-            <button id="exitButton" class="genButtonStyle" (click)="disconnect()" matTooltip="Quit game">
+            <button id="exitButton" class="genButtonStyle" (click)="openExitDialog()" matTooltip="Quit game" matTooltipPosition="right">
                 <a class="navButtonLink" routerLink="/start" routerLinkActive="active">Exit</a>
             </button>
             <button *ngIf="gamestate && !gameHasBegun && playerId === 'player0'"
@@ -65,8 +65,15 @@
 
             <div class="col-3">
                 <div id="checklistPanel" class="col">
-                    <!--accuBtn is for when players make their one allowed accusation-->
-                    <button id="accuBtn" class="genButtonStyle">Accusation</button>
+
+                    <div class="d-flex align-items-center justify-content-center">
+                        <!--accuBtn is for when players make their one allowed accusation-->
+                        <button id="accuBtn" class="genButtonStyle"
+                            [disabled]="!gameHasBegun || (gamestate && gamestate.currentPlayerId !== playerId)"
+                            [ngClass]="{'isDisabled': !gameHasBegun || (gamestate && gamestate.currentPlayerId !== playerId)}">
+                            Accusation
+                        </button>
+                    </div>
 
                     <div id="checklist" class="d-flex flex-column">
                         <h1 id="checklistTitle" class="p-2"><u>Checklist</u></h1>
@@ -183,10 +190,16 @@
                         }"
                 ></div>
                 <button *ngIf="playerstate" id="suggBtn" class="genButtonStyle"
-                    [disabled]="!playerstate.isSuggestionValid" [ngClass]="{'isDisabled': !!playerstate.isSuggestionValid}"
-                >Suggestion</button>
+                    [disabled]="!playerstate.isSuggestionValid || !gameHasBegun || (gamestate && gamestate.currentPlayerId !== playerId)"
+                    [ngClass]="{'isDisabled': !!playerstate.isSuggestionValid || !gameHasBegun || (gamestate && gamestate.currentPlayerId !== playerId)}">
+                    Suggestion
+                </button>
 
-                <button type="button" id="endTurn" class="genButtonStyle" name="button" (click)="endTurn()">End Turn</button>
+                <button type="button" id="endTurn" class="genButtonStyle" name="button" (click)="endTurn()"
+                    [disabled]="!gameHasBegun || (gamestate && gamestate.currentPlayerId !== playerId)"
+                    [ngClass]="{'isDisabled': !gameHasBegun || (gamestate && gamestate.currentPlayerId !== playerId)">
+                    End Turn
+                </button>
             </div>
 
             <div id="cardPanel_right" class="col-9">
