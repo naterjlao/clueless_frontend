@@ -197,7 +197,7 @@
 
                 <button type="button" id="endTurn" class="genButtonStyle" name="button" (click)="endTurn()"
                     [disabled]="!gameHasBegun || (gamestate && gamestate.currentPlayerId !== playerId)"
-                    [ngClass]="{'isDisabled': !gameHasBegun || (gamestate && gamestate.currentPlayerId !== playerId)">
+                    [ngClass]="{'isDisabled': !gameHasBegun || (gamestate && gamestate.currentPlayerId !== playerId)}">
                     End Turn
                 </button>
             </div>
