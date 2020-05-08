@@ -125,8 +125,6 @@ export class GameMenuComponent implements OnInit, AfterViewChecked  {
       this.moveOptions_subscription.unsubscribe();
       this.cardList_subscription.unsubscribe();
       this.message_subscription.unsubscribe();
-
-      this.serverSvc.removeSocket();
    }
 
 }
