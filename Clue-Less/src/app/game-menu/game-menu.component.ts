@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewChecked, ElementRef, ViewChild } from '@ang
 import { ServerService } from '../server-service/server.service';
 import { ExitDialogComponent } from '../exit-dialog/exit-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
    selector: 'game-menu',
@@ -26,7 +27,7 @@ export class GameMenuComponent implements OnInit, AfterViewChecked  {
    characterNames = ['Colonel Mustard', 'Miss Scarlet', 'Professor Plum',
    'Mr Green', 'Mrs White', 'Mrs Peacock']; // all possible character names
 
-   constructor(private serverSvc: ServerService, public dialog: MatDialog) {
+   constructor(private serverSvc: ServerService, public dialog: MatDialog, private router: Router) {
       this.socket = this.serverSvc.getSocket();
 
       /* subscriptions to Subjects from the serverService */
@@ -83,7 +84,7 @@ export class GameMenuComponent implements OnInit, AfterViewChecked  {
    openExitDialog(): void {
       this.dialog.open(ExitDialogComponent, {
          maxWidth: "400px",
-         data: { exitFunction: this.disconnect() }
+         data: { }
       });
    }
 

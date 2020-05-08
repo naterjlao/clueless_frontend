@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServerService } from '../server-service/server.service';
 import { ExitDialogComponent } from '../exit-dialog/exit-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import $ from 'jquery';
 
 @Component({
@@ -18,7 +19,7 @@ export class PlayerSelectMenuComponent implements OnInit {
   currentCharacterSelected; // holds the currently selected player
   characterSelected; // captures the player's final character selection
 
-  constructor(private serverSvc: ServerService, public dialog: MatDialog) {
+  constructor(private serverSvc: ServerService, public dialog: MatDialog, private router: Router) {
     this.availableCharacters_subscription = this.serverSvc.availableCharacters.subscribe({
       next: (availChars) => { console.log(availChars); this.availableCharacters = availChars; }
     });
@@ -68,8 +69,12 @@ export class PlayerSelectMenuComponent implements OnInit {
   openExitDialog(): void {
     this.dialog.open(ExitDialogComponent, {
       maxWidth: "400px",
-      data: { exitFunction: this.disconnect() }
+      data: { }
     });
+  }
+
+  goToPage(pageName:string){
+    this.router.navigate([`${pageName}`]);
   }
 
   disconnect() {

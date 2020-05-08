@@ -1,6 +1,6 @@
 <nav>
-    <button id="exitButton" (click)="openExitDialog()" matTooltip="Quit game" matTooltipPosition="right">
-        <a class="navButtonLink" routerLink="/start" routerLinkActive="active">Exit</a>
+    <button (click)="openExitDialog()" id="exitButton" matTooltip="Quit game" matTooltipPosition="right">
+        Exit
     </button>
 </nav>
 
@@ -65,9 +65,7 @@
 </button>
 
 <nav *ngIf="characterSelected">
-    <button id="enterButton">
-        <a [routerLink]="'/game'" routerLinkActive="active" class="navButtonLink">
-            Enter Game
-        </a>
+    <button id="enterButton" (click)="goToPage('game')">
+        Enter Game
     </button>
 </nav>
