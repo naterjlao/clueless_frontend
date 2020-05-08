@@ -18,6 +18,8 @@ export class ExitDialogComponent {
 
       onConfirm(): void {
         this.disconnect();
+        this.dialogRef.close();
+        this.goToPage('start');
       }
 
       onCancel(): void {
@@ -30,6 +32,5 @@ export class ExitDialogComponent {
 
       disconnect() {
         this.serverSvc.removeSocket();
-        this.goToPage('start');
       }
 }
