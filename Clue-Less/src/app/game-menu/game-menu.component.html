@@ -1,190 +1,77 @@
-<ng-container *ngIf="socket">
+<ng-container *ngIf="socket"> 
     <div id="Clueless">
-		<h2 *ngIf="gamestate && gamestate.characters_in_game.length > 1 && !gameHasBegun">Player 1 only can start the game! Begin whenever you're ready.</h2>
-        <h2 *ngIf="gamestate && !(gamestate.characters_in_game.length > 1)">Waiting for at least 1 more player to join...</h2>
-        <h2 *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId">It's your turn!</h2>
+		<h2 *ngIf="availableCharacters.length < 5 && !gameHasBegun">First Player only can start the game! Begin whenever you're ready.</h2>
+        <h2 *ngIf="!(availableCharacters.length < 5)">Waiting for at least 1 more player to join...</h2>
 
-        <button id="exitButton" class="genButtonStyle" (click)="disconnect()"><a class="navButtonLink" routerLink="/start" routerLinkActive="active">Exit</a></button>
-        <button *ngIf="gamestate && !gameHasBegun && playerId === 'player0'"
-            [disabled]="!(gamestate.characters_in_game.length > 1)"
-            [ngClass]="{'isDisabled': !(gamestate.characters_in_game.length > 1)}"
+        <button id="exitButton" (click)="disconnect()" class="genButtonStyle"><a routerLink="/start" routerLinkActive="active" class="navButtonLink">Exit</a></button>
+        <button *ngIf="playerId === 'player0' && !gameHasBegun"
+            [disabled]="!gameIsReady"
+            [ngClass]="{'isDisabled': !gameIsReady}"
             (click)="beginGame()" id="beginButton" class="genButtonStyle">
             Begin Game
         </button>
 	</div>
 	<div class="wrapper" id="Clueless">
-		<div></div>
-		<div>
+		<div></div> <!--This div is for the left-side margin.-->
+		<div><!--This is the beginning of the div for the middle column.-->
 			<div class="wrapHeader">
-				<h1>Players</h1>
-                    <ng-container *ngIf="gamestate">
-						<h3 *ngFor='let c of gamestate.characters_in_game'
-                                [ngClass]="{
-                                    'ColonelMustardFont': c === 'Colonel Mustard',
-                                    'MissScarletFont': c === 'Miss Scarlet',
-                                    'ProfessorPlumFont': c === 'Professor Plum',
-                                    'MrGreenFont': c === 'Mr Green',
-                                    'MrsWhiteFont': c === 'Mrs White',
-                                    'MrsPeacockFont': c === 'Mrs Peacock'
-                                }">
-                                {{c}}
-                        </h3>
-                    </ng-container>
-				<p *ngIf="gameHasBegun && gamestate" class="playerInfo" id="whosTurn"><b>It's {{getPlayerNum(gamestate.currentPlayerId)}}'s turn!</b></p>
+				<h1 class="col">Players</h1>
+                    <h3 class="col" *ngFor='let c of charactersInGame'
+                        [ngClass]="{
+                            'ColonelMustard': c === 'Colonel Mustard',
+                            'MissScarlet': c === 'Miss Scarlet',
+                            'ProfessorPlum': c === 'Professor Plum',
+                            'MrGreen': c === 'Mr Green',
+                            'MrsWhite': c === 'Mrs White',
+                            'MrsPeacock': c === 'Mrs Peacock'
+                        }">
+                        {{c}}
+                    </h3>
+					<p *ngIf="gameHasBegun" class="playerInfo" id="whosTurn"><b>It's {{getPlayerNum(whosTurn)}}'s turn!</b></p>
                 <p class="playerInfo" id="playerNumber"><i>You are {{getPlayerNum(playerId)}}</i></p>
 			</div>
 			<div class="gameboardDiv">
-				<div><gameboard id="gameboard"></gameboard></div>
+				<div>
+					<div id="gameBoard">
+						<canvas [hidden]="showGameBoard" id="game" #game></canvas>
+						<gameboard [hidden]="!showGameBoard" id="gameboard"></gameboard>
+					</div>
+				</div>
 				<div>
 					<h1>Checklist</h1>
-
-                    <h2 class="sublist-title">Suspects</h2>
-                    <mat-list class="sublist">
-                        <mat-list-item>
-                            <mat-checkbox>Mr. Green</mat-checkbox>
-                        </mat-list-item>
-
-                        <mat-list-item>
-                            <mat-checkbox>Prof. Plum</mat-checkbox>
-                        </mat-list-item>
-
-                        <mat-list-item>
-                            <mat-checkbox>Coln. Mustard</mat-checkbox>
-                        </mat-list-item>
-
-                        <mat-list-item>
-                            <mat-checkbox>Mrs. Peacock</mat-checkbox>
-                        </mat-list-item>
-
-                        <mat-list-item>
-                            <mat-checkbox>Miss Scarlet</mat-checkbox>
-                        </mat-list-item>
-
-                        <mat-list-item>
-                            <mat-checkbox>Mrs. White</mat-checkbox>
-                        </mat-list-item>
-                    </mat-list>
-
-                    <h2 class="sublist-title">Weapons</h2>
-                    <mat-list class="sublist">
-                        <mat-list-item>
-                            <mat-checkbox>Candlestick</mat-checkbox>
-                        </mat-list-item>
-
-                        <mat-list-item>
-                            <mat-checkbox>Knife</mat-checkbox>
-                        </mat-list-item>
-
-                        <mat-list-item>
-                            <mat-checkbox>Lead Pipe</mat-checkbox>
-                        </mat-list-item>
-
-                        <mat-list-item>
-                            <mat-checkbox>Revolver</mat-checkbox>
-                        </mat-list-item>
-
-                        <mat-list-item>
-                            <mat-checkbox>Rope</mat-checkbox>
-                        </mat-list-item>
-
-                        <mat-list-item>
-                            <mat-checkbox>Wrench</mat-checkbox>
-                        </mat-list-item>
-                    </mat-list>
-
-                    <h2 class="sublist-title">Rooms</h2>
-                    <mat-list class="sublist">
-                        <mat-list-item>
-                            <mat-checkbox>Conservatory</mat-checkbox>
-                        </mat-list-item>
-
-                        <mat-list-item>
-                            <mat-checkbox>Lounge</mat-checkbox>
-                        </mat-list-item>
-
-                        <mat-list-item>
-                            <mat-checkbox>Kitchen</mat-checkbox>
-                        </mat-list-item>
-
-                        <mat-list-item>
-                            <mat-checkbox>Library</mat-checkbox>
-                        </mat-list-item>
-
-                        <mat-list-item>
-                            <mat-checkbox>Hall</mat-checkbox>
-                        </mat-list-item>
-
-                        <mat-list-item>
-                            <mat-checkbox>Study</mat-checkbox>
-                        </mat-list-item>
-
-                        <mat-list-item>
-                            <mat-checkbox>Ballroom</mat-checkbox>
-                        </mat-list-item>
-
-                        <mat-list-item>
-                            <mat-checkbox>Dining Room</mat-checkbox>
-                        </mat-list-item>
-
-                        <mat-list-item>
-                            <mat-checkbox>Billiard Room</mat-checkbox>
-                        </mat-list-item>
-                    </mat-list>
-                    <!--accuBtn is for when players make their one allowed accusation-->
-                    <button id="accuBtn" class="genButtonStyle">Accusation</button>
+                
+					<!--accuBtn is for when players make their one allowed accusation-->
+					<button id="accuBtn" class="genButtonStyle">Accusation</button>
 				</div>
 			</div>
-			<div class="cardPanels">
-				<div><h1 id="cardMenuTitle">Card Menu</h1>
-                <div id="playerClr" *ngIf="playerstate"
-                [ngClass]="{
-                    'ColonelMustardBkgd': playerstate.suspect === 'Colonel Mustard',
-                    'MissScarletBkgd': playerstate.suspect === 'Miss Scarlet',
-                    'ProfessorPlumBkgd': playerstate.suspect === 'Professor Plum',
-                    'MrGreenBkgd': playerstate.suspect === 'Mr Green',
-                    'MrsWhiteBkgd': playerstate.suspect === 'Mrs White',
-                    'MrsPeacockBkgd': playerstate.suspect === 'Mrs Peacock'
-                    }"
-                ></div>
-                <button *ngIf="playerstate" id="suggBtn" class="genButtonStyle"
-                    [disabled]="!playerstate.isSuggestionValid" [ngClass]="{'isDisabled': !!playerstate.isSuggestionValid}"
-                >Suggestion</button>
-
-                <button type="button" id="endTurn" class="genButtonStyle" name="button" (click)="endTurn()">End Turn</button></div>
+			<div class="cardPanelDiv">
 				<div>
-						<div id="outputTxt">
-						<!--<h5 *ngIf="message">{{message.message}}</h5>-->
-					</div>
-
-					<div id="playerHnd" class="card-columns">
-						<div *ngFor="let card of cardList" class="card bg-light mb-3" style="max-width: 18rem;">
-							<div class="card-header">{{card}}</div>
-							<div class="card-header"><small class="text-muted">Type</small></div>
-							<img class="card-img-bottom" src="" alt="card">
-						</div>
-					</div>
-
-					<!--<div id="moveOptions" *ngIf="gameHasBegun && gametate && gamestate.currentPlayerId === playerId">
-						<p class="col">Choose a room to move to:</p>
-						<button *ngFor="let move of moveOptions" class="col moveButtons" value="move" (click)="makeMove(move)">
-							{{ move.includes('-') ? move + ' Hallway' : move }}
-						</button>
-                </div>-->
+					<div id="playerClr"></div>
+					<button type="button" id="endTurn" name="button" (click)="endTurn()" class="genButtonStyle">End Turn</button>
+				</div>
+				<div>
+					<div id="moveOptions" *ngIf="gameHasBegun && turnData && turnData.playerId === 'playerId'">
+                    <p>Choose a room to move to:</p>
+                    <!--Placeholder Variable Explanation-->
+                    <!--"move" would be the text on the button and the value sent back to backend.-->
+                    <button *ngFor="let move of turnData.move_options" id="button{{move}}" class="moveButtons" value="{{move}}" (click)="makeMove(move)">
+                        {{move}}
+                    </button>
+                </div>
+                
+                <!--suggBtn is the button for players to make suggestions when they can.-->
+                <button id="suggBtn" class="genButtonStyle">Suggestion</button>
+                
+                <!--playerHnd div is to contain the player's cards they're dealt at the beginning of the game-->
+               <div id="playerHnd"></div>
 				</div>
 			</div>
-		</div>
-		<div></div>
+		</div> <!--This is the end of the div for the middle column.-->
+		<div></div> <!--This div is for the right-side margin-->
 	</div>
-		<ng-container *ngIf="!socket">
-			<h1>Sorry! You are no longer connected to the game :(</h1>
-			<h2>Re-enter the game hosting URL to restart.</h2>
-			<h2>In addition, turn off your computer, reset your circuit breaker and check your plumbing!</h2>
-		</ng-container>
-</ng-container>
     
     
     
-    <!--ALL GREEN TEXT BELOW HERE IS JUST BACKUP, IGNORE.-->
     <!--<div id="ClueLess">
 
         <h2 *ngIf="availableCharacters.length < 5 && !gameHasBegun">First Player only can start the game! Begin whenever you're ready.</h2>
@@ -248,7 +135,7 @@
                 
                 <!--playerClr div will display the color of the suspect the player chose to play as so they do not get lost while playing.-->
                 <!--TODO - Stlying: Re-aling playerClr div and endTurn button after switchGameBoard button is removed-->
-               <!-- <div id="playerClr"></div>
+               <!--<div id="playerClr"></div>
 
                 <button type="button" id="endTurn" name="button" (click)="endTurn()" class="genButtonStyle">End Turn</button>-->
                 
@@ -261,7 +148,7 @@
                     <p>Choose a room to move to:</p>-->
                     <!--Placeholder Variable Explanation-->
                     <!--"move" would be the text on the button and the value sent back to backend.-->
-                <!--    <button *ngFor="let move of turnData.move_options" id="button{{move}}" class="moveButtons" value="{{move}}" (click)="makeMove(move)">
+                    <!--<button *ngFor="let move of turnData.move_options" id="button{{move}}" class="moveButtons" value="{{move}}" (click)="makeMove(move)">
                         {{move}}
                     </button>
                 </div>-->
@@ -270,20 +157,20 @@
                 <!--<button id="suggBtn" class="genButtonStyle">Suggestion</button>-->
                 
                 <!--playerHnd div is to contain the player's cards they're dealt at the beginning of the game-->
-               <!--<div id="playerHnd"></div>-->
+               <!--<div id="playerHnd"></div>
 
-                <!--<button (click)="move('left')">Left</button>
+                <button (click)="move('left')">Left</button>
                 <button (click)="move('right')">Right</button>
                 <button (click)="move('up')">Up</button>
-                <button (click)="move('down')">Down</button>-->
-           <!--</div>
+                <button (click)="move('down')">Down</button>
+           </div>
             </div>
         </div>
-    </div>
+    </div>-->
 </ng-container>
 
 <ng-container *ngIf="!socket">
     <h1>Sorry! You are no longer connected to the game :(</h1>
     <h2>Re-enter the game hosting URL to restart.</h2>
 	<h2>In addition, turn off your computer, reset your circuit breaker and check your plumbing!</h2>
-</ng-container>-->
+</ng-container>
