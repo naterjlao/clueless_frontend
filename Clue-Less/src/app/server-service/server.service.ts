@@ -135,7 +135,7 @@ export class ServerService {
 
    // The backend will send back a list of available choices of suspects, rooms and weapons for the suggestion
    updateSuggestionOptions() {
-      this.socket.on('suggestion_options ', data => {
+      this.socket.on('suggestion_options', data => {
          /*
             data emitted from server is in the following form:
          {
@@ -152,7 +152,7 @@ export class ServerService {
 
    // The backend will send back a list of available choices of suspects, rooms and weapons for the accusation
    updateAccusationOptions() {
-      this.socket.on('accusation_options ', data => {
+      this.socket.on('accusation_options', data => {
          /*
             data emitted from server is in the following form:
          {
