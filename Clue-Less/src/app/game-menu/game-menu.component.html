@@ -237,7 +237,7 @@
                     </div> -->
                 </div>
 
-                <div id="moveOptions" *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId && gamestate.turnStatus !== 'SUGGESTION'"">
+                <div id="moveOptions" *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId && gamestate.turnStatus !== 'SUGGESTION'">
                     <p class="col">Choose a room to move to:</p>
                     <div class="d-flex justify-content-center">
                         <button *ngFor="let move of moveOptions" class="col moveButtons" value="move" (click)="makeMove(move)">

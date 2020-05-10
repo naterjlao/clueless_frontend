@@ -91,7 +91,7 @@ export class ServerService {
            data emitted from server is in the following form:
          {
             currentPlayerId:<playerId of the player that has the current turn>
-            turnStatus: <string of the status of the turn, pulled from backend’s gameState.turnStatus>
+            turnStatus: <INITIAL, STARTED, MOVE, MOVED, SUGGESTION, ACCUSATION, END>
             suggestionCharacter: <character name of player that needs to respond to suggestion>
             availableCharacters: <list of characters that are available to be picked>
             characters_in_game: <list of string characters selected by all players in the game>
