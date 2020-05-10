@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild, Renderer2, ElementRef } from '@angular/core';
-import { element } from 'protractor';
+import { Component, OnInit } from '@angular/core';
 import { ServerService } from '../server-service/server.service';
 
 @Component({
@@ -9,11 +8,15 @@ import { ServerService } from '../server-service/server.service';
 })
 export class GameboardComponent implements OnInit {
 
-  gameState; gameState_subscription;
+  gameboard; gameboard_subscription;
+  gameboardKeys;
 
-  constructor(private serverSvc: ServerService, private renderer: Renderer2, private el: ElementRef) {
-    this.gameState_subscription = this.serverSvc.gameState.subscribe({
-      next: (gameState) => { this.gameState = gameState; }
+  constructor(private serverSvc: ServerService) {
+    this.gameboard_subscription = this.serverSvc.gameboard.subscribe({
+      next: (gameboard) => {
+        this.gameboard = gameboard;
+        this.gameboardKeys = Object.keys(gameboard);
+      }
     });
   }
 
@@ -24,7 +27,7 @@ export class GameboardComponent implements OnInit {
   }
 
   ngOnDestroy() { //prevent memory leak when component destroyed
-    this.gameState_subscription.unsubscribe();
+    this.gameboard_subscription.unsubscribe();
   }
 
 }

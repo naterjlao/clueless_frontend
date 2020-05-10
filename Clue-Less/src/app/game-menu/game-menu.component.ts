@@ -1,78 +1,91 @@
-import { Component, OnInit, ViewChild, Renderer2, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, ElementRef, ViewChild } from '@angular/core';
 import { ServerService } from '../server-service/server.service';
+import { ExitDialogComponent } from '../exit-dialog/exit-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
    selector: 'game-menu',
    templateUrl: './game-menu.component.html',
    styleUrls: ['./game-menu.component.less']
 })
-export class GameMenuComponent implements OnInit {
+export class GameMenuComponent implements OnInit, AfterViewChecked  {
 
-   @ViewChild('game', { static: false }) private gameCanvas: ElementRef;
+   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
-   private context: any;
    socket: any;
 
-   gameIsReady; gameIsReady_subscription;
+   gameHasBegun; gameHasBegun_subscription;
    playerId; playerId_subscription;
-   whosTurn; whosTurn_subscription;
-   position; position_subscription;
    availableCharacters; availableCharacters_subscription;
-   gameState; gameState_subscription;
-   turnData; turnData_subscription;
+   playerstate; playerstate_subscription;
+   gamestate; gamestate_subscription;
+   moveOptions; moveOptions_subscription;
+   cardList; cardList_subscription;
+   message; message_subscription;
 
-   showGameBoard = false; //temp variable for dev use
-   gameHasBegun = false;
    characterNames = ['Colonel Mustard', 'Miss Scarlet', 'Professor Plum',
    'Mr Green', 'Mrs White', 'Mrs Peacock']; // all possible character names
-   charactersInGame = []; // holds all characters in the game that players have chosen
 
-   constructor(private serverSvc: ServerService) {
+   constructor(private serverSvc: ServerService, public dialog: MatDialog, private router: Router) {
       this.socket = this.serverSvc.getSocket();
 
       /* subscriptions to Subjects from the serverService */
-      this.gameIsReady_subscription = this.serverSvc.gameIsReady.subscribe({
-         next: (gameIsReady) => { this.gameIsReady = gameIsReady; }
+      this.gameHasBegun_subscription = this.serverSvc.gameHasBegun.subscribe({
+         next: (gameHasBegun) => this.gameHasBegun = gameHasBegun
       });
       this.playerId_subscription = this.serverSvc.playerIdChange.subscribe({
          next: (playerId) => this.playerId = playerId
       });
-      this.whosTurn_subscription = this.serverSvc.whosTurn.subscribe({
-         next: (turn) => this.whosTurn = turn
-      });
-      this.position_subscription = this.serverSvc.positionChange.subscribe({
-         next: (position) => { this.position = position; this.positionChange(this.position); }
-      });
       this.availableCharacters_subscription = this.serverSvc.availableCharacters.subscribe({
-         next: (availChars) => { this.availableCharacters = availChars; this.charactersInGame = this.getCharactersInGame(availChars) }
+         next: (availChars) => { this.availableCharacters = availChars; }
       });
-      this.gameState_subscription = this.serverSvc.gameState.subscribe({
-         next: (gameState) => { this.gameState = gameState; }
+      this.playerstate_subscription = this.serverSvc.playerstate.subscribe({
+         next: (playerstate) => { this.playerstate = playerstate; }
       });
-      this.turnData_subscription = this.serverSvc.turnData.subscribe({
-         next: (turnData) => { this.turnData = turnData; console.log(turnData); }
+      this.gamestate_subscription = this.serverSvc.gamestate.subscribe({
+         next: (gamestate) => { this.gamestate = gamestate; }
+      });
+      this.moveOptions_subscription = this.serverSvc.moveOptions.subscribe({
+         next: (moveOptions) => { this.moveOptions = moveOptions; }
+      });
+      this.cardList_subscription = this.serverSvc.cardList.subscribe({
+         next: (cardList) => { this.cardList = cardList; }
+      });
+      this.message_subscription = this.serverSvc.message.subscribe({
+         next: (message) => { this.message = message; }
       });
    }
 
    ngOnInit() {
+      this.scrollToBottom();
    }
 
    ngAfterViewInit() {
-      this.context = this.gameCanvas.nativeElement.getContext('2d');
       this.serverSvc.enteredGame(); // notify server of client entering game-menu to trigger initialization communications
+   }
+
+   ngAfterViewChecked() {
+      this.scrollToBottom();
    }
 
    beginGame() {
       this.serverSvc.startGame();
-      this.gameHasBegun = true;
    }
 
    makeMove(room: string) {
-      this.serverSvc.makeMove(room);
+      this.serverSvc.sendMoveChoice(room);
    }
 
    endTurn() {
       this.serverSvc.endTurn();
+   }
+
+   openExitDialog(): void {
+      this.dialog.open(ExitDialogComponent, {
+         maxWidth: "400px",
+         data: { }
+      });
    }
 
    getPlayerNum(playerId) {
@@ -94,8 +107,10 @@ export class GameMenuComponent implements OnInit {
       }
    }
 
-   getCharactersInGame(availChars) {
-      return this.characterNames.filter( (x) => !availChars.includes(x) );
+   scrollToBottom(): void {
+      try {
+         this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+      } catch(err) { }
    }
 
    disconnect() {
@@ -103,27 +118,13 @@ export class GameMenuComponent implements OnInit {
    }
 
    ngOnDestroy() { //prevent memory leak when component destroyed
-      this.gameIsReady_subscription.unsubscribe();
+      this.gameHasBegun_subscription.unsubscribe();
       this.playerId_subscription.unsubscribe();
-      this.whosTurn_subscription.unsubscribe();
-      this.position_subscription.unsubscribe();
-      this.gameState_subscription.unsubscribe();
-      this.turnData_subscription.unsubscribe();
-
-      this.serverSvc.removeSocket();
-   }
-
-   /* Block game functions below */
-
-   positionChange(position) {
-      if (position === {} || !this.gameCanvas || !this.context) return;
-
-      this.context.clearRect(0, 0, this.gameCanvas.nativeElement.width, this.gameCanvas.nativeElement.height);
-      this.context.fillRect(position.x, position.y, position.w, position.h);
-   }
-
-   move(direction: string) {
-      this.serverSvc.move(direction);
+      this.playerstate_subscription.unsubscribe();
+      this.gamestate_subscription.unsubscribe();
+      this.moveOptions_subscription.unsubscribe();
+      this.cardList_subscription.unsubscribe();
+      this.message_subscription.unsubscribe();
    }
 
 }

@@ -1,5 +1,7 @@
 <nav>
-    <button id="exitButton" (click)="disconnect()"><a class="navButtonLink" routerLink="/start" routerLinkActive="active">Exit</a></button>
+    <button (click)="openExitDialog()" id="exitButton" matTooltip="Quit game" matTooltipPosition="right">
+        Exit
+    </button>
 </nav>
 
 <h1 class="pgTitle">Select a character:</h1>
@@ -57,14 +59,13 @@
     </div>
 </div>
 
-<button *ngIf="!characterSelected" (click)="selectCharacter(currentCharacterSelected)" [disabled]="!currentCharacterSelected" id="selectButton">
+<button *ngIf="!characterSelected" (click)="selectCharacter(currentCharacterSelected)"
+    [disabled]="!currentCharacterSelected" [ngClass]="{'isDisabled': !currentCharacterSelected}" id="selectButton" >
     Select Character
 </button>
 
 <nav *ngIf="characterSelected">
-    <button id="enterButton">
-        <a [routerLink]="'/game'" routerLinkActive="active" class="navButtonLink">
-            Enter Game
-        </a>
+    <button id="enterButton" (click)="goToPage('game')">
+        Enter Game
     </button>
 </nav>

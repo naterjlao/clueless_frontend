@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ServerService } from '../server-service/server.service';
+import { ExitDialogComponent } from '../exit-dialog/exit-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import $ from 'jquery';
 
 @Component({
@@ -9,18 +12,14 @@ import $ from 'jquery';
 })
 export class PlayerSelectMenuComponent implements OnInit {
 
-  gameState; gameState_subscription;
   availableCharacters; availableCharacters_subscription;
 
   characterIds = ['ColonelMustard', 'MissScarlet', 'ProfessorPlum',
     'MrGreen', 'MrsWhite', 'MrsPeacock']; // used to add styles to player buttons
   currentCharacterSelected; // holds the currently selected player
   characterSelected; // captures the player's final character selection
-  
-  constructor(private serverSvc: ServerService) {
-    this.gameState_subscription = this.serverSvc.gameState.subscribe({
-      next: (gameState) => { this.gameState = gameState; }
-    });
+
+  constructor(private serverSvc: ServerService, public dialog: MatDialog, private router: Router) {
     this.availableCharacters_subscription = this.serverSvc.availableCharacters.subscribe({
       next: (availChars) => { console.log(availChars); this.availableCharacters = availChars; }
     });
@@ -50,7 +49,7 @@ export class PlayerSelectMenuComponent implements OnInit {
   // finalizes character selection and sends to server
   selectCharacter(character: string) {
     // add space into name to put in format that backend accepts
-    let characterNameFormatted = character.replace(/([A-Z])/g, ' $1').trim()
+    let characterNameFormatted = character.replace(/([A-Z])/g, ' $1').trim(); // add space in name
     this.serverSvc.selectCharacter(characterNameFormatted);
 
     // mark final selection and remove other options from screen
@@ -67,12 +66,23 @@ export class PlayerSelectMenuComponent implements OnInit {
     return this.availableCharacters.includes(character);
   }
 
+  openExitDialog(): void {
+    this.dialog.open(ExitDialogComponent, {
+      maxWidth: "400px",
+      data: { }
+    });
+  }
+
+  goToPage(pageName:string){
+    this.router.navigate([`${pageName}`]);
+  }
+
   disconnect() {
     this.serverSvc.removeSocket();
   }
 
   ngOnDestroy() { //prevent memory leak when component destroyed
-    this.gameState_subscription.unsubscribe();
+    this.availableCharacters_subscription.unsubscribe();
   }
 
 }

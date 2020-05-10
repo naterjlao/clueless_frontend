@@ -78,7 +78,6 @@ function onConnection() {
 function enteredGame(socket) {
     socket.on('entered_game', function() {
         // update client with playerID
-        socket.emit('startInfo', {player: socket.playerId}); // emit to this client
         Socketio.emit('turnChange', {turn: current_turn}); // emit to all clients the starting turn number
         socket.emit('position', {position: position}); // for temporary block moving game play
     });

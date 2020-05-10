@@ -5,36 +5,58 @@
 @color-white: #FFFFFF;
 @color-peacock: #004C99;
 
-.ColonelMustard {
+.ColonelMustardFont {
     color: @color-mustard;
 }
-.MissScarlet {
+.ColonelMustardBkgd {
+    background-color: @color-mustard;
+}
+.MissScarletFont {
     color: @color-scarlet;
 }
-.ProfessorPlum {
+.MissScarletBkgd {
+    background-color: @color-scarlet;
+}
+.ProfessorPlumFont {
     color: @color-plum;
 }
-.MrGreen {
+.ProfessorPlumBkgd {
+    background-color: @color-plum;
+}
+.MrGreenFont {
     color: @color-green;
 }
-.MrsWhite {
+.MrGreenBkgd {
+    background-color: @color-green;
+}
+.MrsWhiteFont {
     color: black; // black so the font shows on the white background
 }
-.MrsPeacock {
+.MrsWhiteBkgd {
+    background-color: @color-white;
+}
+.MrsPeacockFont {
     color: @color-peacock;
+}
+.MrsPeacockBkgd {
+    background-color: @color-peacock;
 }
 
 #ClueLess {
     padding: 5vh 5vw;
 }
 
-#playersPanel, #game, gameboard, #checklistPanel, #cardPanel {
+#top {
+    padding-top: 1em;
+}
+
+#playersPanel, gameboard, #checklistPanel, .cardPanel {
     border: 1px solid black;
     height: 100%;
     width: 100%;
 }
 
-#gameBoard, #game, gameboard {
+#gameBoard, gameboard {
     height: 100%;
     width: 100%;
 }
@@ -42,12 +64,10 @@
 #playersPanel {
     height: 5em;
 }
-#cardPanel {
-    height: 100%;
-}
 
-#switchGameBoard {
-    margin-right: 2em;
+// set max-height for each checklist item
+.sublist .mat-list-item {
+    max-height: 1.5em;
 }
 
 /* Created a general button style class to reduce boilerplate style code. */
@@ -76,14 +96,6 @@
     text-decoration: none;
 }
 
-/* Positioning of endTurn button*/
-#endTurn {
-    margin-left: 2em;
-    position: relative;
-    left: 4%;
-    top: 15px;
-}
-
 .isDisabled {
     color: currentColor;
     cursor: not-allowed;
@@ -102,6 +114,7 @@
     display: inline;
     margin: 0;
 }
+
 #whosTurn {
     float: left;
     padding-left: 5px;
@@ -116,22 +129,72 @@ div, h1, h2, p {
 	font-family: "Lucida Console", Verdana, Geneva, sans-serif;
 }
 
-/* Positioning for the suggestion button */
-#suggBtn {
-    display: block;
-    position: relative;
-    left: 85%;
-    bottom: 59%;
-}
-
 /* Positioning for the accusation button */
 #accuBtn {
     display: block;
     position: relative;
-    left: 25%;
     top: 70%;
+    margin: 1em 0;
 }
 
+#checklistPanel, #cardPanel_left, #cardPanel_right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#checklistPanel {
+    display: block;
+}
+#checklist {
+    display: block;
+    position: relative;
+    padding-bottom: 1em;
+}
+#accuBtn, #checklist
+#cardMenuTitle, #playerClr, #suggBtn,#endTurn,
+#outputTxt, #playerHnd, #moveOptions {
+    display: inline-block;
+    position: relative;
+}
+#playerClr {
+    border: 2px solid black;
+    height: 100px;
+    width: 100px;
+}
+#suggBtn {
+    margin: 1em;
+}
+#endTurn {
+    margin-bottom: 0.5em;
+}
+
+#outputTxt{
+    border: 2px solid #d4d6d4;
+    background-color: #d4d6d4;
+    height: 200px;
+    width: 70%;
+    margin: 1em;
+    margin-top: 0.5em;
+    overflow: scroll;
+}
+#playerHnd {
+    border: 2px solid black;
+    height: 23%;
+    width: 70%;
+    margin: 1em;
+    margin-top: 0.5em;
+}
+.card {
+    display: inline-block;
+    width: 10em;
+    height: 20em;
+}
+#moveOptions {
+    /*border: 2px solid grey;*/
+    height: 70px;
+    width: 55%;
+}
 /* Styling for the moveButtons within the moveOptions div. */
 .moveButtons {
 	color: black;
@@ -143,85 +206,18 @@ div, h1, h2, p {
 	font-size: 16px;
 }
 
-#outputTxt{
-    border: 2px solid #d4d6d4;
-    background-color: #d4d6d4;
-    height: 30%;
-    width: 70%;
-    position: relative;
-    left: 28%;
-    bottom: 65%;
+.sublist {
+    padding-top: 0 !important;
+}
+.sublist-title {
+    padding-bottom: 0 !important;
+    margin-bottom: 0;
 }
 
-#playerClr {
-    border: 2px solid black;
-    height: 100px;
-    width: 100px;
-    position: relative;
-    left: 7%;
+// keep checklist colored black even though it's disabled
+::ng-deep .mat-checkbox .mat-checkbox-frame {
+    border-color: black;
 }
-
-#playerHnd {
-    border: 2px solid black;
-    height: 23%;
-    width: 70%;
-    position: relative;
-    left: 28%;
-    bottom: 52%;
-}
-
-#moveOptions {
-    /*border: 2px solid grey;*/
-    height: 70px;
-    width: 55%;
-    position: relative;
-    left: 28%;
-    bottom: 43%;
-}
-
-.cardPanelDiv {
-	display: grid;
-	grid-template-columns: 1fr 3fr;
-	grid-auto-rows:minmax(100px, auto);
-	background-color: white;
-}
-
-.cardPanelDiv > div {
-	background-color: white;
-	border: solid black 3px;
-}
-
-.gameboardDiv {
-	display: grid;
-	grid-template-columns: 3fr 1fr;
-	grid-auto-rows:minmax(100px, auto);
-	background-color: white;
-}
-
-.gameboardDiv > div {
-	background-color: white;
-	border: solid black 3px;
-}
-
-.wrapper {
-	display: grid;
-	grid-template-columns: .5fr 2fr .5fr;
-	grid-auto-rows:minmax(10px, auto);
-}
-
-.wrapper > div {
-	/*background-color: #eee;*/
-	padding: 1em;
-}
-
-.wrapper > div:nth-child(odd){
-	/*background-color: #ddd;*/
-}
-
-.wrapHeader {
-	display: grid;
-	grid-template-columns: 1fr;
-	grid-auto-rows:minmax(auto, auto);
-	background-color: white;
-	border: solid black 3px;
+::ng-deep .mat-checkbox .mat-checkbox-label {
+    color: black;
 }

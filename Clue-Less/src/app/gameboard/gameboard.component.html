@@ -3,220 +3,220 @@
     rooms can have multiple characters
 -->
 
-<div id="board" *ngIf="gameState">
+<div id="board" class="d-flex justify-content-center" *ngIf="gameboard && gameboardKeys.length">
     <table>
         <tr id="row1">
             <td id="study" class="room">
                 Study
-                <div class="token" *ngIf="gameState.game_board['Study'].suspects.length > 0"
+                <div class="token" *ngIf="gameboard['Study'].length > 0"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Study'].suspects[0] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Study'].suspects[0] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Study'].suspects[0] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Study'].suspects[0] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Study'].suspects[0] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Study'].suspects[0] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Study'].length && gameboard['Study'][0] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Study'].length && gameboard['Study'][0] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Study'].length && gameboard['Study'][0] === 'Professor Plum',
+                        'MrGreen': gameboard['Study'].length && gameboard['Study'][0] === 'Mr Green',
+                        'MrsWhite': gameboard['Study'].length && gameboard['Study'][0] === 'Mrs White',
+                        'MrsPeacock': gameboard['Study'].length && gameboard['Study'][0] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Study'].suspects.length > 1"
+                <div class="token" *ngIf="gameboard['Study'].length > 1"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Study'].suspects[1] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Study'].suspects[1] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Study'].suspects[1] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Study'].suspects[1] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Study'].suspects[1] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Study'].suspects[1] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Study'].length > 1 && gameboard['Study'][1] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Study'].length > 1 && gameboard['Study'][1] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Study'].length > 1 && gameboard['Study'][1] === 'Professor Plum',
+                        'MrGreen': gameboard['Study'].length > 1 && gameboard['Study'][1] === 'Mr Green',
+                        'MrsWhite': gameboard['Study'].length > 1 && gameboard['Study'][1] === 'Mrs White',
+                        'MrsPeacock': gameboard['Study'].length > 1 && gameboard['Study'][1] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Study'].suspects.length > 2"
+                <div class="token" *ngIf="gameboard['Study'].length > 2"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Study'].suspects[2] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Study'].suspects[2] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Study'].suspects[2] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Study'].suspects[2] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Study'].suspects[2] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Study'].suspects[2] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Study'].length > 2 && gameboard['Study'][2] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Study'].length > 2 && gameboard['Study'][2] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Study'].length > 2 && gameboard['Study'][2] === 'Professor Plum',
+                        'MrGreen': gameboard['Study'].length > 2 && gameboard['Study'][2] === 'Mr Green',
+                        'MrsWhite': gameboard['Study'].length > 2 && gameboard['Study'][2] === 'Mrs White',
+                        'MrsPeacock': gameboard['Study'].length > 2 && gameboard['Study'][2] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Study'].suspects.length > 3"
+                <div class="token" *ngIf="gameboard['Study'].length > 3"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Study'].suspects[3] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Study'].suspects[3] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Study'].suspects[3] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Study'].suspects[3] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Study'].suspects[3] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Study'].suspects[3] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Study'].length > 3 && gameboard['Study'][3] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Study'].length > 3 && gameboard['Study'][3] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Study'].length > 3 && gameboard['Study'][3] === 'Professor Plum',
+                        'MrGreen': gameboard['Study'].length > 3 && gameboard['Study'][3] === 'Mr Green',
+                        'MrsWhite': gameboard['Study'].length > 3 && gameboard['Study'][3] === 'Mrs White',
+                        'MrsPeacock': gameboard['Study'].length > 3 && gameboard['Study'][3] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Study'].suspects.length > 4"
+                <div class="token" *ngIf="gameboard['Study'].length > 4"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Study'].suspects[4] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Study'].suspects[4] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Study'].suspects[4] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Study'].suspects[4] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Study'].suspects[4] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Study'].suspects[4] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Study'].length > 4 && gameboard['Study'][4] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Study'].length > 4 && gameboard['Study'][4] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Study'].length > 4 && gameboard['Study'][4] === 'Professor Plum',
+                        'MrGreen': gameboard['Study'].length > 4 && gameboard['Study'][4] === 'Mr Green',
+                        'MrsWhite': gameboard['Study'].length > 4 && gameboard['Study'][4] === 'Mrs White',
+                        'MrsPeacock': gameboard['Study'].length > 4 && gameboard['Study'][4] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Study'].suspects.length > 5"
+                <div class="token" *ngIf="gameboard['Study'].length > 5"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Study'].suspects[5] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Study'].suspects[5] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Study'].suspects[5] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Study'].suspects[5] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Study'].suspects[5] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Study'].suspects[5] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Study'].length > 5 && gameboard['Study'][5] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Study'].length > 5 && gameboard['Study'][5] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Study'].length > 5 && gameboard['Study'][5] === 'Professor Plum',
+                        'MrGreen': gameboard['Study'].length > 5 && gameboard['Study'][5] === 'Mr Green',
+                        'MrsWhite': gameboard['Study'].length > 5 && gameboard['Study'][5] === 'Mrs White',
+                        'MrsPeacock': gameboard['Study'].length > 5 && gameboard['Study'][5] === 'Mrs Peacock'
                     }"
                 ></div>
             </td>
             <td class="hhallway">
-                <div class="token" *ngIf="gameState.game_board['study-hall Passage'].suspects.length"
+                <div class="token" *ngIf="gameboard['Hall-Study'].length > 0"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['study-hall Passage'].suspects[0] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['study-hall Passage'].suspects[0] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['study-hall Passage'].suspects[0] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['study-hall Passage'].suspects[0] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['study-hall Passage'].suspects[0] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['study-hall Passage'].suspects[0] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Hall-Study'].length && gameboard['Hall-Study'][0] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Hall-Study'].length && gameboard['Hall-Study'][0] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Hall-Study'].length && gameboard['Hall-Study'][0] === 'Professor Plum',
+                        'MrGreen': gameboard['Hall-Study'].length && gameboard['Hall-Study'][0] === 'Mr Green',
+                        'MrsWhite': gameboard['Hall-Study'].length && gameboard['Hall-Study'][0] === 'Mrs White',
+                        'MrsPeacock': gameboard['Hall-Study'].length && gameboard['Hall-Study'][0] === 'Mrs Peacock'
                     }"
                 ></div>
             </td>
             <td id="hall" class="room">
                 Hall
-                <div class="token" *ngIf="gameState.game_board['Hall'].suspects.length > 0"
+                <div class="token" *ngIf="gameboard['Hall'].length > 0"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Hall'].suspects[0] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Hall'].suspects[0] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Hall'].suspects[0] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Hall'].suspects[0] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Hall'].suspects[0] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Hall'].suspects[0] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Hall'].length && gameboard['Hall'][0] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Hall'].length && gameboard['Hall'][0] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Hall'].length && gameboard['Hall'][0] === 'Professor Plum',
+                        'MrGreen': gameboard['Hall'].length && gameboard['Hall'][0] === 'Mr Green',
+                        'MrsWhite': gameboard['Hall'].length && gameboard['Hall'][0] === 'Mrs White',
+                        'MrsPeacock': gameboard['Hall'].length && gameboard['Hall'][0] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Hall'].suspects.length > 1"
+                <div class="token" *ngIf="gameboard['Hall'].length > 1"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Hall'].suspects[1] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Hall'].suspects[1] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Hall'].suspects[1] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Hall'].suspects[1] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Hall'].suspects[1] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Hall'].suspects[1] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Hall'].length > 1 && gameboard['Hall'][1] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Hall'].length > 1 && gameboard['Hall'][1] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Hall'].length > 1 && gameboard['Hall'][1] === 'Professor Plum',
+                        'MrGreen': gameboard['Hall'].length > 1 && gameboard['Hall'][1] === 'Mr Green',
+                        'MrsWhite': gameboard['Hall'].length > 1 && gameboard['Hall'][1] === 'Mrs White',
+                        'MrsPeacock': gameboard['Hall'].length > 1 && gameboard['Hall'][1] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Hall'].suspects.length > 2"
+                <div class="token" *ngIf="gameboard['Hall'].length > 2"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Hall'].suspects[2] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Hall'].suspects[2] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Hall'].suspects[2] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Hall'].suspects[2] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Hall'].suspects[2] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Hall'].suspects[2] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Hall'].length > 2 && gameboard['Hall'][2] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Hall'].length > 2 && gameboard['Hall'][2] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Hall'].length > 2 && gameboard['Hall'][2] === 'Professor Plum',
+                        'MrGreen': gameboard['Hall'].length > 2 && gameboard['Hall'][2] === 'Mr Green',
+                        'MrsWhite': gameboard['Hall'].length > 2 && gameboard['Hall'][2] === 'Mrs White',
+                        'MrsPeacock': gameboard['Hall'].length > 2 && gameboard['Hall'][2] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Hall'].suspects.length > 3"
+                <div class="token" *ngIf="gameboard['Hall'].length > 3"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Hall'].suspects[3] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Hall'].suspects[3] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Hall'].suspects[3] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Hall'].suspects[3] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Hall'].suspects[3] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Hall'].suspects[3] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Hall'].length > 3 && gameboard['Hall'][3] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Hall'].length > 3 && gameboard['Hall'][3] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Hall'].length > 3 && gameboard['Hall'][3] === 'Professor Plum',
+                        'MrGreen': gameboard['Hall'].length > 3 && gameboard['Hall'][3] === 'Mr Green',
+                        'MrsWhite': gameboard['Hall'].length > 3 && gameboard['Hall'][3] === 'Mrs White',
+                        'MrsPeacock': gameboard['Hall'].length > 3 && gameboard['Hall'][3] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Hall'].suspects.length > 4"
+                <div class="token" *ngIf="gameboard['Hall'].length > 4"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Hall'].suspects[4] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Hall'].suspects[4] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Hall'].suspects[4] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Hall'].suspects[4] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Hall'].suspects[4] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Hall'].suspects[4] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Hall'].length > 4 && gameboard['Hall'][4] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Hall'].length > 4 && gameboard['Hall'][4] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Hall'].length > 4 && gameboard['Hall'][4] === 'Professor Plum',
+                        'MrGreen': gameboard['Hall'].length > 4 && gameboard['Hall'][4] === 'Mr Green',
+                        'MrsWhite': gameboard['Hall'].length > 4 && gameboard['Hall'][4] === 'Mrs White',
+                        'MrsPeacock': gameboard['Hall'].length > 4 && gameboard['Hall'][4] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Hall'].suspects.length > 5"
+                <div class="token" *ngIf="gameboard['Hall'].length > 5"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Hall'].suspects[5] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Hall'].suspects[5] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Hall'].suspects[5] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Hall'].suspects[5] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Hall'].suspects[5] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Hall'].suspects[5] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Hall'].length > 5 && gameboard['Hall'][5] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Hall'].length > 5 && gameboard['Hall'][5] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Hall'].length > 5 && gameboard['Hall'][5] === 'Professor Plum',
+                        'MrGreen': gameboard['Hall'].length > 5 && gameboard['Hall'][5] === 'Mr Green',
+                        'MrsWhite': gameboard['Hall'].length > 5 && gameboard['Hall'][5] === 'Mrs White',
+                        'MrsPeacock': gameboard['Hall'].length > 5 && gameboard['Hall'][5] === 'Mrs Peacock'
                     }"
                 ></div>
             </td>
             <td class="hhallway">
                 <!--Where Ms. Scarlet starts-->
-                <div class="token" *ngIf="gameState.game_board['hall-lounge Passage'].suspects.length"
+                <div class="token" *ngIf="gameboard['Hall-Lounge'].length > 0"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['hall-lounge Passage'].suspects[0] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['hall-lounge Passage'].suspects[0] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['hall-lounge Passage'].suspects[0] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['hall-lounge Passage'].suspects[0] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['hall-lounge Passage'].suspects[0] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Sthall-lounge Passageudy'].suspects[0] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Hall-Lounge'].length && gameboard['Hall-Lounge'][0] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Hall-Lounge'].length && gameboard['Hall-Lounge'][0] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Hall-Lounge'].length && gameboard['Hall-Lounge'][0] === 'Professor Plum',
+                        'MrGreen': gameboard['Hall-Lounge'].length && gameboard['Hall-Lounge'][0] === 'Mr Green',
+                        'MrsWhite': gameboard['Hall-Lounge'].length && gameboard['Hall-Lounge'][0] === 'Mrs White',
+                        'MrsPeacock': gameboard['Hall-Lounge'].length && gameboard['Hall-Lounge'][0] === 'Mrs Peacock'
                     }"
                 ></div>
             </td>
             <td id="lounge" class="room">
                 Lounge
-                <div class="token" *ngIf="gameState.game_board['Lounge'].suspects.length > 0"
+                <div class="token" *ngIf="gameboard['Lounge'].length > 0"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Lounge'].suspects[0] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Lounge'].suspects[0] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Lounge'].suspects[0] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Lounge'].suspects[0] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Lounge'].suspects[0] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Lounge'].suspects[0] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Lounge'].length && gameboard['Lounge'][0] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Lounge'].length && gameboard['Lounge'][0] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Lounge'].length && gameboard['Lounge'][0] === 'Professor Plum',
+                        'MrGreen': gameboard['Lounge'].length && gameboard['Lounge'][0] === 'Mr Green',
+                        'MrsWhite': gameboard['Lounge'].length && gameboard['Lounge'][0] === 'Mrs White',
+                        'MrsPeacock': gameboard['Lounge'].length && gameboard['Lounge'][0] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Lounge'].suspects.length > 1"
+                <div class="token" *ngIf="gameboard['Lounge'].length > 1"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Lounge'].suspects[1] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Lounge'].suspects[1] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Lounge'].suspects[1] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Lounge'].suspects[1] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Lounge'].suspects[1] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Lounge'].suspects[1] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Lounge'].length > 1 && gameboard['Lounge'][1] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Lounge'].length > 1 && gameboard['Lounge'][1] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Lounge'].length > 1 && gameboard['Lounge'][1] === 'Professor Plum',
+                        'MrGreen': gameboard['Lounge'].length > 1 && gameboard['Lounge'][1] === 'Mr Green',
+                        'MrsWhite': gameboard['Lounge'].length > 1 && gameboard['Lounge'][1] === 'Mrs White',
+                        'MrsPeacock': gameboard['Lounge'].length > 1 && gameboard['Lounge'][1] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Lounge'].suspects.length > 2"
+                <div class="token" *ngIf="gameboard['Lounge'].length > 2"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Lounge'].suspects[2] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Lounge'].suspects[2] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Lounge'].suspects[2] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Lounge'].suspects[2] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Lounge'].suspects[2] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Lounge'].suspects[2] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Lounge'][2] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Lounge'][2] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Lounge'][2] === 'Professor Plum',
+                        'MrGreen': gameboard['Lounge'][2] === 'Mr Green',
+                        'MrsWhite': gameboard['Lounge'][2] === 'Mrs White',
+                        'MrsPeacock': gameboard['Lounge'][2] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Lounge'].suspects.length > 3"
+                <div class="token" *ngIf="gameboard['Lounge'].length > 3"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Lounge'].suspects[3] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Lounge'].suspects[3] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Lounge'].suspects[3] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Lounge'].suspects[3] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Lounge'].suspects[3] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Lounge'].suspects[3] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Lounge'].length > 3 && gameboard['Lounge'][3] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Lounge'].length > 3 && gameboard['Lounge'][3] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Lounge'].length > 3 && gameboard['Lounge'][3] === 'Professor Plum',
+                        'MrGreen': gameboard['Lounge'].length > 3 && gameboard['Lounge'][3] === 'Mr Green',
+                        'MrsWhite': gameboard['Lounge'].length > 3 && gameboard['Lounge'][3] === 'Mrs White',
+                        'MrsPeacock': gameboard['Lounge'].length > 3 && gameboard['Lounge'][3] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Lounge'].suspects.length > 4"
+                <div class="token" *ngIf="gameboard['Lounge'].length > 4"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Lounge'].suspects[4] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Lounge'].suspects[4] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Lounge'].suspects[4] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Lounge'].suspects[4] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Lounge'].suspects[4] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Lounge'].suspects[4] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Lounge'].length > 4 && gameboard['Lounge'][4] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Lounge'].length > 4 && gameboard['Lounge'][4] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Lounge'].length > 4 && gameboard['Lounge'][4] === 'Professor Plum',
+                        'MrGreen': gameboard['Lounge'].length > 4 && gameboard['Lounge'][4] === 'Mr Green',
+                        'MrsWhite': gameboard['Lounge'].length > 4 && gameboard['Lounge'][4] === 'Mrs White',
+                        'MrsPeacock': gameboard['Lounge'].length > 4 && gameboard['Lounge'][4] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Lounge'].suspects.length > 5"
+                <div class="token" *ngIf="gameboard['Lounge'].length > 5"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Lounge'].suspects[5] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Lounge'].suspects[5] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Lounge'].suspects[5] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Lounge'].suspects[5] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Lounge'].suspects[5] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Lounge'].suspects[5] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Lounge'].length > 5 && gameboard['Lounge'][5] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Lounge'].length > 5 && gameboard['Lounge'][5] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Lounge'].length > 5 && gameboard['Lounge'][5] === 'Professor Plum',
+                        'MrGreen': gameboard['Lounge'].length > 5 && gameboard['Lounge'][5] === 'Mr Green',
+                        'MrsWhite': gameboard['Lounge'].length > 5 && gameboard['Lounge'][5] === 'Mrs White',
+                        'MrsPeacock': gameboard['Lounge'].length > 5 && gameboard['Lounge'][5] === 'Mrs Peacock'
                     }"
                 ></div>
             </td>
@@ -224,41 +224,41 @@
         <tr id="row2">
             <td class="vhallway">
                 <!--Where Prof. Plum starts-->
-                <div class="token" *ngIf="gameState.game_board['study-library Passage'].suspects.length"
+                <div class="token" *ngIf="gameboard['Library-Study'].length > 0"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['study-library Passage'].suspects[0] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['study-library Passage'].suspects[0] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['study-library Passage'].suspects[0] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['study-library Passage'].suspects[0] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['study-library Passage'].suspects[0] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['study-library Passage'].suspects[0] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Library-Study'].length && gameboard['Library-Study'][0] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Library-Study'].length && gameboard['Library-Study'][0] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Library-Study'].length && gameboard['Library-Study'][0] === 'Professor Plum',
+                        'MrGreen': gameboard['Library-Study'].length && gameboard['Library-Study'][0] === 'Mr Green',
+                        'MrsWhite': gameboard['Library-Study'].length && gameboard['Library-Study'][0] === 'Mrs White',
+                        'MrsPeacock': gameboard['Library-Study'].length && gameboard['Library-Study'][0] === 'Mrs Peacock'
                     }"
                 ></div>
             </td>
             <td></td>
             <td class="vhallway">
-                <div class="token" *ngIf="gameState.game_board['hall-billiard Passage'].suspects.length"
+                <div class="token" *ngIf="gameboard['Billiard Room-Hall'].length > 0"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['hall-billiard Passage'].suspects[0] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['hall-billiard Passage'].suspects[0] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['hall-billiard Passage'].suspects[0] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['hall-billiard Passage'].suspects[0] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['hall-billiard Passage'].suspects[0] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['hall-billiard Passage'].suspects[0] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Billiard Room-Hall'].length && gameboard['Billiard Room-Hall'][0] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Billiard Room-Hall'].length && gameboard['Billiard Room-Hall'][0] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Billiard Room-Hall'].length && gameboard['Billiard Room-Hall'][0] === 'Professor Plum',
+                        'MrGreen': gameboard['Billiard Room-Hall'].length && gameboard['Billiard Room-Hall'][0] === 'Mr Green',
+                        'MrsWhite': gameboard['Billiard Room-Hall'].length && gameboard['Billiard Room-Hall'][0] === 'Mrs White',
+                        'MrsPeacock': gameboard['Billiard Room-Hall'].length && gameboard['Billiard Room-Hall'][0] === 'Mrs Peacock'
                     }"
                 ></div>
             </td>
             <td></td>
             <td class="vhallway">
                 <!--Where Col. Mustard starts-->
-                <div class="token" *ngIf="gameState.game_board['lounge-dining Passage'].suspects.length"
+                <div class="token" *ngIf="gameboard['Dining Room-Lounge'].length > 0"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['lounge-dining Passage'].suspects[0] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['lounge-dining Passage'].suspects[0] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['lounge-dining Passage'].suspects[0] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['lounge-dining Passage'].suspects[0] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['lounge-dining Passage'].suspects[0] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['lounge-dining Passage'].suspects[0] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Dining Room-Lounge'].length && gameboard['Dining Room-Lounge'][0] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Dining Room-Lounge'].length && gameboard['Dining Room-Lounge'][0] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Dining Room-Lounge'].length && gameboard['Dining Room-Lounge'][0] === 'Professor Plum',
+                        'MrGreen': gameboard['Dining Room-Lounge'].length && gameboard['Dining Room-Lounge'][0] === 'Mr Green',
+                        'MrsWhite': gameboard['Dining Room-Lounge'].length && gameboard['Dining Room-Lounge'][0] === 'Mrs White',
+                        'MrsPeacock': gameboard['Dining Room-Lounge'].length && gameboard['Dining Room-Lounge'][0] === 'Mrs Peacock'
                     }"
                 ></div>
             </td>
@@ -266,214 +266,214 @@
         <tr id="row3">
             <td id="library" class="room">
                 Library
-                <div class="token" *ngIf="gameState.game_board['Library'].suspects.length > 0"
+                <div class="token" *ngIf="gameboard['Library'].length > 0"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Library'].suspects[0] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Library'].suspects[0] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Library'].suspects[0] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Library'].suspects[0] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Library'].suspects[0] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Library'].suspects[0] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Library'].length && gameboard['Library'][0] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Library'].length && gameboard['Library'][0] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Library'].length && gameboard['Library'][0] === 'Professor Plum',
+                        'MrGreen': gameboard['Library'].length && gameboard['Library'][0] === 'Mr Green',
+                        'MrsWhite': gameboard['Library'].length && gameboard['Library'][0] === 'Mrs White',
+                        'MrsPeacock': gameboard['Library'].length && gameboard['Library'][0] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Library'].suspects.length > 1"
+                <div class="token" *ngIf="gameboard['Library'].length > 1"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Library'].suspects[1] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Library'].suspects[1] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Library'].suspects[1] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Library'].suspects[1] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Library'].suspects[1] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Library'].suspects[1] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Library'].length > 1 && gameboard['Library'][1] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Library'].length > 1 && gameboard['Library'][1] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Library'].length > 1 && gameboard['Library'][1] === 'Professor Plum',
+                        'MrGreen': gameboard['Library'].length > 1 && gameboard['Library'][1] === 'Mr Green',
+                        'MrsWhite': gameboard['Library'].length > 1 && gameboard['Library'][1] === 'Mrs White',
+                        'MrsPeacock': gameboard['Library'].length > 1 && gameboard['Library'][1] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Library'].suspects.length > 2"
+                <div class="token" *ngIf="gameboard['Library'].length > 2"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Library'].suspects[2] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Library'].suspects[2] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Library'].suspects[2] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Library'].suspects[2] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Library'].suspects[2] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Library'].suspects[2] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Library'].length > 2 && gameboard['Library'][2] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Library'].length > 2 && gameboard['Library'][2] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Library'].length > 2 && gameboard['Library'][2] === 'Professor Plum',
+                        'MrGreen': gameboard['Library'].length > 2 && gameboard['Library'][2] === 'Mr Green',
+                        'MrsWhite': gameboard['Library'].length > 2 && gameboard['Library'][2] === 'Mrs White',
+                        'MrsPeacock': gameboard['Library'].length > 2 && gameboard['Library'][2] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Library'].suspects.length > 3"
+                <div class="token" *ngIf="gameboard['Library'].length > 3"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Library'].suspects[3] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Library'].suspects[3] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Library'].suspects[3] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Library'].suspects[3] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Library'].suspects[3] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Library'].suspects[3] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Library'].length > 3 && gameboard['Library'][3] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Library'].length > 3 && gameboard['Library'][3] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Library'].length > 3 && gameboard['Library'][3] === 'Professor Plum',
+                        'MrGreen': gameboard['Library'].length > 3 && gameboard['Library'][3] === 'Mr Green',
+                        'MrsWhite': gameboard['Library'].length > 3 && gameboard['Library'][3] === 'Mrs White',
+                        'MrsPeacock': gameboard['Library'].length > 3 && gameboard['Library'][3] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Library'].suspects.length > 4"
+                <div class="token" *ngIf="gameboard['Library'].length > 4"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Library'].suspects[4] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Library'].suspects[4] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Library'].suspects[4] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Library'].suspects[4] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Library'].suspects[4] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Library'].suspects[4] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Library'].length > 4 && gameboard['Library'][4] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Library'].length > 4 && gameboard['Library'][4] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Library'].length > 4 && gameboard['Library'][4] === 'Professor Plum',
+                        'MrGreen': gameboard['Library'].length > 4 && gameboard['Library'][4] === 'Mr Green',
+                        'MrsWhite': gameboard['Library'].length > 4 && gameboard['Library'][4] === 'Mrs White',
+                        'MrsPeacock': gameboard['Library'].length > 4 && gameboard['Library'][4] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Library'].suspects.length > 5"
+                <div class="token" *ngIf="gameboard['Library'].length > 5"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Library'].suspects[5] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Library'].suspects[5] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Library'].suspects[5] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Library'].suspects[5] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Library'].suspects[5] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Library'].suspects[5] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Library'].length > 5 && gameboard['Library'][5] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Library'].length > 5 && gameboard['Library'][5] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Library'].length > 5 && gameboard['Library'][5] === 'Professor Plum',
+                        'MrGreen': gameboard['Library'].length > 5 && gameboard['Library'][5] === 'Mr Green',
+                        'MrsWhite': gameboard['Library'].length > 5 && gameboard['Library'][5] === 'Mrs White',
+                        'MrsPeacock': gameboard['Library'].length > 5 && gameboard['Library'][5] === 'Mrs Peacock'
                     }"
                 ></div>
             </td>
             <td class="hhallway">
-                <div class="token" *ngIf="gameState.game_board['library-billiard Passage'].suspects.length"
+                <div class="token" *ngIf="gameboard['Billiard Room-Library'].length > 0"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['library-billiard Passage'].suspects[0] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['library-billiard Passage'].suspects[0] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['library-billiard Passage'].suspects[0] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['library-billiard Passage'].suspects[0] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['library-billiard Passage'].suspects[0] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['library-billiard Passage'].suspects[0] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Billiard Room-Library'].length && gameboard['Billiard Room-Library'][0] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Billiard Room-Library'].length && gameboard['Billiard Room-Library'][0] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Billiard Room-Library'].length && gameboard['Billiard Room-Library'][0] === 'Professor Plum',
+                        'MrGreen': gameboard['Billiard Room-Library'].length && gameboard['Billiard Room-Library'][0] === 'Mr Green',
+                        'MrsWhite': gameboard['Billiard Room-Library'].length && gameboard['Billiard Room-Library'][0] === 'Mrs White',
+                        'MrsPeacock': gameboard['Billiard Room-Library'].length && gameboard['Billiard Room-Library'][0] === 'Mrs Peacock'
                     }"
                 ></div>
             </td>
             <td id="billiard_room" class="room">
                 Billiard Room
-                <div class="token" *ngIf="gameState.game_board['Billiard Room'].suspects.length > 0"
+                <div class="token" *ngIf="gameboard['Billiard Room'].length > 0"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Billiard Room'].suspects[0] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Billiard Room'].suspects[0] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Billiard Room'].suspects[0] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Billiard Room'].suspects[0] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Billiard Room'].suspects[0] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Billiard Room'].suspects[0] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Billiard Room'].length && gameboard['Billiard Room'][0] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Billiard Room'].length && gameboard['Billiard Room'][0] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Billiard Room'].length && gameboard['Billiard Room'][0] === 'Professor Plum',
+                        'MrGreen': gameboard['Billiard Room'].length && gameboard['Billiard Room'][0] === 'Mr Green',
+                        'MrsWhite': gameboard['Billiard Room'].length && gameboard['Billiard Room'][0] === 'Mrs White',
+                        'MrsPeacock': gameboard['Billiard Room'].length && gameboard['Billiard Room'][0] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Billiard Room'].suspects.length > 1"
+                <div class="token" *ngIf="gameboard['Billiard Room'].length > 1"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Billiard Room'].suspects[1] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Billiard Room'].suspects[1] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Billiard Room'].suspects[1] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Billiard Room'].suspects[1] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Billiard Room'].suspects[1] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Billiard Room'].suspects[1] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Billiard Room'].length > 1 && gameboard['Billiard Room'][1] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Billiard Room'].length > 1 && gameboard['Billiard Room'][1] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Billiard Room'].length > 1 && gameboard['Billiard Room'][1] === 'Professor Plum',
+                        'MrGreen': gameboard['Billiard Room'].length > 1 && gameboard['Billiard Room'][1] === 'Mr Green',
+                        'MrsWhite': gameboard['Billiard Room'].length > 1 && gameboard['Billiard Room'][1] === 'Mrs White',
+                        'MrsPeacock': gameboard['Billiard Room'].length > 1 && gameboard['Billiard Room'][1] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Billiard Room'].suspects.length > 2"
+                <div class="token" *ngIf="gameboard['Billiard Room'].length > 2"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Billiard Room'].suspects[2] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Billiard Room'].suspects[2] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Billiard Room'].suspects[2] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Billiard Room'].suspects[2] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Billiard Room'].suspects[2] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Billiard Room'].suspects[2] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Billiard Room'].length > 2 && gameboard['Billiard Room'][2] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Billiard Room'].length > 2 && gameboard['Billiard Room'][2] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Billiard Room'].length > 2 && gameboard['Billiard Room'][2] === 'Professor Plum',
+                        'MrGreen': gameboard['Billiard Room'].length > 2 && gameboard['Billiard Room'][2] === 'Mr Green',
+                        'MrsWhite': gameboard['Billiard Room'].length > 2 && gameboard['Billiard Room'][2] === 'Mrs White',
+                        'MrsPeacock': gameboard['Billiard Room'].length > 2 && gameboard['Billiard Room'][2] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Billiard Room'].suspects.length > 3"
+                <div class="token" *ngIf="gameboard['Billiard Room'].length > 3"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Billiard Room'].suspects[3] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Billiard Room'].suspects[3] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Billiard Room'].suspects[3] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Billiard Room'].suspects[3] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Billiard Room'].suspects[3] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Billiard Room'].suspects[3] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Billiard Room'].length > 3 && gameboard['Billiard Room'][3] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Billiard Room'].length > 3 && gameboard['Billiard Room'][3] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Billiard Room'].length > 3 && gameboard['Billiard Room'][3] === 'Professor Plum',
+                        'MrGreen': gameboard['Billiard Room'].length > 3 && gameboard['Billiard Room'][3] === 'Mr Green',
+                        'MrsWhite': gameboard['Billiard Room'].length > 3 && gameboard['Billiard Room'][3] === 'Mrs White',
+                        'MrsPeacock': gameboard['Billiard Room'].length > 3 && gameboard['Billiard Room'][3] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Billiard Room'].suspects.length > 4"
+                <div class="token" *ngIf="gameboard['Billiard Room'].length > 4"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Billiard Room'].suspects[4] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Billiard Room'].suspects[4] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Billiard Room'].suspects[4] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Billiard Room'].suspects[4] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Billiard Room'].suspects[4] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Billiard Room'].suspects[4] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Billiard Room'].length > 4 && gameboard['Billiard Room'][4] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Billiard Room'].length > 4 && gameboard['Billiard Room'][4] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Billiard Room'].length > 4 && gameboard['Billiard Room'][4] === 'Professor Plum',
+                        'MrGreen': gameboard['Billiard Room'].length > 4 && gameboard['Billiard Room'][4] === 'Mr Green',
+                        'MrsWhite': gameboard['Billiard Room'].length > 4 && gameboard['Billiard Room'][4] === 'Mrs White',
+                        'MrsPeacock': gameboard['Billiard Room'].length > 4 && gameboard['Billiard Room'][4] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Billiard Room'].suspects.length > 5"
+                <div class="token" *ngIf="gameboard['Billiard Room'].length > 5"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Billiard Room'].suspects[5] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Billiard Room'].suspects[5] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Billiard Room'].suspects[5] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Billiard Room'].suspects[5] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Billiard Room'].suspects[5] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Billiard Room'].suspects[5] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Billiard Room'].length > 5 && gameboard['Billiard Room'][5] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Billiard Room'].length > 5 && gameboard['Billiard Room'][5] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Billiard Room'].length > 5 && gameboard['Billiard Room'][5] === 'Professor Plum',
+                        'MrGreen': gameboard['Billiard Room'].length > 5 && gameboard['Billiard Room'][5] === 'Mr Green',
+                        'MrsWhite': gameboard['Billiard Room'].length > 5 && gameboard['Billiard Room'][5] === 'Mrs White',
+                        'MrsPeacock': gameboard['Billiard Room'].length > 5 && gameboard['Billiard Room'][5] === 'Mrs Peacock'
                     }"
                 ></div>
             </td>
             <td class="hhallway">
-                <div class="token" *ngIf="gameState.game_board['billiard-dining Passage'].suspects.length"
+                <div class="token" *ngIf="gameboard['Billiard Room-Dining Room'].length > 0"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['billiard-dining Passage'].suspects[0] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['billiard-dining Passage'].suspects[0] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['billiard-dining Passage'].suspects[0] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['billiard-dining Passage'].suspects[0] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['billiard-dining Passage'].suspects[0] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['billiard-dining Passage'].suspects[0] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Billiard Room-Dining Room'].length && gameboard['Billiard Room-Dining Room'][0] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Billiard Room-Dining Room'].length && gameboard['Billiard Room-Dining Room'][0] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Billiard Room-Dining Room'].length && gameboard['Billiard Room-Dining Room'][0] === 'Professor Plum',
+                        'MrGreen': gameboard['Billiard Room-Dining Room'].length && gameboard['Billiard Room-Dining Room'][0] === 'Mr Green',
+                        'MrsWhite': gameboard['Billiard Room-Dining Room'].length && gameboard['Billiard Room-Dining Room'][0] === 'Mrs White',
+                        'MrsPeacock': gameboard['Billiard Room-Dining Room'].length && gameboard['Billiard Room-Dining Room'][0] === 'Mrs Peacock'
                     }"
                 ></div>
             </td>
             <td id="dining_room" class="room">
                 Dining Room
-                <div class="token" *ngIf="gameState.game_board['Dining Room'].suspects.length > 0"
+                <div class="token" *ngIf="gameboard['Dining Room'].length > 0"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Dining Room'].suspects[0] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Dining Room'].suspects[0] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Dining Room'].suspects[0] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Dining Room'].suspects[0] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Dining Room'].suspects[0] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Dining Room'].suspects[0] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Dining Room'].length && gameboard['Dining Room'][0] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Dining Room'].length && gameboard['Dining Room'][0] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Dining Room'].length && gameboard['Dining Room'][0] === 'Professor Plum',
+                        'MrGreen': gameboard['Dining Room'].length && gameboard['Dining Room'][0] === 'Mr Green',
+                        'MrsWhite': gameboard['Dining Room'].length && gameboard['Dining Room'][0] === 'Mrs White',
+                        'MrsPeacock': gameboard['Dining Room'].length && gameboard['Dining Room'][0] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Dining Room'].suspects.length > 1"
+                <div class="token" *ngIf="gameboard['Dining Room'].length > 1"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Dining Room'].suspects[1] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Dining Room'].suspects[1] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Dining Room'].suspects[1] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Dining Room'].suspects[1] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Dining Room'].suspects[1] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Dining Room'].suspects[1] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Dining Room'].length > 1 && gameboard['Dining Room'][1] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Dining Room'].length > 1 && gameboard['Dining Room'][1] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Dining Room'].length > 1 && gameboard['Dining Room'][1] === 'Professor Plum',
+                        'MrGreen': gameboard['Dining Room'].length > 1 && gameboard['Dining Room'][1] === 'Mr Green',
+                        'MrsWhite': gameboard['Dining Room'].length > 1 && gameboard['Dining Room'][1] === 'Mrs White',
+                        'MrsPeacock': gameboard['Dining Room'].length > 1 && gameboard['Dining Room'][1] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Dining Room'].suspects.length > 2"
+                <div class="token" *ngIf="gameboard['Dining Room'].length > 2"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Dining Room'].suspects[2] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Dining Room'].suspects[2] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Dining Room'].suspects[2] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Dining Room'].suspects[2] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Dining Room'].suspects[2] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Dining Room'].suspects[2] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Dining Room'].length > 2 && gameboard['Dining Room'][2] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Dining Room'].length > 2 && gameboard['Dining Room'][2] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Dining Room'].length > 2 && gameboard['Dining Room'][2] === 'Professor Plum',
+                        'MrGreen': gameboard['Dining Room'].length > 2 && gameboard['Dining Room'][2] === 'Mr Green',
+                        'MrsWhite': gameboard['Dining Room'].length > 2 && gameboard['Dining Room'][2] === 'Mrs White',
+                        'MrsPeacock': gameboard['Dining Room'].length > 2 && gameboard['Dining Room'][2] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Dining Room'].suspects.length > 3"
+                <div class="token" *ngIf="gameboard['Dining Room'].length > 3"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Dining Room'].suspects[3] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Dining Room'].suspects[3] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Dining Room'].suspects[3] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Dining Room'].suspects[3] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Dining Room'].suspects[3] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Dining Room'].suspects[3] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Dining Room'].length > 3 && gameboard['Dining Room'][3] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Dining Room'].length > 3 && gameboard['Dining Room'][3] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Dining Room'].length > 3 && gameboard['Dining Room'][3] === 'Professor Plum',
+                        'MrGreen': gameboard['Dining Room'].length > 3 && gameboard['Dining Room'][3] === 'Mr Green',
+                        'MrsWhite': gameboard['Dining Room'].length > 3 && gameboard['Dining Room'][3] === 'Mrs White',
+                        'MrsPeacock': gameboard['Dining Room'].length > 3 && gameboard['Dining Room'][3] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Dining Room'].suspects.length > 4"
+                <div class="token" *ngIf="gameboard['Dining Room'].length > 4"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Dining Room'].suspects[4] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Dining Room'].suspects[4] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Dining Room'].suspects[4] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Dining Room'].suspects[4] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Dining Room'].suspects[4] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Dining Room'].suspects[4] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Dining Room'].length > 4 && gameboard['Dining Room'][4] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Dining Room'].length > 4 && gameboard['Dining Room'][4] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Dining Room'].length > 4 && gameboard['Dining Room'][4] === 'Professor Plum',
+                        'MrGreen': gameboard['Dining Room'].length > 4 && gameboard['Dining Room'][4] === 'Mr Green',
+                        'MrsWhite': gameboard['Dining Room'].length > 4 && gameboard['Dining Room'][4] === 'Mrs White',
+                        'MrsPeacock': gameboard['Dining Room'].length > 4 && gameboard['Dining Room'][4] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Dining Room'].suspects.length > 5"
+                <div class="token" *ngIf="gameboard['Dining Room'].length > 5"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Dining Room'].suspects[5] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Dining Room'].suspects[5] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Dining Room'].suspects[5] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Dining Room'].suspects[5] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Dining Room'].suspects[5] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Dining Room'].suspects[5] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Dining Room'].length > 5 && gameboard['Dining Room'][5] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Dining Room'].length > 5 && gameboard['Dining Room'][5] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Dining Room'].length > 5 && gameboard['Dining Room'][5] === 'Professor Plum',
+                        'MrGreen': gameboard['Dining Room'].length > 5 && gameboard['Dining Room'][5] === 'Mr Green',
+                        'MrsWhite': gameboard['Dining Room'].length > 5 && gameboard['Dining Room'][5] === 'Mrs White',
+                        'MrsPeacock': gameboard['Dining Room'].length > 5 && gameboard['Dining Room'][5] === 'Mrs Peacock'
                     }"
                 ></div>
             </td>
@@ -481,40 +481,40 @@
         <tr id="row4">
             <td class="vhallway">
                 <!--Where Mrs. Peacock starts-->
-                <div class="token" *ngIf="gameState.game_board['library-conservatory Passage'].suspects.length"
+                <div class="token" *ngIf="gameboard['Conservatory-Library'].length > 0"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['library-conservatory Passage'].suspects[0] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['library-conservatory Passage'].suspects[0] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['library-conservatory Passage'].suspects[0] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['library-conservatory Passage'].suspects[0] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['library-conservatory Passage'].suspects[0] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['library-conservatory Passage'].suspects[0] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Conservatory-Library'].length && gameboard['Conservatory-Library'][0] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Conservatory-Library'].length && gameboard['Conservatory-Library'][0] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Conservatory-Library'].length && gameboard['Conservatory-Library'][0] === 'Professor Plum',
+                        'MrGreen': gameboard['Conservatory-Library'].length && gameboard['Conservatory-Library'][0] === 'Mr Green',
+                        'MrsWhite': gameboard['Conservatory-Library'].length && gameboard['Conservatory-Library'][0] === 'Mrs White',
+                        'MrsPeacock': gameboard['Conservatory-Library'].length && gameboard['Conservatory-Library'][0] === 'Mrs Peacock'
                     }"
                 ></div>
             </td>
             <td></td>
             <td class="vhallway">
-                <div class="token" *ngIf="gameState.game_board['billiard-ballroom Passage'].suspects.length"
+                <div class="token" *ngIf="gameboard['Ballroom-Billiard Room'].length > 0"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['billiard-ballroom Passage'].suspects[0] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['billiard-ballroom Passage'].suspects[0] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['billiard-ballroom Passage'].suspects[0] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['billiard-ballroom Passage'].suspects[0] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['billiard-ballroom Passage'].suspects[0] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['billiard-ballroom Passage'].suspects[0] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Ballroom-Billiard Room'].length && gameboard['Ballroom-Billiard Room'][0] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Ballroom-Billiard Room'].length && gameboard['Ballroom-Billiard Room'][0] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Ballroom-Billiard Room'].length && gameboard['Ballroom-Billiard Room'][0] === 'Professor Plum',
+                        'MrGreen': gameboard['Ballroom-Billiard Room'].length && gameboard['Ballroom-Billiard Room'][0] === 'Mr Green',
+                        'MrsWhite': gameboard['Ballroom-Billiard Room'].length && gameboard['Ballroom-Billiard Room'][0] === 'Mrs White',
+                        'MrsPeacock': gameboard['Ballroom-Billiard Room'].length && gameboard['Ballroom-Billiard Room'][0] === 'Mrs Peacock'
                     }"
                 ></div>
             </td>
             <td></td>
             <td class="vhallway">
-                <div class="token" *ngIf="gameState.game_board['dining-kitchen Passage'].suspects.length"
+                <div class="token" *ngIf="gameboard['Dining Room-Kitchen'].length"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['dining-kitchen Passage'].suspects[0] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['dining-kitchen Passage'].suspects[0] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['dining-kitchen Passage'].suspects[0] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['dining-kitchen Passage'].suspects[0] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['dining-kitchen Passage'].suspects[0] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['dining-kitchen Passage'].suspects[0] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Dining Room-Kitchen'].length && gameboard['Dining Room-Kitchen'][0] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Dining Room-Kitchen'].length && gameboard['Dining Room-Kitchen'][0] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Dining Room-Kitchen'].length && gameboard['Dining Room-Kitchen'][0] === 'Professor Plum',
+                        'MrGreen': gameboard['Dining Room-Kitchen'].length && gameboard['Dining Room-Kitchen'][0] === 'Mr Green',
+                        'MrsWhite': gameboard['Dining Room-Kitchen'].length && gameboard['Dining Room-Kitchen'][0] === 'Mrs White',
+                        'MrsPeacock': gameboard['Dining Room-Kitchen'].length && gameboard['Dining Room-Kitchen'][0] === 'Mrs Peacock'
                     }"
                 ></div>
             </td>
@@ -522,216 +522,216 @@
         <tr id="row5">
             <td id="conservatory" class="room">
                 Conservatory
-                <div class="token" *ngIf="gameState.game_board['Conservatory'].suspects.length > 0"
+                <div class="token" *ngIf="gameboard['Conservatory'].length > 0"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Conservatory'].suspects[0] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Conservatory'].suspects[0] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Conservatory'].suspects[0] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Conservatory'].suspects[0] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Conservatory'].suspects[0] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Conservatory'].suspects[0] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Conservatory'].length && gameboard['Conservatory'][0] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Conservatory'].length && gameboard['Conservatory'][0] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Conservatory'].length && gameboard['Conservatory'][0] === 'Professor Plum',
+                        'MrGreen': gameboard['Conservatory'].length && gameboard['Conservatory'][0] === 'Mr Green',
+                        'MrsWhite': gameboard['Conservatory'].length && gameboard['Conservatory'][0] === 'Mrs White',
+                        'MrsPeacock': gameboard['Conservatory'].length && gameboard['Conservatory'][0] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Conservatory'].suspects.length > 1"
+                <div class="token" *ngIf="gameboard['Conservatory'].length > 1"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Conservatory'].suspects[1] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Conservatory'].suspects[1] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Conservatory'].suspects[1] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Conservatory'].suspects[1] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Conservatory'].suspects[1] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Conservatory'].suspects[1] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Conservatory'].length > 1 && gameboard['Conservatory'][1] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Conservatory'].length > 1 && gameboard['Conservatory'][1] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Conservatory'].length > 1 && gameboard['Conservatory'][1] === 'Professor Plum',
+                        'MrGreen': gameboard['Conservatory'].length > 1 && gameboard['Conservatory'][1] === 'Mr Green',
+                        'MrsWhite': gameboard['Conservatory'].length > 1 && gameboard['Conservatory'][1] === 'Mrs White',
+                        'MrsPeacock': gameboard['Conservatory'].length > 1 && gameboard['Conservatory'][1] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Conservatory'].suspects.length > 2"
+                <div class="token" *ngIf="gameboard['Conservatory'].length > 2"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Conservatory'].suspects[2] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Conservatory'].suspects[2] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Conservatory'].suspects[2] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Conservatory'].suspects[2] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Conservatory'].suspects[2] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Conservatory'].suspects[2] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Conservatory'].length > 2 && gameboard['Conservatory'][2] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Conservatory'].length > 2 && gameboard['Conservatory'][2] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Conservatory'].length > 2 && gameboard['Conservatory'][2] === 'Professor Plum',
+                        'MrGreen': gameboard['Conservatory'].length > 2 && gameboard['Conservatory'][2] === 'Mr Green',
+                        'MrsWhite': gameboard['Conservatory'].length > 2 && gameboard['Conservatory'][2] === 'Mrs White',
+                        'MrsPeacock': gameboard['Conservatory'].length > 2 && gameboard['Conservatory'][2] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Conservatory'].suspects.length > 3"
+                <div class="token" *ngIf="gameboard['Conservatory'].length > 3"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Conservatory'].suspects[3] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Conservatory'].suspects[3] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Conservatory'].suspects[3] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Conservatory'].suspects[3] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Conservatory'].suspects[3] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Conservatory'].suspects[3] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Conservatory'].length > 3 && gameboard['Conservatory'][3] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Conservatory'].length > 3 && gameboard['Conservatory'][3] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Conservatory'].length > 3 && gameboard['Conservatory'][3] === 'Professor Plum',
+                        'MrGreen': gameboard['Conservatory'].length > 3 && gameboard['Conservatory'][3] === 'Mr Green',
+                        'MrsWhite': gameboard['Conservatory'].length > 3 && gameboard['Conservatory'][3] === 'Mrs White',
+                        'MrsPeacock': gameboard['Conservatory'].length > 3 && gameboard['Conservatory'][3] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Conservatory'].suspects.length > 4"
+                <div class="token" *ngIf="gameboard['Conservatory'].length > 4"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Conservatory'].suspects[4] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Conservatory'].suspects[4] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Conservatory'].suspects[4] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Conservatory'].suspects[4] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Conservatory'].suspects[4] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Conservatory'].suspects[4] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Conservatory'].length > 4 && gameboard['Conservatory'][4] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Conservatory'].length > 4 && gameboard['Conservatory'][4] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Conservatory'].length > 4 && gameboard['Conservatory'][4] === 'Professor Plum',
+                        'MrGreen': gameboard['Conservatory'].length > 4 && gameboard['Conservatory'][4] === 'Mr Green',
+                        'MrsWhite': gameboard['Conservatory'].length > 4 && gameboard['Conservatory'][4] === 'Mrs White',
+                        'MrsPeacock': gameboard['Conservatory'].length > 4 && gameboard['Conservatory'][4] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Conservatory'].suspects.length > 5"
+                <div class="token" *ngIf="gameboard['Conservatory'].length > 5"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Conservatory'].suspects[5] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Conservatory'].suspects[5] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Conservatory'].suspects[5] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Conservatory'].suspects[5] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Conservatory'].suspects[5] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Conservatory'].suspects[5] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Conservatory'].length > 5 && gameboard['Conservatory'][5] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Conservatory'].length > 5 && gameboard['Conservatory'][5] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Conservatory'].length > 5 && gameboard['Conservatory'][5] === 'Professor Plum',
+                        'MrGreen': gameboard['Conservatory'].length > 5 && gameboard['Conservatory'][5] === 'Mr Green',
+                        'MrsWhite': gameboard['Conservatory'].length > 5 && gameboard['Conservatory'][5] === 'Mrs White',
+                        'MrsPeacock': gameboard['Conservatory'].length > 5 && gameboard['Conservatory'][5] === 'Mrs Peacock'
                     }"
                 ></div>
             </td>
             <td class="hhallway">
                 <!--Where Mr. Green starts-->
-                <div class="token" *ngIf="gameState.game_board['conservatory-ballroom Passage'].suspects.length"
+                <div class="token" *ngIf="gameboard['Ballroom-Conservatory'].length > 0"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['conservatory-ballroom Passage'].suspects[0] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['conservatory-ballroom Passage'].suspects[0] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['conservatory-ballroom Passage'].suspects[0] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['conservatory-ballroom Passage'].suspects[0] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['conservatory-ballroom Passage'].suspects[0] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['conservatory-ballroom Passage'].suspects[0] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Ballroom-Conservatory'].length && gameboard['Ballroom-Conservatory'][0] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Ballroom-Conservatory'].length && gameboard['Ballroom-Conservatory'][0] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Ballroom-Conservatory'].length && gameboard['Ballroom-Conservatory'][0] === 'Professor Plum',
+                        'MrGreen': gameboard['Ballroom-Conservatory'].length && gameboard['Ballroom-Conservatory'][0] === 'Mr Green',
+                        'MrsWhite': gameboard['Ballroom-Conservatory'].length && gameboard['Ballroom-Conservatory'][0] === 'Mrs White',
+                        'MrsPeacock': gameboard['Ballroom-Conservatory'].length && gameboard['Ballroom-Conservatory'][0] === 'Mrs Peacock'
                     }"
                 ></div>
             </td>
             <td id="ballroom" class="room">
                 Ballroom
-                <div class="token" *ngIf="gameState.game_board['Ballroom'].suspects.length > 0"
+                <div class="token" *ngIf="gameboard['Ballroom'].length > 0"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Ballroom'].suspects[0] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Ballroom'].suspects[0] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Ballroom'].suspects[0] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Ballroom'].suspects[0] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Ballroom'].suspects[0] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Ballroom'].suspects[0] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Ballroom'].length && gameboard['Ballroom'][0] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Ballroom'].length && gameboard['Ballroom'][0] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Ballroom'].length && gameboard['Ballroom'][0] === 'Professor Plum',
+                        'MrGreen': gameboard['Ballroom'].length && gameboard['Ballroom'][0] === 'Mr Green',
+                        'MrsWhite': gameboard['Ballroom'].length && gameboard['Ballroom'][0] === 'Mrs White',
+                        'MrsPeacock': gameboard['Ballroom'].length && gameboard['Ballroom'][0] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Ballroom'].suspects.length > 1"
+                <div class="token" *ngIf="gameboard['Ballroom'].length > 1"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Ballroom'].suspects[1] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Ballroom'].suspects[1] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Ballroom'].suspects[1] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Ballroom'].suspects[1] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Ballroom'].suspects[1] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Ballroom'].suspects[1] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Ballroom'].length > 1 && gameboard['Ballroom'][1] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Ballroom'].length > 1 && gameboard['Ballroom'][1] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Ballroom'].length > 1 && gameboard['Ballroom'][1] === 'Professor Plum',
+                        'MrGreen': gameboard['Ballroom'].length > 1 && gameboard['Ballroom'][1] === 'Mr Green',
+                        'MrsWhite': gameboard['Ballroom'].length > 1 && gameboard['Ballroom'][1] === 'Mrs White',
+                        'MrsPeacock': gameboard['Ballroom'].length > 1 && gameboard['Ballroom'][1] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Ballroom'].suspects.length > 2"
+                <div class="token" *ngIf="gameboard['Ballroom'].length > 2"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Ballroom'].suspects[2] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Ballroom'].suspects[2] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Ballroom'].suspects[2] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Ballroom'].suspects[2] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Ballroom'].suspects[2] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Ballroom'].suspects[2] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Ballroom'].length > 2 && gameboard['Ballroom'][2] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Ballroom'].length > 2 && gameboard['Ballroom'][2] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Ballroom'].length > 2 && gameboard['Ballroom'][2] === 'Professor Plum',
+                        'MrGreen': gameboard['Ballroom'].length > 2 && gameboard['Ballroom'][2] === 'Mr Green',
+                        'MrsWhite': gameboard['Ballroom'].length > 2 && gameboard['Ballroom'][2] === 'Mrs White',
+                        'MrsPeacock': gameboard['Ballroom'].length > 2 && gameboard['Ballroom'][2] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Ballroom'].suspects.length > 3"
+                <div class="token" *ngIf="gameboard['Ballroom'].length > 3"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Ballroom'].suspects[3] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Ballroom'].suspects[3] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Ballroom'].suspects[3] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Ballroom'].suspects[3] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Ballroom'].suspects[3] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Ballroom'].suspects[3] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Ballroom'].length > 3 && gameboard['Ballroom'][3] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Ballroom'].length > 3 && gameboard['Ballroom'][3] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Ballroom'].length > 3 && gameboard['Ballroom'][3] === 'Professor Plum',
+                        'MrGreen': gameboard['Ballroom'].length > 3 && gameboard['Ballroom'][3] === 'Mr Green',
+                        'MrsWhite': gameboard['Ballroom'].length > 3 && gameboard['Ballroom'][3] === 'Mrs White',
+                        'MrsPeacock': gameboard['Ballroom'].length > 3 && gameboard['Ballroom'][3] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Ballroom'].suspects.length > 4"
+                <div class="token" *ngIf="gameboard['Ballroom'].length > 4"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Ballroom'].suspects[4] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Ballroom'].suspects[4] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Ballroom'].suspects[4] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Ballroom'].suspects[4] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Ballroom'].suspects[4] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Ballroom'].suspects[4] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Ballroom'].length > 4 && gameboard['Ballroom'][4] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Ballroom'].length > 4 && gameboard['Ballroom'][4] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Ballroom'].length > 4 && gameboard['Ballroom'][4] === 'Professor Plum',
+                        'MrGreen': gameboard['Ballroom'].length > 4 && gameboard['Ballroom'][4] === 'Mr Green',
+                        'MrsWhite': gameboard['Ballroom'].length > 4 && gameboard['Ballroom'][4] === 'Mrs White',
+                        'MrsPeacock': gameboard['Ballroom'].length > 4 && gameboard['Ballroom'][4] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Ballroom'].suspects.length > 5"
+                <div class="token" *ngIf="gameboard['Ballroom'].length > 5"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Ballroom'].suspects[5] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Ballroom'].suspects[5] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Ballroom'].suspects[5] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Ballroom'].suspects[5] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Ballroom'].suspects[5] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Ballroom'].suspects[5] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Ballroom'].length > 5 && gameboard['Ballroom'][5] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Ballroom'].length > 5 && gameboard['Ballroom'][5] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Ballroom'].length > 5 && gameboard['Ballroom'][5] === 'Professor Plum',
+                        'MrGreen': gameboard['Ballroom'].length > 5 && gameboard['Ballroom'][5] === 'Mr Green',
+                        'MrsWhite': gameboard['Ballroom'].length > 5 && gameboard['Ballroom'][5] === 'Mrs White',
+                        'MrsPeacock': gameboard['Ballroom'].length > 5 && gameboard['Ballroom'][5] === 'Mrs Peacock'
                     }"
                 ></div>
             </td>
             <td class="hhallway">
                 <!--Where Mrs. White starts-->
-                <div class="token" *ngIf="gameState.game_board['ballroom-kitchen Passage'].suspects.length"
+                <div class="token" *ngIf="gameboard['Ballroom-Kitchen'].length > 0"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['ballroom-kitchen Passage'].suspects[0] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['ballroom-kitchen Passage'].suspects[0] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['ballroom-kitchen Passage'].suspects[0] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['ballroom-kitchen Passage'].suspects[0] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['ballroom-kitchen Passage'].suspects[0] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['ballroom-kitchen Passage'].suspects[0] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Ballroom-Kitchen'].length && gameboard['Ballroom-Kitchen'][0] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Ballroom-Kitchen'].length && gameboard['Ballroom-Kitchen'][0] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Ballroom-Kitchen'].length && gameboard['Ballroom-Kitchen'][0] === 'Professor Plum',
+                        'MrGreen': gameboard['Ballroom-Kitchen'].length && gameboard['Ballroom-Kitchen'][0] === 'Mr Green',
+                        'MrsWhite': gameboard['Ballroom-Kitchen'].length && gameboard['Ballroom-Kitchen'][0] === 'Mrs White',
+                        'MrsPeacock': gameboard['Ballroom-Kitchen'].length && gameboard['Ballroom-Kitchen'][0] === 'Mrs Peacock'
                     }"
                 ></div>
             </td>
             <td id="kitchen" class="room">
                 Kitchen
-                <div class="token" *ngIf="gameState.game_board['Kitchen'].suspects.length > 0"
+                <div class="token" *ngIf="gameboard['Kitchen'].length > 0"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Kitchen'].suspects[0] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Kitchen'].suspects[0] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Kitchen'].suspects[0] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Kitchen'].suspects[0] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Kitchen'].suspects[0] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Kitchen'].suspects[0] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Kitchen'].length && gameboard['Kitchen'][0] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Kitchen'].length && gameboard['Kitchen'][0] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Kitchen'].length && gameboard['Kitchen'][0] === 'Professor Plum',
+                        'MrGreen': gameboard['Kitchen'].length && gameboard['Kitchen'][0] === 'Mr Green',
+                        'MrsWhite': gameboard['Kitchen'].length && gameboard['Kitchen'][0] === 'Mrs White',
+                        'MrsPeacock': gameboard['Kitchen'].length && gameboard['Kitchen'][0] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Kitchen'].suspects.length > 1"
+                <div class="token" *ngIf="gameboard['Kitchen'].length > 1"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Kitchen'].suspects[1] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Kitchen'].suspects[1] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Kitchen'].suspects[1] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Kitchen'].suspects[1] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Kitchen'].suspects[1] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Kitchen'].suspects[1] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Kitchen'].length > 1 && gameboard['Kitchen'][1] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Kitchen'].length > 1 && gameboard['Kitchen'][1] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Kitchen'].length > 1 && gameboard['Kitchen'][1] === 'Professor Plum',
+                        'MrGreen': gameboard['Kitchen'].length > 1 && gameboard['Kitchen'][1] === 'Mr Green',
+                        'MrsWhite': gameboard['Kitchen'].length > 1 && gameboard['Kitchen'][1] === 'Mrs White',
+                        'MrsPeacock': gameboard['Kitchen'].length > 1 && gameboard['Kitchen'][1] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Kitchen'].suspects.length > 2"
+                <div class="token" *ngIf="gameboard['Kitchen'].length > 2"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Kitchen'].suspects[2] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Kitchen'].suspects[2] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Kitchen'].suspects[2] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Kitchen'].suspects[2] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Kitchen'].suspects[2] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Kitchen'].suspects[2] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Kitchen'].length > 2 && gameboard['Kitchen'][2] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Kitchen'].length > 2 && gameboard['Kitchen'][2] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Kitchen'].length > 2 && gameboard['Kitchen'][2] === 'Professor Plum',
+                        'MrGreen': gameboard['Kitchen'].length > 2 && gameboard['Kitchen'][2] === 'Mr Green',
+                        'MrsWhite': gameboard['Kitchen'].length > 2 && gameboard['Kitchen'][2] === 'Mrs White',
+                        'MrsPeacock': gameboard['Kitchen'].length > 2 && gameboard['Kitchen'][2] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Kitchen'].suspects.length > 3"
+                <div class="token" *ngIf="gameboard['Kitchen'].length > 3"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Kitchen'].suspects[3] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Kitchen'].suspects[3] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Kitchen'].suspects[3] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Kitchen'].suspects[3] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Kitchen'].suspects[3] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Kitchen'].suspects[3] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Kitchen'].length > 3 && gameboard['Kitchen'][3] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Kitchen'].length > 3 && gameboard['Kitchen'][3] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Kitchen'].length > 3 && gameboard['Kitchen'][3] === 'Professor Plum',
+                        'MrGreen': gameboard['Kitchen'].length > 3 && gameboard['Kitchen'][3] === 'Mr Green',
+                        'MrsWhite': gameboard['Kitchen'].length > 3 && gameboard['Kitchen'][3] === 'Mrs White',
+                        'MrsPeacock': gameboard['Kitchen'].length > 3 && gameboard['Kitchen'][3] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Kitchen'].suspects.length > 4"
+                <div class="token" *ngIf="gameboard['Kitchen'].length > 4"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Kitchen'].suspects[4] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Kitchen'].suspects[4] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Kitchen'].suspects[4] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Kitchen'].suspects[4] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Kitchen'].suspects[4] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Kitchen'].suspects[4] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Kitchen'].length > 4 && gameboard['Kitchen'][4] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Kitchen'].length > 4 && gameboard['Kitchen'][4] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Kitchen'].length > 4 && gameboard['Kitchen'][4] === 'Professor Plum',
+                        'MrGreen': gameboard['Kitchen'].length > 4 && gameboard['Kitchen'][4] === 'Mr Green',
+                        'MrsWhite': gameboard['Kitchen'].length > 4 && gameboard['Kitchen'][4] === 'Mrs White',
+                        'MrsPeacock': gameboard['Kitchen'].length > 4 && gameboard['Kitchen'][4] === 'Mrs Peacock'
                     }"
                 ></div>
-                <div class="token" *ngIf="gameState.game_board['Kitchen'].suspects.length > 5"
+                <div class="token" *ngIf="gameboard['Kitchen'].length > 5"
                     [ngClass]="{
-                        'ColonelMustard': gameState.game_board['Kitchen'].suspects[5] === 'Colonel Mustard',
-                        'MissScarlet': gameState.game_board['Kitchen'].suspects[5] === 'Miss Scarlet',
-                        'ProfessorPlum': gameState.game_board['Kitchen'].suspects[5] === 'Professor Plum',
-                        'MrGreen': gameState.game_board['Kitchen'].suspects[5] === 'Mr Green',
-                        'MrsWhite': gameState.game_board['Kitchen'].suspects[5] === 'Mrs White',
-                        'MrsPeacock': gameState.game_board['Kitchen'].suspects[5] === 'Mrs Peacock'
+                        'ColonelMustard': gameboard['Kitchen'].length > 5 && gameboard['Kitchen'][5] === 'Colonel Mustard',
+                        'MissScarlet': gameboard['Kitchen'].length > 5 && gameboard['Kitchen'][5] === 'Miss Scarlet',
+                        'ProfessorPlum': gameboard['Kitchen'].length > 5 && gameboard['Kitchen'][5] === 'Professor Plum',
+                        'MrGreen': gameboard['Kitchen'].length > 5 && gameboard['Kitchen'][5] === 'Mr Green',
+                        'MrsWhite': gameboard['Kitchen'].length > 5 && gameboard['Kitchen'][5] === 'Mrs White',
+                        'MrsPeacock': gameboard['Kitchen'].length > 5 && gameboard['Kitchen'][5] === 'Mrs Peacock'
                     }"
                 ></div>
             </td>
