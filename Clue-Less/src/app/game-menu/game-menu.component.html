@@ -237,13 +237,50 @@
                     </div> -->
                 </div>
 
-                <div id="moveOptions" *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId">
+                <div id="moveOptions" *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId && gamestate.turnStatus !== 'SUGGESTION'"">
                     <p class="col">Choose a room to move to:</p>
                     <div class="d-flex justify-content-center">
                         <button *ngFor="let move of moveOptions" class="col moveButtons" value="move" (click)="makeMove(move)">
                             {{ move.includes('-') ? move + ' Hallway' : move }}
                         </button>
                     </div>
+                </div>
+
+                <div id="suggestionOptions"
+                    *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId && suggestionOptions && gamestate.turnStatus === 'SUGGESTION'">
+                    <p class="col">What would you like to suggest?</p>
+                    <div class="d-flex justify-content-center">
+                        <mat-form-field *ngIf="suggestionOptions.rooms">
+                            <mat-label>Room</mat-label>
+                            <select matNativeControl [(ngModel)]="roomChoice" name="room">
+                                <option *ngFor="let room of suggestionOptions.rooms" [value]="room">
+                                {{room}}
+                                </option>
+                            </select>
+                        </mat-form-field>
+
+                        <mat-form-field *ngIf="suggestionOptions.suspects">
+                            <mat-label>Suspect</mat-label>
+                            <select matNativeControl [(ngModel)]="suspectChoice" name="suspect">
+                                <option *ngFor="let suspect of suggestionOptions.suspects" [value]="suspect">
+                                {{suspect}}
+                                </option>
+                            </select>
+                        </mat-form-field>
+
+                        <mat-form-field *ngIf="suggestionOptions.weapons">
+                            <mat-label>Weapon</mat-label>
+                            <select matNativeControl [(ngModel)]="weaponChoice" name="weapon">
+                                <option *ngFor="let weapon of suggestionOptions.weapons" [value]="weapon">
+                                {{weapon}}
+                                </option>
+                            </select>
+                        </mat-form-field>
+                    </div>
+
+                    <button class="col" (click)="sendSuggestionChoice(suspectChoice, weaponChoice, roomChoice)">
+                        Submit Suggestion
+                    </button>
                 </div>
 
             </div>

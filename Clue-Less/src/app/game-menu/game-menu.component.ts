@@ -29,6 +29,11 @@ export class GameMenuComponent implements OnInit, AfterViewChecked  {
    characterNames = ['Colonel Mustard', 'Miss Scarlet', 'Professor Plum',
    'Mr Green', 'Mrs White', 'Mrs Peacock']; // all possible character names
 
+   // used to store suggestion choices
+   suspectChoice: string;
+   weaponChoice: string;
+   roomChoice: string;
+
    constructor(private serverSvc: ServerService, public dialog: MatDialog, private router: Router) {
       this.socket = this.serverSvc.getSocket();
 
