@@ -13,6 +13,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatListModule } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 import { GameboardComponent } from './gameboard/gameboard.component';
 import { ExitDialogComponent } from './exit-dialog/exit-dialog.component';
 
@@ -34,7 +35,8 @@ import { ExitDialogComponent } from './exit-dialog/exit-dialog.component';
     MatCheckboxModule,
     MatListModule,
     MatTooltipModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent],

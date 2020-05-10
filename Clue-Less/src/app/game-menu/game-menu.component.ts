@@ -89,6 +89,16 @@ export class GameMenuComponent implements OnInit, AfterViewChecked  {
       this.serverSvc.sendSuggestionStart();
    }
 
+   sendSuggestionChoice(suspect: string, weapon: string, room: string) {
+      this.serverSvc.sendSuggestionChoice(
+         {
+            suspect: suspect,
+            weapon: weapon,
+            room: room
+         }
+      );
+   }
+
    endTurn() {
       this.serverSvc.endTurn();
    }

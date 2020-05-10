@@ -227,8 +227,8 @@
                 <div id="playerHnd">
                 <!-- <div id="playerHnd" class="card-columns"> -->
                     <!-- for now to minimuze UI issues, cards will just be listed as text of the value -->
-                    <div *ngFor="let card of cardList" style="max-width: 5em;">
-                        <small>{{card}}</small>
+                    <div *ngFor="let card of cardList" style="display: inline-block;">
+                        <small>| {{card}} |</small>
                     </div>
                     <!-- <div *ngFor="let card of cardList" class="card bg-light mb-3" style="max-width: 18rem;">
                         <div class="card-header">{{card}}</div>
@@ -239,9 +239,11 @@
 
                 <div id="moveOptions" *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId">
                     <p class="col">Choose a room to move to:</p>
-                    <button *ngFor="let move of moveOptions" class="col moveButtons" value="move" (click)="makeMove(move)">
-                        {{ move.includes('-') ? move + ' Hallway' : move }}
-                    </button>
+                    <div class="d-flex justify-content-center">
+                        <button *ngFor="let move of moveOptions" class="col moveButtons" value="move" (click)="makeMove(move)">
+                            {{ move.includes('-') ? move + ' Hallway' : move }}
+                        </button>
+                    </div>
                 </div>
 
             </div>

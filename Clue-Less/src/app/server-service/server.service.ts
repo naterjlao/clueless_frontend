@@ -312,11 +312,7 @@ export class ServerService {
          }
       */
       console.log(data);
-      this.socket.emit('suggestion_choice', {
-         suspect: data.suspect,
-         weapon: data.weapon,
-         room: data.room
-      });
+      this.socket.emit('suggestion_choice', data);
    }
 
    // After the player has picked his/her combination, the Frontend must send the following information:
