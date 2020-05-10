@@ -191,7 +191,7 @@
                 ></div>
                 <button *ngIf="playerstate" id="suggBtn" class="genButtonStyle"
                     [disabled]="!playerstate.isSuggestionValid || !gameHasBegun || (gamestate && gamestate.currentPlayerId !== playerId)"
-                    [ngClass]="{'isDisabled': !!playerstate.isSuggestionValid || !gameHasBegun || (gamestate && gamestate.currentPlayerId !== playerId)}">
+                    [ngClass]="{'isDisabled': !playerstate.isSuggestionValid || !gameHasBegun || (gamestate && gamestate.currentPlayerId !== playerId)}">
                     Suggestion
                 </button>
 
