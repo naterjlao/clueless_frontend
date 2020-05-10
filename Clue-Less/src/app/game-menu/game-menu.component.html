@@ -224,12 +224,17 @@
                         <path d="M5 0h8a2 2 0 012 2v10a2 2 0 01-2 2v-1a1 1 0 001-1V2a1 1 0 00-1-1H5a1 1 0 00-1 1H3a2 2 0 012-2z"/>
                     </svg>
                 </div>
-                <div id="playerHnd" class="card-columns">
-                    <div *ngFor="let card of cardList" class="card bg-light mb-3" style="max-width: 18rem;">
+                <div id="playerHnd">
+                <!-- <div id="playerHnd" class="card-columns"> -->
+                    <!-- for now to minimuze UI issues, cards will just be listed as text of the value -->
+                    <div *ngFor="let card of cardList" class="col card bg-light mb-3" style="max-width: 5em;">
+                        <div class="card-header"><small>{{card}}</small></div>
+                    </div>
+                    <!-- <div *ngFor="let card of cardList" class="card bg-light mb-3" style="max-width: 18rem;">
                         <div class="card-header">{{card}}</div>
                         <div class="card-header"><small class="text-muted">Type</small></div>
                         <img class="card-img-bottom" src="" alt="card">
-                    </div>
+                    </div> -->
                 </div>
 
                 <div id="moveOptions" *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId">
