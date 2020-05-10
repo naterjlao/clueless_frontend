@@ -81,6 +81,10 @@ export class GameMenuComponent implements OnInit, AfterViewChecked  {
       this.serverSvc.sendMoveChoice(room);
    }
 
+   makeSuggestion() {
+      this.serverSvc.sendSuggestionStart();
+   }
+
    endTurn() {
       this.serverSvc.endTurn();
    }

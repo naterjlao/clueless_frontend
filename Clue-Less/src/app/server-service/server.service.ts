@@ -285,6 +285,7 @@ export class ServerService {
             <send an empty dict>
          }
       */
+      console.log('suggestion_start emitted');
       this.socket.emit('suggestion_start', {});
    }
 
