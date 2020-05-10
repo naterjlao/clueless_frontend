@@ -75,99 +75,99 @@
                         </button>
                     </div>
 
-                    <div id="checklist" class="d-flex flex-column">
+                    <div *ngIf="checklist" id="checklist" class="d-flex flex-column">
                         <h1 id="checklistTitle" class="p-2"><u>Checklist</u></h1>
 
-                        <h2 class="p-2 sublist-title">Suspects</h2>
-                        <mat-list class="p-2 sublist">
+                        <h2 *ngIf="checklist.suspects" class="p-2 sublist-title">Suspects</h2>
+                        <mat-list *ngIf="checklist.suspects" class="p-2 sublist">
                             <mat-list-item>
-                                <mat-checkbox [disabled]="true" checked="">Mr. Green</mat-checkbox>
+                                <mat-checkbox [disabled]="true" [checked]="checklist.suspects.includes('Mr Green')">Mr. Green</mat-checkbox>
                             </mat-list-item>
 
                             <mat-list-item>
-                                <mat-checkbox [disabled]="true" checked="">Prof. Plum</mat-checkbox>
+                                <mat-checkbox [disabled]="true" [checked]="checklist.suspects.includes('Professor Plum')">Prof. Plum</mat-checkbox>
                             </mat-list-item>
 
                             <mat-list-item>
-                                <mat-checkbox [disabled]="true" checked="">Coln. Mustard</mat-checkbox>
+                                <mat-checkbox [disabled]="true" [checked]="checklist.suspects.includes('Colonel Mustard')">Coln. Mustard</mat-checkbox>
                             </mat-list-item>
 
                             <mat-list-item>
-                                <mat-checkbox [disabled]="true" checked="">Mrs. Peacock</mat-checkbox>
+                                <mat-checkbox [disabled]="true" [checked]="checklist.suspects.includes('Mrs Peacock')">Mrs. Peacock</mat-checkbox>
                             </mat-list-item>
 
                             <mat-list-item>
-                                <mat-checkbox [disabled]="true" checked="">Miss Scarlet</mat-checkbox>
+                                <mat-checkbox [disabled]="true" [checked]="checklist.suspects.includes('Miss Scarlet')">Miss Scarlet</mat-checkbox>
                             </mat-list-item>
 
                             <mat-list-item>
-                                <mat-checkbox [disabled]="true" checked="">Mrs. White</mat-checkbox>
-                            </mat-list-item>
-                        </mat-list>
-
-                        <h2 class="p-2 sublist-title" style="padding-top: 1em;">Weapons</h2>
-                        <mat-list class="p-2 sublist">
-                            <mat-list-item>
-                                <mat-checkbox [disabled]="true" checked="">Candlestick</mat-checkbox>
-                            </mat-list-item>
-
-                            <mat-list-item>
-                                <mat-checkbox [disabled]="true" checked="">Knife</mat-checkbox>
-                            </mat-list-item>
-
-                            <mat-list-item>
-                                <mat-checkbox [disabled]="true" checked="">Lead Pipe</mat-checkbox>
-                            </mat-list-item>
-
-                            <mat-list-item>
-                                <mat-checkbox [disabled]="true" checked="">Revolver</mat-checkbox>
-                            </mat-list-item>
-
-                            <mat-list-item>
-                                <mat-checkbox [disabled]="true" checked="">Rope</mat-checkbox>
-                            </mat-list-item>
-
-                            <mat-list-item>
-                                <mat-checkbox [disabled]="true" checked="">Wrench</mat-checkbox>
+                                <mat-checkbox [disabled]="true" [checked]="checklist.suspects.includes('Mrs White')">Mrs. White</mat-checkbox>
                             </mat-list-item>
                         </mat-list>
 
-                        <h2 class="p-2 sublist-title" style="padding-top: 1em;">Rooms</h2>
-                        <mat-list class="p-2 sublist">
+                        <h2 *ngIf="checklist.weapons" class="p-2 sublist-title" style="padding-top: 1em;">Weapons</h2>
+                        <mat-list *ngIf="checklist.weapons" class="p-2 sublist">
                             <mat-list-item>
-                                <mat-checkbox [disabled]="true" checked="">Conservatory</mat-checkbox>
+                                <mat-checkbox [disabled]="true" [checked]="checklist.weapons.includes('Candlestick')">Candlestick</mat-checkbox>
                             </mat-list-item>
 
                             <mat-list-item>
-                                <mat-checkbox [disabled]="true" checked="">Lounge</mat-checkbox>
+                                <mat-checkbox [disabled]="true" [checked]="checklist.weapons.includes('Knife')">Knife</mat-checkbox>
                             </mat-list-item>
 
                             <mat-list-item>
-                                <mat-checkbox [disabled]="true" checked="">Kitchen</mat-checkbox>
+                                <mat-checkbox [disabled]="true" [checked]="checklist.weapons.includes('Lead Pipe')">Lead Pipe</mat-checkbox>
                             </mat-list-item>
 
                             <mat-list-item>
-                                <mat-checkbox [disabled]="true" checked="">Library</mat-checkbox>
+                                <mat-checkbox [disabled]="true" [checked]="checklist.weapons.includes('Revolver')">Revolver</mat-checkbox>
                             </mat-list-item>
 
                             <mat-list-item>
-                                <mat-checkbox [disabled]="true" checked="">Hall</mat-checkbox>
+                                <mat-checkbox [disabled]="true" [checked]="checklist.weapons.includes('Rope')">Rope</mat-checkbox>
                             </mat-list-item>
 
                             <mat-list-item>
-                                <mat-checkbox [disabled]="true" checked="">Study</mat-checkbox>
+                                <mat-checkbox [disabled]="true" [checked]="checklist.weapons.includes('Wrench')">Wrench</mat-checkbox>
+                            </mat-list-item>
+                        </mat-list>
+
+                        <h2 *ngIf="checklist.rooms" class="p-2 sublist-title" style="padding-top: 1em;">Rooms</h2>
+                        <mat-list *ngIf="checklist.rooms" class="p-2 sublist">
+                            <mat-list-item>
+                                <mat-checkbox [disabled]="true" [checked]="checklist.rooms.includes('Conservatory')">Conservatory</mat-checkbox>
                             </mat-list-item>
 
                             <mat-list-item>
-                                <mat-checkbox [disabled]="true" checked="">Ballroom</mat-checkbox>
+                                <mat-checkbox [disabled]="true" [checked]="checklist.rooms.includes('Lounge')">Lounge</mat-checkbox>
                             </mat-list-item>
 
                             <mat-list-item>
-                                <mat-checkbox [disabled]="true" checked="">Dining Room</mat-checkbox>
+                                <mat-checkbox [disabled]="true" [checked]="checklist.rooms.includes('Kitchen')">Kitchen</mat-checkbox>
                             </mat-list-item>
 
                             <mat-list-item>
-                                <mat-checkbox [disabled]="true" checked="">Billiard Room</mat-checkbox>
+                                <mat-checkbox [disabled]="true" [checked]="checklist.rooms.includes('Library')">Library</mat-checkbox>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <mat-checkbox [disabled]="true" [checked]="checklist.rooms.includes('Hall')">Hall</mat-checkbox>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <mat-checkbox [disabled]="true" [checked]="checklist.rooms.includes('Study')">Study</mat-checkbox>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <mat-checkbox [disabled]="true" [checked]="checklist.rooms.includes('Ballroom')">Ballroom</mat-checkbox>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <mat-checkbox [disabled]="true" [checked]="checklist.rooms.includes('Dining Room')">Dining Room</mat-checkbox>
+                            </mat-list-item>
+
+                            <mat-list-item>
+                                <mat-checkbox [disabled]="true" [checked]="checklist.rooms.includes('Billiard Room')">Billiard Room</mat-checkbox>
                             </mat-list-item>
                         </mat-list>
                     </div>
