@@ -24,6 +24,7 @@ export class ServerService {
    gameboard: Subject<object> = new Subject<object>();
    moveOptions: Subject<object> = new Subject<object>();
    suggestionOptions: Subject<object> = new Subject<object>();
+   accusationOptions: Subject<object> = new Subject<object>();
    checklist: Subject<object> = new Subject<object>();
    cardList: Subject<object> = new Subject<object>();
    message: Subject<object> = new Subject<object>();
@@ -164,7 +165,7 @@ export class ServerService {
          }
          */
          console.log(data);
-         // TODO: implement
+         this.accusationOptions.next(data);
       });
    }
 

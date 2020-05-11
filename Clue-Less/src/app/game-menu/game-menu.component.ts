@@ -23,6 +23,7 @@ export class GameMenuComponent implements OnInit, AfterViewChecked  {
    checklist; checklist_subscription;
    moveOptions; moveOptions_subscription;
    suggestionOptions; suggestionOptions_subscription;
+   accusationOptions; accusationOptions_subscription;
    cardList; cardList_subscription;
    message; message_subscription;
 
@@ -62,6 +63,9 @@ export class GameMenuComponent implements OnInit, AfterViewChecked  {
       });
       this.suggestionOptions_subscription = this.serverSvc.suggestionOptions.subscribe({
          next: (suggestionOptions) => { this.suggestionOptions = suggestionOptions; }
+      });
+      this.accusationOptions_subscription = this.serverSvc.accusationOptions.subscribe({
+         next: (accusationOptions) => { this.accusationOptions = accusationOptions; }
       });
       this.cardList_subscription = this.serverSvc.cardList.subscribe({
          next: (cardList) => { this.cardList = cardList; }
@@ -158,6 +162,7 @@ export class GameMenuComponent implements OnInit, AfterViewChecked  {
       this.checklist_subscription.unsubscribe();
       this.moveOptions_subscription.unsubscribe();
       this.suggestionOptions_subscription.unsubscribe();
+      this.accusationOptions_subscription.unsubscribe();
       this.cardList_subscription.unsubscribe();
       this.message_subscription.unsubscribe();
    }
