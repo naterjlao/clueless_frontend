@@ -69,6 +69,7 @@
                     <div class="d-flex align-items-center justify-content-center">
                         <!--accuBtn is for when players make their one allowed accusation-->
                         <button id="accuBtn" class="genButtonStyle"
+                            matTooltip="Only 1 Accusation per player per game"
                             [disabled]="!gameHasBegun || (gamestate && gamestate.currentPlayerId !== playerId)"
                             [ngClass]="{'isDisabled': !gameHasBegun || (gamestate && gamestate.currentPlayerId !== playerId)}">
                             Accusation
@@ -238,7 +239,7 @@
                 </div>
 
                 <div id="moveOptions"
-                    *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId && gamestate.turnStatus !== 'MOVED' && gamestate.turnStatus !== 'SUGGESTION'">
+                    *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId && gamestate.turnStatus !== 'SUGGESTION'">
                     <p class="col">Choose a room to move to:</p>
                     <div class="d-flex justify-content-center">
                         <button *ngFor="let move of moveOptions" class="col moveButtons" value="move" (click)="makeMove(move)">
