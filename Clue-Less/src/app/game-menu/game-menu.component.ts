@@ -33,6 +33,7 @@ export class GameMenuComponent implements OnInit, AfterViewChecked  {
    suspectChoice: string;
    weaponChoice: string;
    roomChoice: string;
+   suggestionCardChoice: string;
 
    constructor(private serverSvc: ServerService, public dialog: MatDialog, private router: Router) {
       this.socket = this.serverSvc.getSocket();
@@ -102,6 +103,11 @@ export class GameMenuComponent implements OnInit, AfterViewChecked  {
             room: room
          }
       );
+   }
+
+   sendSuggestionDefenseChoice(choice: string) {
+      console.log(choice);
+      // TODO: Send to backend somehow
    }
 
    endTurn() {
