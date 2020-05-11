@@ -62,13 +62,13 @@
         </div>
 
         <div id="middle" class="row no-gutters">
-            <div class="col-1">
+            <div class="col-3">
                 <div #scrollMe id="outputTxt">
                     <h5 *ngIf="message" [ngStyle]="{'color': message.color}"
                     >{{message.message}}</h5>
                 </div>   
             </div>
-            <div class="col-8">
+            <div class="col-6">
                 <div id="gameBoard">
                     <gameboard id="gameboard" class="d-flex align-items-center justify-content-center"></gameboard>
                 </div>
