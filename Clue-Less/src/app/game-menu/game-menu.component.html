@@ -11,7 +11,7 @@
             <button (click)="openExitDialog()" id="exitButton" class="genButtonStyle" matTooltip="Quit game" matTooltipPosition="right">
                 Exit
             </button>
-            <button
+            <button *ngIf="gamestate && playerId === 'player0'"
                 [disabled]="!(gamestate.characters_in_game.length > 1)"
                 [ngClass]="{'isDisabled': !(gamestate.characters_in_game.length > 1)}"
                 (click)="beginGame()" id="beginButton" class="genButtonStyle"
