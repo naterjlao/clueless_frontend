@@ -1,78 +1,5 @@
-<ng-container *ngIf="socket"> 
-    <div id="Clueless">
-		<h2 *ngIf="availableCharacters.length < 5 && !gameHasBegun">First Player only can start the game! Begin whenever you're ready.</h2>
-        <h2 *ngIf="!(availableCharacters.length < 5)">Waiting for at least 1 more player to join...</h2>
-
-        <button id="exitButton" (click)="disconnect()" class="genButtonStyle"><a routerLink="/start" routerLinkActive="active" class="navButtonLink">Exit</a></button>
-        <button *ngIf="playerId === 'player0' && !gameHasBegun"
-            [disabled]="!gameIsReady"
-            [ngClass]="{'isDisabled': !gameIsReady}"
-            (click)="beginGame()" id="beginButton" class="genButtonStyle">
-            Begin Game
-        </button>
-	</div>
-	<div class="wrapper" id="Clueless">
-		<div></div> <!--This div is for the left-side margin.-->
-		<div><!--This is the beginning of the div for the middle column.-->
-			<div class="wrapHeader">
-				<h1 class="col">Players</h1>
-                    <h3 class="col" *ngFor='let c of charactersInGame'
-                        [ngClass]="{
-                            'ColonelMustard': c === 'Colonel Mustard',
-                            'MissScarlet': c === 'Miss Scarlet',
-                            'ProfessorPlum': c === 'Professor Plum',
-                            'MrGreen': c === 'Mr Green',
-                            'MrsWhite': c === 'Mrs White',
-                            'MrsPeacock': c === 'Mrs Peacock'
-                        }">
-                        {{c}}
-                    </h3>
-					<p *ngIf="gameHasBegun" class="playerInfo" id="whosTurn"><b>It's {{getPlayerNum(whosTurn)}}'s turn!</b></p>
-                <p class="playerInfo" id="playerNumber"><i>You are {{getPlayerNum(playerId)}}</i></p>
-			</div>
-			<div class="gameboardDiv">
-				<div>
-					<div id="gameBoard">
-						<canvas [hidden]="showGameBoard" id="game" #game></canvas>
-						<gameboard [hidden]="!showGameBoard" id="gameboard"></gameboard>
-					</div>
-				</div>
-				<div>
-					<h1>Checklist</h1>
-                
-					<!--accuBtn is for when players make their one allowed accusation-->
-					<button id="accuBtn" class="genButtonStyle">Accusation</button>
-				</div>
-			</div>
-			<div class="cardPanelDiv">
-				<div>
-					<div id="playerClr"></div>
-					<button type="button" id="endTurn" name="button" (click)="endTurn()" class="genButtonStyle">End Turn</button>
-				</div>
-				<div>
-					<div id="moveOptions" *ngIf="gameHasBegun && turnData && turnData.playerId === 'playerId'">
-                    <p>Choose a room to move to:</p>
-                    <!--Placeholder Variable Explanation-->
-                    <!--"move" would be the text on the button and the value sent back to backend.-->
-                    <button *ngFor="let move of turnData.move_options" id="button{{move}}" class="moveButtons" value="{{move}}" (click)="makeMove(move)">
-                        {{move}}
-                    </button>
-                </div>
-                
-                <!--suggBtn is the button for players to make suggestions when they can.-->
-                <button id="suggBtn" class="genButtonStyle">Suggestion</button>
-                
-                <!--playerHnd div is to contain the player's cards they're dealt at the beginning of the game-->
-               <div id="playerHnd"></div>
-				</div>
-			</div>
-		</div> <!--This is the end of the div for the middle column.-->
-		<div></div> <!--This div is for the right-side margin-->
-	</div>
-    
-    
-    
-    <!--<div id="ClueLess">
+<ng-container *ngIf="socket">
+    <div id="ClueLess">
 
         <div id="topMessage" class="row">
             <h2 *ngIf="gamestate && gamestate.characters_in_game.length > 1 && !gameHasBegun">Player 1 only can start the game! Begin whenever you're ready.</h2>
@@ -93,16 +20,16 @@
             </button>
             <a class="d-flex align-items-end" href="#"
                 onclick="window.open('../../assets/Clue-Less_Rules.pdf', '_blank', 'fullscreen=yes'); return false;">
-                <h4 style="margin: 0; line-height: 100%;">Clue-Less Game Rules</h4>-->
+                <h4 style="margin: 0; line-height: 100%;">Clue-Less Game Rules</h4>
                 <!-- Open in new window icon -->
-            <!--    <div>
+                <div>
                     <svg class="bi bi-box-arrow-up-right" style="font-size: 15px;" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M1.5 13A1.5 1.5 0 003 14.5h8a1.5 1.5 0 001.5-1.5V9a.5.5 0 00-1 0v4a.5.5 0 01-.5.5H3a.5.5 0 01-.5-.5V5a.5.5 0 01.5-.5h4a.5.5 0 000-1H3A1.5 1.5 0 001.5 5v8zm7-11a.5.5 0 01.5-.5h5a.5.5 0 01.5.5v5a.5.5 0 01-1 0V2.5H9a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
                         <path fill-rule="evenodd" d="M14.354 1.646a.5.5 0 010 .708l-8 8a.5.5 0 01-.708-.708l8-8a.5.5 0 01.708 0z" clip-rule="evenodd"/>
                     </svg>
                 </div>
             </a>
-        </div>-->
+        </div>
 
         <div id="top" class="row no-gutters">
             <div class="col">
@@ -264,7 +191,7 @@
                 ></div>
                 <button *ngIf="playerstate" id="suggBtn" class="genButtonStyle"
                     [disabled]="!playerstate.isSuggestionValid || !gameHasBegun || (gamestate && gamestate.currentPlayerId !== playerId)"
-                    [ngClass]="{'isDisabled': !!playerstate.isSuggestionValid || !gameHasBegun || (gamestate && gamestate.currentPlayerId !== playerId)}">
+                    [ngClass]="{'isDisabled': !playerstate.isSuggestionValid || !gameHasBegun || (gamestate && gamestate.currentPlayerId !== playerId)}">
                     Suggestion
                 </button>
 
@@ -313,7 +240,7 @@
 
             </div>
         </div>
-    </div>-->
+    </div>
 </ng-container>
 
 <ng-container *ngIf="!socket">
