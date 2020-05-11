@@ -15,6 +15,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { GameboardComponent } from './gameboard/gameboard.component';
 import { ExitDialogComponent } from './exit-dialog/exit-dialog.component';
 
@@ -38,7 +40,9 @@ import { ExitDialogComponent } from './exit-dialog/exit-dialog.component';
     MatListModule,
     MatTooltipModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    MatInputModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent],
