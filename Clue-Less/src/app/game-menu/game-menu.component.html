@@ -30,11 +30,13 @@
                 </div>
             </a>
         </div>
-        <div #scrollMe id="outputTxt">
+        <div id="top" class="row no-gutters">
+            <div class="col">
+                <div #scrollMe id="outputTxt">
                     <h5 *ngIf="message" [ngStyle]="{'color': message.color}"
                     >{{message.message}}</h5>
-        </div>
-        <div id="top" class="row no-gutters">
+                </div>
+            </div>
             <div class="col">
                 <div id="playersPanel">
                     <div class="row">
