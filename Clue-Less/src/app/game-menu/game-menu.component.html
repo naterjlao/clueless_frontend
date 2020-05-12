@@ -353,7 +353,7 @@
                     </div>
 
                     <button class="col genButtonStyle" (click)="sendSuggestionDefenseChoice(suggestionCardChoice, false)"
-                        *ngIf="(gamestate && gamestate.suggestion) && (cardList.includes(gamestate.suggestion.room) || cardList.includes(gamestate.suggestion.suspect) || cardList.includes(gamestate.suggestion.weapon))"></button>
+                        *ngIf="(gamestate && gamestate.suggestion) && (cardList.includes(gamestate.suggestion.room) || cardList.includes(gamestate.suggestion.suspect) || cardList.includes(gamestate.suggestion.weapon))"
                         [disabled]="!suggestionCardChoice"
                         [ngClass]="{'isDisabled': !suggestionCardChoice}">
                         Submit Card for Suggestion Defense
