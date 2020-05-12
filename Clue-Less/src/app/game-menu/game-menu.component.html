@@ -89,8 +89,8 @@
                         <button id="accuBtn" class="genButtonStyle"
                             (click)="makeAccusation()"
                             matTooltip="Only 1 Accusation per player per game"
-                            [disabled]="!gameHasBegun || (gamestate && gamestate.currentPlayerId !== playerId)"
-                            [ngClass]="{'isDisabled': !gameHasBegun || (gamestate && gamestate.currentPlayerId !== playerId)}">
+                            [disabled]="!gameHasBegun || (gamestate && gamestate.currentPlayerId !== playerId) || (playerstate && playerstate.status && playerstate.status === 'DEFEND')"
+                            [ngClass]="{'isDisabled': !gameHasBegun || (gamestate && gamestate.currentPlayerId !== playerId) || (playerstate && playerstate.status && playerstate.status === 'DEFEND')}">
                             Accusation
                         </button>
                     </div>
@@ -257,7 +257,7 @@
                 </div>
 
                 <div id="accusationOptions"
-                    *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId && accusationOptions && gamestate.turnStatus === 'ACCUSE' ">
+                    *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId && accusationOptions && gamestate.turnStatus === 'ACCUSATION' ">
                     <p class="col">What would you like to accuse?</p>
                     <div class="d-flex justify-content-center">
                         <mat-form-field *ngIf="accusationOptions.rooms">
@@ -288,7 +288,7 @@
                         </mat-form-field>
                     </div>
 
-                    <button class="col" (click)="sendAccusationChoice(suspectChoice, weaponChoice, roomChoice)"
+                    <button class="col genButtonStyle" (click)="sendAccusationChoice(suspectChoice, weaponChoice, roomChoice)"
                         [disabled]="!suspectChoice || !weaponChoice || !roomChoice"
                         [ngClass]="{'isDisabled': !suspectChoice || !weaponChoice || !roomChoice}">
                         Submit Accusation
@@ -327,7 +327,7 @@
                         </mat-form-field>
                     </div>
 
-                    <button class="col" (click)="sendSuggestionChoice(suspectChoice, weaponChoice, roomChoice)"
+                    <button class="col genButtonStyle" (click)="sendSuggestionChoice(suspectChoice, weaponChoice, roomChoice)"
                         [disabled]="!suspectChoice || !weaponChoice || !roomChoice"
                         [ngClass]="{'isDisabled': !suspectChoice || !weaponChoice || !roomChoice}">
                         Submit Suggestion
@@ -347,12 +347,12 @@
                             </select>
                         </mat-form-field>
 
-                        <button (click)="sendSuggestionDefenseChoice('', true)">
+                        <button class="genButtonStyle" (click)="sendSuggestionDefenseChoice('', true)">
                             Cannot Disprove
                         </button>
                     </div>
 
-                    <button class="col" (click)="sendSuggestionDefenseChoice(suggestionCardChoice, false)"
+                    <button class="col genButtonStyle" (click)="sendSuggestionDefenseChoice(suggestionCardChoice, false)"
                         [disabled]="!suggestionCardChoice"
                         [ngClass]="{'isDisabled': !suggestionCardChoice}">
                         Submit Card for Suggestion Defense

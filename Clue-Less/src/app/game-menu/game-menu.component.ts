@@ -37,12 +37,21 @@ export class GameMenuComponent implements OnInit, AfterViewChecked  {
    roomChoice: string;
    suggestionCardChoice: string;
 
+   heightHasBeenInitialized = false;
+
    constructor(private serverSvc: ServerService, public dialog: MatDialog, private router: Router) {
       this.socket = this.serverSvc.getSocket();
 
       /* subscriptions to Subjects from the serverService */
       this.gameHasBegun_subscription = this.serverSvc.gameHasBegun.subscribe({
-         next: (gameHasBegun) => this.gameHasBegun = gameHasBegun
+         next: (gameHasBegun) => {
+            this.gameHasBegun = gameHasBegun;
+            
+            if(!this.heightHasBeenInitialized) {
+               this.setMessagePanelHeight(); // trigger resize to fix message panel height now that everything has loaded
+               this.heightHasBeenInitialized = true;
+            }
+         }
       });
       this.playerId_subscription = this.serverSvc.playerIdChange.subscribe({
          next: (playerId) => this.playerId = playerId
@@ -89,7 +98,6 @@ export class GameMenuComponent implements OnInit, AfterViewChecked  {
 
    ngAfterViewChecked() {
       this.scrollToBottom();
-      $(window).trigger('resize'); // trigger resize to fix message panel height now that everything has loaded
    }
 
    setMessagePanelHeight() {
