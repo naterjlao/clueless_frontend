@@ -77,6 +77,7 @@ export class GameMenuComponent implements OnInit, AfterViewChecked  {
    }
 
    ngOnInit() {
+      window.addEventListener('resize', this.setMessagePanelHeight);
       this.scrollToBottom();
    }
 
@@ -85,9 +86,7 @@ export class GameMenuComponent implements OnInit, AfterViewChecked  {
    }
 
    ngAfterViewChecked() {
-      window.addEventListener('load', this.setMessagePanelHeight); // resize on load
-      window.addEventListener('resize', this.setMessagePanelHeight); // and resize on resize
-      
+      this.setMessagePanelHeight();
       this.scrollToBottom();
    }
 
