@@ -82,13 +82,12 @@ export class GameMenuComponent implements OnInit, AfterViewChecked  {
 
    ngAfterViewInit() {
       this.serverSvc.enteredGame(); // notify server of client entering game-menu to trigger initialization communications
-
-      this.setMessagePanelHeight();
-      window.addEventListener('load', this.setMessagePanelHeight); // resize on load
-      window.addEventListener('resize', this.setMessagePanelHeight); // and resize on resize
    }
 
    ngAfterViewChecked() {
+      window.addEventListener('load', this.setMessagePanelHeight); // resize on load
+      window.addEventListener('resize', this.setMessagePanelHeight); // and resize on resize
+      
       this.scrollToBottom();
    }
 
