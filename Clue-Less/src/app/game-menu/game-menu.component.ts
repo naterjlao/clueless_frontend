@@ -120,6 +120,11 @@ export class GameMenuComponent implements OnInit, AfterViewChecked  {
             room: room
          }
       );
+
+      // clear suggerstion choices for next time
+      this.suspectChoice = null;
+      this.weaponChoice = null;
+      this.roomChoice= null;
    }
 
    sendAccusationChoice(suspect: string, weapon: string, room: string) {
@@ -133,8 +138,10 @@ export class GameMenuComponent implements OnInit, AfterViewChecked  {
    }
 
    sendSuggestionDefenseChoice(choice: string, cannotDisprove: boolean) {
-      console.log(choice); console.log(this.suggestionCardChoice);
       this.serverSvc.sendSuggestionDisprove(choice, cannotDisprove);
+
+      // clear suggerstion defense choice for next time
+      this.suggestionCardChoice = null;
    }
 
    endTurn() {

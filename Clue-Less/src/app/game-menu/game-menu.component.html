@@ -88,7 +88,7 @@
                         <!--accuBtn is for when players make their one allowed accusation-->
                         <button id="accuBtn" class="genButtonStyle"
                             (click)="makeAccusation()"
-                            matTooltip="Only 1 Accusation per player per game"
+                            matTooltip="Use it wisely"
                             [disabled]="!gameHasBegun || (gamestate && gamestate.currentPlayerId !== playerId) || (playerstate && playerstate.status && playerstate.status === 'DEFEND')"
                             [ngClass]="{'isDisabled': !gameHasBegun || (gamestate && gamestate.currentPlayerId !== playerId) || (playerstate && playerstate.status && playerstate.status === 'DEFEND')}">
                             Accusation
@@ -197,7 +197,6 @@
 
         <div id="bottom" class="row no-gutters cardPanel">
             <div id="cardPanel_left" class="col-3">
-                <h1 id="cardMenuTitle">Card Menu</h1>
                 <div id="playerClr" *ngIf="playerstate"
                     matTooltip="{{playerstate.suspect}}" matTooltipPosition="right"
                     [ngClass]="{
@@ -217,8 +216,8 @@
                 </button>
 
                 <button type="button" id="endTurn" class="genButtonStyle" name="button" (click)="endTurn()"
-                    [disabled]="!gameHasBegun || (gamestate && gamestate.currentPlayerId !== playerId)"
-                    [ngClass]="{'isDisabled': !gameHasBegun || (gamestate && gamestate.currentPlayerId !== playerId)}">
+                    [disabled]="!gameHasBegun || (gamestate && gamestate.currentPlayerId !== playerId) || moveOptions.length > 0"
+                    [ngClass]="{'isDisabled': !gameHasBegun || (gamestate && gamestate.currentPlayerId !== playerId) || moveOptions.length > 0}">
                     End Turn
                 </button>
             </div>
@@ -347,12 +346,14 @@
                             </select>
                         </mat-form-field>
 
-                        <button class="genButtonStyle" (click)="sendSuggestionDefenseChoice('', true)">
+                        <button class="genButtonStyle" (click)="sendSuggestionDefenseChoice('', true)"
+                            *ngIf="(gamestate && gamestate.suggestion) && (!cardList.includes(gamestate.suggestion.room) && !cardList.includes(gamestate.suggestion.suspect) && !cardList.includes(gamestate.suggestion.weapon))">
                             Cannot Disprove
                         </button>
                     </div>
 
                     <button class="col genButtonStyle" (click)="sendSuggestionDefenseChoice(suggestionCardChoice, false)"
+                        *ngIf="(gamestate && gamestate.suggestion) && (cardList.includes(gamestate.suggestion.room) || cardList.includes(gamestate.suggestion.suspect) || cardList.includes(gamestate.suggestion.weapon))"></button>
                         [disabled]="!suggestionCardChoice"
                         [ngClass]="{'isDisabled': !suggestionCardChoice}">
                         Submit Card for Suggestion Defense
