@@ -348,6 +348,7 @@ export class ServerService {
       }
       */
       console.log(choice);
+      console.log(cannotDisprove)
       this.socket.emit('suggestion_trial', {
          card : choice,
          cannotDisprove: cannotDisprove,
