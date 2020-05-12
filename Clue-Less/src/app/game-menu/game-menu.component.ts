@@ -89,6 +89,7 @@ export class GameMenuComponent implements OnInit, AfterViewChecked  {
 
    ngAfterViewChecked() {
       this.scrollToBottom();
+      $(window).trigger('resize'); // trigger resize to fix message panel height now that everything has loaded
    }
 
    setMessagePanelHeight() {

@@ -352,7 +352,9 @@
                         </button>
                     </div>
 
-                    <button class="col" (click)="sendSuggestionDefenseChoice(suggestionCardChoice, false)">
+                    <button class="col" (click)="sendSuggestionDefenseChoice(suggestionCardChoice, false)"
+                        [disabled]="!suggestionCardChoice"
+                        [ngClass]="{'isDisabled': !suggestionCardChoice}">
                         Submit Card for Suggestion Defense
                     </button>
                 </div>
