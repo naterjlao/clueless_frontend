@@ -3,6 +3,7 @@ import { ServerService } from '../server-service/server.service';
 import { ExitDialogComponent } from '../exit-dialog/exit-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import $ from 'jquery';
 
 @Component({
    selector: 'game-menu',
@@ -81,10 +82,19 @@ export class GameMenuComponent implements OnInit, AfterViewChecked  {
 
    ngAfterViewInit() {
       this.serverSvc.enteredGame(); // notify server of client entering game-menu to trigger initialization communications
+
+      this.setMessagePanelHeight();
+      window.addEventListener('resize', this.setMessagePanelHeight);
    }
 
    ngAfterViewChecked() {
       this.scrollToBottom();
+   }
+
+   setMessagePanelHeight() {
+      // set max-height for messages panel so height doesn't increase as messages are added
+      let h = $("#checklistPanel").height();
+      $("#outputTxt").css("max-height", h);
    }
 
    beginGame() {
@@ -105,6 +115,16 @@ export class GameMenuComponent implements OnInit, AfterViewChecked  {
 
    sendSuggestionChoice(suspect: string, weapon: string, room: string) {
       this.serverSvc.sendSuggestionChoice(
+         {
+            suspect: suspect,
+            weapon: weapon,
+            room: room
+         }
+      );
+   }
+
+   sendAccusationChoice(suspect: string, weapon: string, room: string) {
+      this.serverSvc.sendAccusationChoice(
          {
             suspect: suspect,
             weapon: weapon,

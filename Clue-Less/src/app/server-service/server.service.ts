@@ -328,11 +328,7 @@ export class ServerService {
          }
       */
       console.log(data);
-      this.socket.emit('accusation_choice', {
-         suspect: data.suspect,
-         weapon: data.weapon,
-         room: data.room
-      });
+      this.socket.emit('accusation_choice', data);
    }
 
    // Send's the player's card to disprove suggestion

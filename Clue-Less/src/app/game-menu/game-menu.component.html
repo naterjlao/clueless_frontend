@@ -256,8 +256,47 @@
                     </div>
                 </div>
 
+                <div id="accusationOptions"
+                    *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId && accusationOptions && gamestate.turnStatus === 'ACCUSE' ">
+                    <p class="col">What would you like to accuse?</p>
+                    <div class="d-flex justify-content-center">
+                        <mat-form-field *ngIf="accusationOptions.rooms">
+                            <mat-label>Room</mat-label>
+                            <select matNativeControl [(ngModel)]="roomChoice" name="room">
+                                <option *ngFor="let room of accusationOptions.rooms" [value]="room">
+                                {{room}}
+                                </option>
+                            </select>
+                        </mat-form-field>
+
+                        <mat-form-field *ngIf="accusationOptions.suspects">
+                            <mat-label>Suspect</mat-label>
+                            <select matNativeControl [(ngModel)]="suspectChoice" name="suspect">
+                                <option *ngFor="let suspect of accusationOptions.suspects" [value]="suspect">
+                                {{suspect}}
+                                </option>
+                            </select>
+                        </mat-form-field>
+
+                        <mat-form-field *ngIf="accusationOptions.weapons">
+                            <mat-label>Weapon</mat-label>
+                            <select matNativeControl [(ngModel)]="weaponChoice" name="weapon">
+                                <option *ngFor="let weapon of accusationOptions.weapons" [value]="weapon">
+                                {{weapon}}
+                                </option>
+                            </select>
+                        </mat-form-field>
+                    </div>
+
+                    <button class="col" (click)="sendAccusationChoice(suspectChoice, weaponChoice, roomChoice)"
+                        [disabled]="!suspectChoice || !weaponChoice || !roomChoice"
+                        [ngClass]="{'isDisabled': !suspectChoice || !weaponChoice || !roomChoice}">
+                        Submit Accusation
+                    </button>
+                </div>
+
                 <div id="suggestionOptions"
-                    *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId && suggestionOptions && gamestate.turnStatus === 'SUGGESTION' && !(playerstate && playerstate.status && playerstate.status == 'PLAYER_DEFEND') ">
+                    *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId && suggestionOptions && gamestate.turnStatus === 'SUGGESTION' && !(playerstate && playerstate.status && playerstate.status === 'DEFEND') ">
                     <p class="col">What would you like to suggest?</p>
                     <div class="d-flex justify-content-center">
                         <mat-form-field *ngIf="suggestionOptions.rooms">
@@ -288,7 +327,9 @@
                         </mat-form-field>
                     </div>
 
-                    <button class="col" (click)="sendSuggestionChoice(suspectChoice, weaponChoice, roomChoice)">
+                    <button class="col" (click)="sendSuggestionChoice(suspectChoice, weaponChoice, roomChoice)"
+                        [disabled]="!suspectChoice || !weaponChoice || !roomChoice"
+                        [ngClass]="{'isDisabled': !suspectChoice || !weaponChoice || !roomChoice}">
                         Submit Suggestion
                     </button>
                 </div>
