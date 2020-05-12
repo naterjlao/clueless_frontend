@@ -15,7 +15,8 @@
 
 #board table {
     border-collapse:separate;
-    border-spacing: 15px 15px;
+    /* Commented out border-spacing to make a more cohesive-looking board. The room name "Conservatory" makes the first column wider than the rest and this helps lessen that effect. */
+    /*border-spacing: 15px 15px;*/
 }
 
 .room {
@@ -23,7 +24,7 @@
     text-align: center;
     width: 100px;
     height: 100px;
-    background-color: gray;
+    background-color: #ccc; /* Changed from "grey" to #ccc for color contrast and to make the room names more legible. */
 }
 .vhallway{
     border-left: @borderSize solid #000;
