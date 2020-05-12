@@ -109,9 +109,8 @@ export class GameMenuComponent implements OnInit, AfterViewChecked  {
       );
    }
 
-   sendSuggestionDefenseChoice(choice: string) {
-      console.log(choice);
-      // TODO: Send to backend somehow
+   sendSuggestionDefenseChoice(choice: string, cannotDisprove: boolean) {
+      this.serverSvc.sendSuggestionDisprove(choice, cannotDisprove);
    }
 
    endTurn() {

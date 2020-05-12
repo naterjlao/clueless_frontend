@@ -286,7 +286,7 @@
                 </div>
 
                 <div id="suggestionDefend"
-                    *ngIf=" gameHasBegun && gamestate && gamestate.currentPlayerId === playerId && gamestate.turnStatus === 'SUGGESTION' && playerstate && playerstate.status && playerstate.status == 'PLAYER_DEFEND' ">
+                    *ngIf=" gameHasBegun && gamestate && gamestate.currentPlayerId === playerId && gamestate.turnStatus === 'SUGGESTION' && playerstate && playerstate.status && playerstate.status == 'DEFEND' ">
                     <p class="col">Choose a card to defend the suggestion</p>
                     <div class="d-flex justify-content-center">
                         <mat-form-field *ngIf="cardList">
@@ -297,9 +297,13 @@
                                 </option>
                             </select>
                         </mat-form-field>
+
+                        <button (click)="sendSuggestionDefenseChoice('', true)">
+                            Cannot Disprove
+                        </button>
                     </div>
-                    
-                    <button class="col" (click)="sendSuggestionDefenseChoice(suggestionCardChoice)">
+
+                    <button class="col" (click)="sendSuggestionDefenseChoice(suggestionCardChoice, false)">
                         Submit Card for Suggestion Defense
                     </button>
                 </div>

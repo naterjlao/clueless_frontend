@@ -72,6 +72,7 @@ export class ServerService {
             playerId:<playerId of the player that has the current turn>
             suspect: <the suspect character that the player has chosen>
             isSuggestionValid: <TRUE if the player can make a suggestion at the game’s current state>
+            status: string
          }
          */
          console.log(data);
@@ -333,6 +334,26 @@ export class ServerService {
          room: data.room
       });
    }
+
+   // Send's the player's card to disprove suggestion
+   sendSuggestionDisprove(choice: string, cannotDisprove: boolean) {
+
+      /*
+      data emitted from server is in the following form:
+      {
+         card: <the suspect, weapon or room card used to disprove. If the cannotDisprove, empty string>
+         type: “suspect” | ”weapon” | ”room”
+         cannotDisprove=TRUE | FALSE  }
+
+      }
+      */
+      console.log(choice);
+      this.socket.emit('suggestion_trial', {
+         card : choice,
+         cannotDisprove: cannotDisprove,
+         type: '' // no data needed, only a placeholder
+      });
+}
 
    // Send's the player's card choice
    sendCardChoice(choice: string) {
