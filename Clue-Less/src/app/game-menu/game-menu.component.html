@@ -70,8 +70,8 @@
                         </div>
                     </div>
 
-                    <h5 *ngIf="message" [ngStyle]="{'color': message.color}"
-                    >{{message.message}}</h5>
+                    <h5 *ngFor="let m of messages" [ngStyle]="{'color': m.color}"
+                    >{{m.message}}</h5>
                 </div>
             </div>
 

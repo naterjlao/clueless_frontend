@@ -25,7 +25,7 @@ export class GameMenuComponent implements OnInit, AfterViewChecked  {
    suggestionOptions; suggestionOptions_subscription;
    accusationOptions; accusationOptions_subscription;
    cardList; cardList_subscription;
-   message; message_subscription;
+   messages = []; message; message_subscription;
 
    characterNames = ['Colonel Mustard', 'Miss Scarlet', 'Professor Plum',
    'Mr Green', 'Mrs White', 'Mrs Peacock']; // all possible character names
@@ -71,7 +71,7 @@ export class GameMenuComponent implements OnInit, AfterViewChecked  {
          next: (cardList) => { this.cardList = cardList; }
       });
       this.message_subscription = this.serverSvc.message.subscribe({
-         next: (message) => { this.message = message; }
+         next: (message) => { this.message = message; this.messages.push(message); }
       });
    }
 
