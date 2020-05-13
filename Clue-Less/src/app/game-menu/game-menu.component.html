@@ -2,8 +2,8 @@
     <div id="ClueLess">
 
         <div id="topMessage" class="d-flex justify-content-between">
-            <h2 *ngIf="gamestate && gamestate.characters_in_game.length > 1 && !gameHasBegun">Player 1 only can start the game! Begin whenever you're ready.</h2>
-            <h2 *ngIf="gamestate && !(gamestate.characters_in_game.length > 1)">Waiting for at least 1 more player to join...</h2>
+            <h2 *ngIf="gamestate && gamestate.characters_in_game.length > 1 && !gameHasBegun && gamestate.turnStatus !== 'END'">Player 1 only can start the game! Begin whenever you're ready.</h2>
+            <h2 *ngIf="gamestate && !(gamestate.characters_in_game.length > 1) && gamestate.turnStatus !== 'END'">Waiting for at least 1 more player to join...</h2>
             <h2 *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId && gamestate.turnStatus !== 'END'">It's your turn!</h2>
         </div>
 
