@@ -244,7 +244,7 @@
                         <img class="card-img-bottom" src="" alt="card">
                     </div> -->
                 </div>
-                <div id="interactiveArea" *ngIf="gameHasBegun && playerstate"
+                <div id="interactiveArea" *ngIf="gameHasBegun && playerstate && (gamestate && gamestate.currentPlayerId === playerId)"
                     [ngClass]="{
                         'ColonelMustardGlow': playerstate.suspect === 'Colonel Mustard',
                         'MissScarletGlow': playerstate.suspect === 'Miss Scarlet',
