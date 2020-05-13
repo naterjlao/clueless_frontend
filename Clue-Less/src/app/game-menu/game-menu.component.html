@@ -335,7 +335,12 @@
 
                 <div id="suggestionDefend"
                     *ngIf=" gameHasBegun && gamestate && gamestate.currentPlayerId === playerId && gamestate.turnStatus === 'SUGGESTION' && playerstate && playerstate.status && playerstate.status == 'DEFEND' ">
-                    <p class="col">Choose a card to defend the suggestion</p>
+                    <p class="col" *ngIf="(gamestate && gamestate.suggestion) && (cardList.includes(gamestate.suggestion.room) || cardList.includes(gamestate.suggestion.suspect) || cardList.includes(gamestate.suggestion.weapon))">
+                        Choose a card to defend the suggestion
+                    </p>
+                    <p class="col" *ngIf="(gamestate && gamestate.suggestion) && (!cardList.includes(gamestate.suggestion.room) && !cardList.includes(gamestate.suggestion.suspect) && !cardList.includes(gamestate.suggestion.weapon))">
+                        Admit it... you cannot disprove anything!
+                    </p>
                     <div class="d-flex justify-content-center">
                         <mat-form-field *ngIf="cardList && (gamestate && gamestate.suggestion) && (cardList.includes(gamestate.suggestion.room) || cardList.includes(gamestate.suggestion.suspect) || cardList.includes(gamestate.suggestion.weapon))">
                             <mat-label>Card</mat-label>
