@@ -244,127 +244,135 @@
                         <img class="card-img-bottom" src="" alt="card">
                     </div> -->
                 </div>
-
-                <div id="moveOptions"
-                    *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId && gamestate.turnStatus !== 'SUGGESTION' && (playerstate && playerstate.status && playerstate.status !== 'SUGGEST') ">
-                    <p class="col">Choose a room to move to:</p>
-                    <div class="d-flex justify-content-center">
-                        <button *ngFor="let move of moveOptions" class="col moveButtons" value="move" (click)="makeMove(move)">
-                            {{ move.includes('-') ? move + ' Hallway' : move }}
-                        </button>
-                    </div>
-                </div>
-
-                <div id="accusationOptions"
-                    *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId && accusationOptions && gamestate.turnStatus === 'ACCUSATION' ">
-                    <p class="col">What would you like to accuse?</p>
-                    <div class="d-flex justify-content-center">
-                        <mat-form-field *ngIf="accusationOptions.rooms">
-                            <mat-label>Room</mat-label>
-                            <select matNativeControl [(ngModel)]="roomChoice" name="room">
-                                <option *ngFor="let room of accusationOptions.rooms" [value]="room">
-                                {{room}}
-                                </option>
-                            </select>
-                        </mat-form-field>
-
-                        <mat-form-field *ngIf="accusationOptions.suspects">
-                            <mat-label>Suspect</mat-label>
-                            <select matNativeControl [(ngModel)]="suspectChoice" name="suspect">
-                                <option *ngFor="let suspect of accusationOptions.suspects" [value]="suspect">
-                                {{suspect}}
-                                </option>
-                            </select>
-                        </mat-form-field>
-
-                        <mat-form-field *ngIf="accusationOptions.weapons">
-                            <mat-label>Weapon</mat-label>
-                            <select matNativeControl [(ngModel)]="weaponChoice" name="weapon">
-                                <option *ngFor="let weapon of accusationOptions.weapons" [value]="weapon">
-                                {{weapon}}
-                                </option>
-                            </select>
-                        </mat-form-field>
+                <div id="interactiveArea" *ngIf="playerstate"
+                    [ngClass]="{
+                        'ColonelMustardGlow': playerstate.suspect === 'Colonel Mustard',
+                        'MissScarletGlow': playerstate.suspect === 'Miss Scarlet',
+                        'ProfessorPlumGlow': playerstate.suspect === 'Professor Plum',
+                        'MrGreenGlow': playerstate.suspect === 'Mr Green',
+                        'MrsWhiteGlow': playerstate.suspect === 'Mrs White',
+                        'MrsPeacockGlow': playerstate.suspect === 'Mrs Peacock'
+                        }">
+                    <div id="moveOptions"
+                        *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId && gamestate.turnStatus !== 'SUGGESTION' && (playerstate && playerstate.status && playerstate.status !== 'SUGGEST') ">
+                        <p class="col">Choose a room to move to:</p>
+                        <div class="d-flex justify-content-center">
+                            <button *ngFor="let move of moveOptions" class="col moveButtons" value="move" (click)="makeMove(move)">
+                                {{ move.includes('-') ? move + ' Hallway' : move }}
+                            </button>
+                        </div>
                     </div>
 
-                    <button class="col genButtonStyle" (click)="sendAccusationChoice(suspectChoice, weaponChoice, roomChoice)"
-                        [disabled]="!suspectChoice || !weaponChoice || !roomChoice"
-                        [ngClass]="{'isDisabled': !suspectChoice || !weaponChoice || !roomChoice}">
-                        Submit Accusation
-                    </button>
-                </div>
+                    <div id="accusationOptions"
+                        *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId && accusationOptions && gamestate.turnStatus === 'ACCUSATION' ">
+                        <p class="col">What would you like to accuse?</p>
+                        <div class="d-flex justify-content-center">
+                            <mat-form-field *ngIf="accusationOptions.rooms">
+                                <mat-label>Room</mat-label>
+                                <select matNativeControl [(ngModel)]="roomChoice" name="room">
+                                    <option *ngFor="let room of accusationOptions.rooms" [value]="room">
+                                    {{room}}
+                                    </option>
+                                </select>
+                            </mat-form-field>
 
-                <div id="suggestionOptions"
-                    *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId && suggestionOptions && gamestate.turnStatus === 'SUGGESTION' && !(playerstate && playerstate.status && playerstate.status === 'DEFEND') ">
-                    <p class="col">What would you like to suggest?</p>
-                    <div class="d-flex justify-content-center">
-                        <mat-form-field *ngIf="suggestionOptions.rooms">
-                            <mat-label>Room</mat-label>
-                            <select matNativeControl [(ngModel)]="roomChoice" name="room">
-                                <option *ngFor="let room of suggestionOptions.rooms" [value]="room">
-                                {{room}}
-                                </option>
-                            </select>
-                        </mat-form-field>
+                            <mat-form-field *ngIf="accusationOptions.suspects">
+                                <mat-label>Suspect</mat-label>
+                                <select matNativeControl [(ngModel)]="suspectChoice" name="suspect">
+                                    <option *ngFor="let suspect of accusationOptions.suspects" [value]="suspect">
+                                    {{suspect}}
+                                    </option>
+                                </select>
+                            </mat-form-field>
 
-                        <mat-form-field *ngIf="suggestionOptions.suspects">
-                            <mat-label>Suspect</mat-label>
-                            <select matNativeControl [(ngModel)]="suspectChoice" name="suspect">
-                                <option *ngFor="let suspect of suggestionOptions.suspects" [value]="suspect">
-                                {{suspect}}
-                                </option>
-                            </select>
-                        </mat-form-field>
+                            <mat-form-field *ngIf="accusationOptions.weapons">
+                                <mat-label>Weapon</mat-label>
+                                <select matNativeControl [(ngModel)]="weaponChoice" name="weapon">
+                                    <option *ngFor="let weapon of accusationOptions.weapons" [value]="weapon">
+                                    {{weapon}}
+                                    </option>
+                                </select>
+                            </mat-form-field>
+                        </div>
 
-                        <mat-form-field *ngIf="suggestionOptions.weapons">
-                            <mat-label>Weapon</mat-label>
-                            <select matNativeControl [(ngModel)]="weaponChoice" name="weapon">
-                                <option *ngFor="let weapon of suggestionOptions.weapons" [value]="weapon">
-                                {{weapon}}
-                                </option>
-                            </select>
-                        </mat-form-field>
-                    </div>
-
-                    <button id="submitSuggestion" class="col genButtonStyle" (click)="sendSuggestionChoice(suspectChoice, weaponChoice, roomChoice)"
-                        [disabled]="!suspectChoice || !weaponChoice || !roomChoice"
-                        [ngClass]="{'isDisabled': !suspectChoice || !weaponChoice || !roomChoice}">
-                        Submit Suggestion
-                    </button>
-                </div>
-
-                <div id="suggestionDefend"
-                    *ngIf=" gameHasBegun && gamestate && gamestate.currentPlayerId === playerId && gamestate.turnStatus === 'SUGGESTION' && playerstate && playerstate.status && playerstate.status == 'DEFEND' ">
-                    <p class="col" *ngIf="(gamestate && gamestate.suggestion) && (cardList.includes(gamestate.suggestion.room) || cardList.includes(gamestate.suggestion.suspect) || cardList.includes(gamestate.suggestion.weapon))">
-                        Choose a card to defend the suggestion
-                    </p>
-                    <p class="col" *ngIf="(gamestate && gamestate.suggestion) && (!cardList.includes(gamestate.suggestion.room) && !cardList.includes(gamestate.suggestion.suspect) && !cardList.includes(gamestate.suggestion.weapon))">
-                        Admit it... you cannot disprove anything!
-                    </p>
-                    <div class="d-flex justify-content-center">
-                        <mat-form-field *ngIf="cardList && (gamestate && gamestate.suggestion) && (cardList.includes(gamestate.suggestion.room) || cardList.includes(gamestate.suggestion.suspect) || cardList.includes(gamestate.suggestion.weapon))">
-                            <mat-label>Card</mat-label>
-                            <select matNativeControl [(ngModel)]="suggestionCardChoice" name="card">
-                                <option *ngFor="let card of cardList" [value]="card">
-                                {{card}}
-                                </option>
-                            </select>
-                        </mat-form-field>
-
-                        <button id="cannotDisprove" class="genButtonStyle" (click)="sendSuggestionDefenseChoice('', true)"
-                            *ngIf="(gamestate && gamestate.suggestion) && (!cardList.includes(gamestate.suggestion.room) && !cardList.includes(gamestate.suggestion.suspect) && !cardList.includes(gamestate.suggestion.weapon))">
-                            Cannot Disprove
+                        <button class="col genButtonStyle" (click)="sendAccusationChoice(suspectChoice, weaponChoice, roomChoice)"
+                            [disabled]="!suspectChoice || !weaponChoice || !roomChoice"
+                            [ngClass]="{'isDisabled': !suspectChoice || !weaponChoice || !roomChoice}">
+                            Submit Accusation
                         </button>
                     </div>
 
-                    <button id="submitSuggestionDefense" class="col genButtonStyle" (click)="sendSuggestionDefenseChoice(suggestionCardChoice, false)"
-                        *ngIf="(gamestate && gamestate.suggestion) && (cardList.includes(gamestate.suggestion.room) || cardList.includes(gamestate.suggestion.suspect) || cardList.includes(gamestate.suggestion.weapon))"
-                        [disabled]="!suggestionCardChoice"
-                        [ngClass]="{'isDisabled': !suggestionCardChoice}">
-                        Submit Card for Suggestion Defense
-                    </button>
-                </div>
+                    <div id="suggestionOptions"
+                        *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId && suggestionOptions && gamestate.turnStatus === 'SUGGESTION' && !(playerstate && playerstate.status && playerstate.status === 'DEFEND') ">
+                        <p class="col">What would you like to suggest?</p>
+                        <div class="d-flex justify-content-center">
+                            <mat-form-field *ngIf="suggestionOptions.rooms" style="padding-right: 0.5em;">
+                                <mat-label>Room</mat-label>
+                                <select matNativeControl [(ngModel)]="roomChoice" name="room">
+                                    <option *ngFor="let room of suggestionOptions.rooms" [value]="room">
+                                    {{room}}
+                                    </option>
+                                </select>
+                            </mat-form-field>
 
+                            <mat-form-field *ngIf="suggestionOptions.suspects" style="padding-left: 0.5em; padding-right: 0.5em;">
+                                <mat-label>Suspect</mat-label>
+                                <select matNativeControl [(ngModel)]="suspectChoice" name="suspect">
+                                    <option *ngFor="let suspect of suggestionOptions.suspects" [value]="suspect">
+                                    {{suspect}}
+                                    </option>
+                                </select>
+                            </mat-form-field>
+
+                            <mat-form-field *ngIf="suggestionOptions.weapons" style="padding-left: 0.5em;">
+                                <mat-label>Weapon</mat-label>
+                                <select matNativeControl [(ngModel)]="weaponChoice" name="weapon">
+                                    <option *ngFor="let weapon of suggestionOptions.weapons" [value]="weapon">
+                                    {{weapon}}
+                                    </option>
+                                </select>
+                            </mat-form-field>
+                        </div>
+
+                        <button id="submitSuggestion" class="col genButtonStyle" (click)="sendSuggestionChoice(suspectChoice, weaponChoice, roomChoice)"
+                            [disabled]="!suspectChoice || !weaponChoice || !roomChoice"
+                            [ngClass]="{'isDisabled': !suspectChoice || !weaponChoice || !roomChoice}">
+                            Submit Suggestion
+                        </button>
+                    </div>
+
+                    <div id="suggestionDefend"
+                        *ngIf=" gameHasBegun && gamestate && gamestate.currentPlayerId === playerId && gamestate.turnStatus === 'SUGGESTION' && playerstate && playerstate.status && playerstate.status == 'DEFEND' ">
+                        <p class="col" *ngIf="(gamestate && gamestate.suggestion) && (cardList.includes(gamestate.suggestion.room) || cardList.includes(gamestate.suggestion.suspect) || cardList.includes(gamestate.suggestion.weapon))">
+                            Choose a card to defend the suggestion
+                        </p>
+                        <p class="col" *ngIf="(gamestate && gamestate.suggestion) && (!cardList.includes(gamestate.suggestion.room) && !cardList.includes(gamestate.suggestion.suspect) && !cardList.includes(gamestate.suggestion.weapon))">
+                            Admit it... you cannot disprove anything!
+                        </p>
+                        <div class="d-flex justify-content-center">
+                            <mat-form-field *ngIf="cardList && (gamestate && gamestate.suggestion) && (cardList.includes(gamestate.suggestion.room) || cardList.includes(gamestate.suggestion.suspect) || cardList.includes(gamestate.suggestion.weapon))">
+                                <mat-label>Card</mat-label>
+                                <select matNativeControl [(ngModel)]="suggestionCardChoice" name="card">
+                                    <option *ngFor="let card of cardList" [value]="card">
+                                    {{card}}
+                                    </option>
+                                </select>
+                            </mat-form-field>
+
+                            <button id="cannotDisprove" class="genButtonStyle" (click)="sendSuggestionDefenseChoice('', true)"
+                                *ngIf="(gamestate && gamestate.suggestion) && (!cardList.includes(gamestate.suggestion.room) && !cardList.includes(gamestate.suggestion.suspect) && !cardList.includes(gamestate.suggestion.weapon))">
+                                Cannot Disprove
+                            </button>
+                        </div>
+
+                        <button id="submitSuggestionDefense" class="col genButtonStyle" (click)="sendSuggestionDefenseChoice(suggestionCardChoice, false)"
+                            *ngIf="(gamestate && gamestate.suggestion) && (cardList.includes(gamestate.suggestion.room) || cardList.includes(gamestate.suggestion.suspect) || cardList.includes(gamestate.suggestion.weapon))"
+                            [disabled]="!suggestionCardChoice"
+                            [ngClass]="{'isDisabled': !suggestionCardChoice}">
+                            Submit Card for Suggestion Defense
+                        </button>
+                    </div>
+                </div>
             </div>
 
             <div id="cardPanel_right" class="col-9" *ngIf="gamestate && gamestate.turnStatus === 'END'">
