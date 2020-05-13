@@ -246,7 +246,7 @@
                 </div>
                 <div id="interactiveArea" *ngIf="gameHasBegun && playerstate && (gamestate && gamestate.currentPlayerId === playerId)">
                     <div id="moveOptions"
-                        *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId && gamestate.turnStatus !== 'SUGGESTION' && (playerstate && playerstate.status && playerstate.status !== 'SUGGEST') "
+                        *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId && gamestate.turnStatus !== 'SUGGESTION' && (playerstate && playerstate.status && playerstate.status !== 'SUGGEST') && gamestate.turnStatus !== 'ACCUSATION'"
                         [ngClass]="{
                             'ColonelMustardGlow': playerstate.suspect === 'Colonel Mustard',
                             'MissScarletGlow': playerstate.suspect === 'Miss Scarlet',
