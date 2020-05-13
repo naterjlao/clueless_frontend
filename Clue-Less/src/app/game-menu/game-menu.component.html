@@ -224,7 +224,7 @@
 
             <div id="cardPanel_right" class="col-9" *ngIf="gamestate && gamestate.turnStatus !== 'END'">
 
-                <div class="d-flex align-items-end">
+                <div class="d-flex align-items-end" *ngIf="gameHasBegun">
                     <h3 style="margin: 0; line-height: 100%;">Player Hand</h3>
                     &nbsp;
                     <svg class="bi bi-files" style="font-size: 15px;" width="1em" height="100%" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -232,7 +232,7 @@
                         <path d="M5 0h8a2 2 0 012 2v10a2 2 0 01-2 2v-1a1 1 0 001-1V2a1 1 0 00-1-1H5a1 1 0 00-1 1H3a2 2 0 012-2z"/>
                     </svg>
                 </div>
-                <div id="playerHnd">
+                <div id="playerHnd" *ngIf="gameHasBegun">
                 <!-- <div id="playerHnd" class="card-columns"> -->
                     <!-- for now to minimuze UI issues, cards will just be listed as text of the value -->
                     <div *ngFor="let card of cardList" style="display: inline-block;" class="cardStyle">
@@ -244,7 +244,7 @@
                         <img class="card-img-bottom" src="" alt="card">
                     </div> -->
                 </div>
-                <div id="interactiveArea" *ngIf="playerstate"
+                <div id="interactiveArea" *ngIf="gameHasBegun && playerstate"
                     [ngClass]="{
                         'ColonelMustardGlow': playerstate.suspect === 'Colonel Mustard',
                         'MissScarletGlow': playerstate.suspect === 'Miss Scarlet',
