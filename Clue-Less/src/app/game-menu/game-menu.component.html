@@ -244,17 +244,17 @@
                         <img class="card-img-bottom" src="" alt="card">
                     </div> -->
                 </div>
-                <div id="interactiveArea" *ngIf="gameHasBegun && playerstate && (gamestate && gamestate.currentPlayerId === playerId)"
-                    [ngClass]="{
-                        'ColonelMustardGlow': playerstate.suspect === 'Colonel Mustard',
-                        'MissScarletGlow': playerstate.suspect === 'Miss Scarlet',
-                        'ProfessorPlumGlow': playerstate.suspect === 'Professor Plum',
-                        'MrGreenGlow': playerstate.suspect === 'Mr Green',
-                        'MrsWhiteGlow': playerstate.suspect === 'Mrs White',
-                        'MrsPeacockGlow': playerstate.suspect === 'Mrs Peacock'
-                        }">
+                <div id="interactiveArea" *ngIf="gameHasBegun && playerstate && (gamestate && gamestate.currentPlayerId === playerId)">
                     <div id="moveOptions"
-                        *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId && gamestate.turnStatus !== 'SUGGESTION' && (playerstate && playerstate.status && playerstate.status !== 'SUGGEST') ">
+                        *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId && gamestate.turnStatus !== 'SUGGESTION' && (playerstate && playerstate.status && playerstate.status !== 'SUGGEST') "
+                        [ngClass]="{
+                            'ColonelMustardGlow': playerstate.suspect === 'Colonel Mustard',
+                            'MissScarletGlow': playerstate.suspect === 'Miss Scarlet',
+                            'ProfessorPlumGlow': playerstate.suspect === 'Professor Plum',
+                            'MrGreenGlow': playerstate.suspect === 'Mr Green',
+                            'MrsWhiteGlow': playerstate.suspect === 'Mrs White',
+                            'MrsPeacockGlow': playerstate.suspect === 'Mrs Peacock'
+                            }">
                         <p class="col">Choose a room to move to:</p>
                         <div class="d-flex justify-content-center">
                             <button *ngFor="let move of moveOptions" class="col moveButtons" value="move" (click)="makeMove(move)">
@@ -264,7 +264,15 @@
                     </div>
 
                     <div id="accusationOptions"
-                        *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId && accusationOptions && gamestate.turnStatus === 'ACCUSATION' ">
+                        *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId && accusationOptions && gamestate.turnStatus === 'ACCUSATION' "
+                        [ngClass]="{
+                            'ColonelMustardGlow': playerstate.suspect === 'Colonel Mustard',
+                            'MissScarletGlow': playerstate.suspect === 'Miss Scarlet',
+                            'ProfessorPlumGlow': playerstate.suspect === 'Professor Plum',
+                            'MrGreenGlow': playerstate.suspect === 'Mr Green',
+                            'MrsWhiteGlow': playerstate.suspect === 'Mrs White',
+                            'MrsPeacockGlow': playerstate.suspect === 'Mrs Peacock'
+                            }">
                         <p class="col">What would you like to accuse?</p>
                         <div class="d-flex justify-content-center">
                             <mat-form-field *ngIf="accusationOptions.rooms">
@@ -303,7 +311,15 @@
                     </div>
 
                     <div id="suggestionOptions"
-                        *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId && suggestionOptions && gamestate.turnStatus === 'SUGGESTION' && !(playerstate && playerstate.status && playerstate.status === 'DEFEND') ">
+                        *ngIf="gameHasBegun && gamestate && gamestate.currentPlayerId === playerId && suggestionOptions && gamestate.turnStatus === 'SUGGESTION' && !(playerstate && playerstate.status && playerstate.status === 'DEFEND') "
+                        [ngClass]="{
+                            'ColonelMustardGlow': playerstate.suspect === 'Colonel Mustard',
+                            'MissScarletGlow': playerstate.suspect === 'Miss Scarlet',
+                            'ProfessorPlumGlow': playerstate.suspect === 'Professor Plum',
+                            'MrGreenGlow': playerstate.suspect === 'Mr Green',
+                            'MrsWhiteGlow': playerstate.suspect === 'Mrs White',
+                            'MrsPeacockGlow': playerstate.suspect === 'Mrs Peacock'
+                            }">
                         <p class="col">What would you like to suggest?</p>
                         <div class="d-flex justify-content-center">
                             <mat-form-field *ngIf="suggestionOptions.rooms" style="padding-right: 0.5em;">
@@ -342,7 +358,15 @@
                     </div>
 
                     <div id="suggestionDefend"
-                        *ngIf=" gameHasBegun && gamestate && gamestate.currentPlayerId === playerId && gamestate.turnStatus === 'SUGGESTION' && playerstate && playerstate.status && playerstate.status == 'DEFEND' ">
+                        *ngIf=" gameHasBegun && gamestate && gamestate.currentPlayerId === playerId && gamestate.turnStatus === 'SUGGESTION' && playerstate && playerstate.status && playerstate.status == 'DEFEND' "
+                        [ngClass]="{
+                            'ColonelMustardGlow': playerstate.suspect === 'Colonel Mustard',
+                            'MissScarletGlow': playerstate.suspect === 'Miss Scarlet',
+                            'ProfessorPlumGlow': playerstate.suspect === 'Professor Plum',
+                            'MrGreenGlow': playerstate.suspect === 'Mr Green',
+                            'MrsWhiteGlow': playerstate.suspect === 'Mrs White',
+                            'MrsPeacockGlow': playerstate.suspect === 'Mrs Peacock'
+                            }">
                         <p class="col" *ngIf="(gamestate && gamestate.suggestion) && (cardList.includes(gamestate.suggestion.room) || cardList.includes(gamestate.suggestion.suspect) || cardList.includes(gamestate.suggestion.weapon))">
                             Choose a card to defend the suggestion
                         </p>
